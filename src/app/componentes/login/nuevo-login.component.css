@@ -1,0 +1,20 @@
+#botonAgregar{
+    margin: 10px 10px;
+}
+#impHasta{
+    margin-top: 15px;
+}
+#espacial{
+    margin-top: 15px;
+}
+
+#textosColor{
+    color: white;
+    font-family:'Lucida Sans';
+}
+
+.fondoEdit{
+    background-image: url("https://res.cloudinary.com/dighitalsoluciones/image/upload/v1663096927/IMG%20PROYECTO%20INTEGRADOR/fondo_djzekc.jpg");
+    background-repeat: repeat;
+    background-size: cover;
+}

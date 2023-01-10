@@ -1,4 +1,5 @@
 export class NuevoUsuario {
+    id?: any;
     nombre!: string;
     apellido!: string;
     dni!: string;
@@ -19,7 +20,7 @@ export class NuevoUsuario {
     constructor(nombre: string, apellido: string, dni: string, direccion: string, localidad: string, telefono: string,
         fotoPerfil: string, nombreUsuario: string, email: string, password: string, suscripcionActual: number,
         fechaActualSus: string, clasesTomadas: number, clasesRestantes: number){
-
+            
             this.nombre = nombre;
             this.apellido = apellido;
             this.dni = dni;

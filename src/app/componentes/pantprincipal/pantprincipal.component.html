@@ -1,3 +1,12 @@
 <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="login()" *ngIf="!isLogged" >LOGIN</button>
 <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="onLogout()" *ngIf="isLogged">LOGOUT</button>
 
+<p>Numero de usuario: {{usuario.id}}</p>
+<p> nombre del usuario: {{usuario.nombre}}</p>
+<p> email del usuario: {{usuario.email}}</p>
+
+<div *ngFor= "let usuarios of usuario | async" class="top-info">
+    <div *ngIf="usuario.id == userId">
+        <p>{{usuario.nombre}}</p>
+    </div>
+</div>

@@ -4,9 +4,3 @@
 <p>Numero de usuario: {{usuario.id}}</p>
 <p> nombre del usuario: {{usuario.nombre}}</p>
 <p> email del usuario: {{usuario.email}}</p>
-
-<div *ngFor= "let usuarios of usuario | async" class="top-info">
-    <div *ngIf="usuario.id == userId">
-        <p>{{usuario.nombre}}</p>
-    </div>
-</div>

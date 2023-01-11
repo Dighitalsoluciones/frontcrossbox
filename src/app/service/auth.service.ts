@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   public traerId(nuevoUsuario: NuevoUsuario): Observable<NuevoUsuario>{
-    return this.httpClient.get<NuevoUsuario["id"]>(this.authURL + 'traerid');
+    return this.httpClient.get<NuevoUsuario["id"]>(this.authURL + 'traerid' + nuevoUsuario);
   }
   
 }

@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, getNgModuleById, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
-import { UsuariosService } from 'src/app/service/usuarios.service';
 
 @Component({
   selector: 'app-pantprincipal',
@@ -15,15 +15,17 @@ export class PantprincipalComponent implements OnInit {
   isLogged = false;
   usuario: any;
   userId: any;
+  id1: any;
   
 
-  constructor(private http: HttpClient, private user: UsuariosService, private router:Router, private route: ActivatedRoute, private tokenService: TokenService, private auth: AuthService) { }
+  constructor(private http: HttpClient, private router:Router, private route: ActivatedRoute, private tokenService: TokenService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    
+  
     this.userId = this.route.snapshot.paramMap.get('id');
-
-    this.traerUsuario(this.userId);  
+    
+    this.traerUsuario(3);  
+    console.log(this.userId);
       
     if(this.tokenService.getToken()){
       this.isLogged= true;
@@ -46,6 +48,11 @@ export class PantprincipalComponent implements OnInit {
     this.auth.getUsuario(id).subscribe(data => {this.usuario = data})
     
   }
+
+  idUsuario(){
+    this.id1 = this.usuario.id;
+  }
+
 
   traerId(){
     this.route.paramMap.subscribe(paramMap => {

@@ -1,6 +1,8 @@
 <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="login()" *ngIf="!isLogged" >LOGIN</button>
 <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="onLogout()" *ngIf="isLogged">LOGOUT</button>
 
+<div *ngIf="isLogged" >
 <p>Numero de usuario: {{usuario.id}}</p>
 <p> nombre del usuario: {{usuario.nombre}}</p>
 <p> email del usuario: {{usuario.email}}</p>
+</div>

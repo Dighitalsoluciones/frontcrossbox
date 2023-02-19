@@ -24,7 +24,7 @@ export class PantprincipalComponent implements OnInit {
   
     this.userId = this.route.snapshot.paramMap.get('id');
     
-    this.traerUsuario(3);  
+    this.traerUsuario(1);  
     console.log(this.userId);
       
     if(this.tokenService.getToken()){

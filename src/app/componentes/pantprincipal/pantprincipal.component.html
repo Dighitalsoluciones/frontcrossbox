@@ -1,8 +1,40 @@
-<button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="login()" *ngIf="!isLogged" >LOGIN</button>
-<button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="onLogout()" *ngIf="isLogged">LOGOUT</button>
+<div class="container divPrincipal mx-auto mb-6 text-center">
+    <div class="d-flex flex-row justify-content-center align-items-center">
+    
+        <button style="margin-top: 10px;" type="button" class="btn btn-success my-2 my-sm-0" (click)="login()" *ngIf="!isLogged">LOGIN</button>
+        <button type="button" class="btn btn-info my-2 my-sm-0" routerLink="/perfil" *ngIf="isLogged">IR A MI PERFIL</button>
+        <button type="button" class="btn btn-danger my-2 my-sm-0" (click)="onLogout()" *ngIf="isLogged" style="margin-left: 20px;">LOGOUT</button>
+    
+    </div>
+    <div class="alineado">
+    <img id="logoPrincipal" src="https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/r6cGddKN0fSEOSS8tLAM/pub/WJXEQHn7SqNChCGuKDWw.png"/>
+</div>
 
-<div *ngIf="isLogged" >
-<p>Numero de usuario: {{usuario.id}}</p>
-<p> nombre del usuario: {{usuario.nombre}}</p>
-<p> email del usuario: {{usuario.email}}</p>
+<p id="cuadradoUno" class="mx-auto mb-6 text-center" style="color: white;">NOSOTROS 
+    <br> Capacitados en las mejores escuelas del país. Nos preparamos para acompañarte en las mejoras motrices, físicas, psíquicas y elevar las capacidades en forma general de los atletas de diferentes niveles en deportes específicos.
+Desarrollando un entrenamiento de mejoras generales vamos a ir transformando  la calidad de vida y encontrando un bienestar verdadero.</p>
+
+<p id="cuadradoDos" class="mx-auto mb-6 text-center" style="color: white;">VISION 
+    <br> Llevar nuestro negocio a ser reconocido por los altos niveles de profesionalidad, siendo una marca referente en el mercado.</p> 
+
+<p id="cuadradoTres" class="mx-auto mb-6 text-center" style="color: white;"> 🏆 PASES PREMIUM 🏆
+    <br> Conseguí un pase PREMIUM, los cupos para obtener estos beneficios son limitados.
+    <br>
+    <br>PREMIUM MASTER🥇
+    <br> Si abonas un plan anual de cualquiera de las opciones, durante el año en curso de tu abono no solo congelas el precio y le ganas a la inflación, sino que tenés la 
+        posibilidad de acompañar a 12 nuevos socios y que abonen el mismo plan que vos o superior para que los próximos 12 meses entrenes GRATIS. Si no conseguís 12 y 
+        conseguís menos durante el año, ¡¡No te preocupes!!  Te damos 10% de descuento en tu próximo plan por cada uno de los nuevos socios que trajiste con las condiciones
+         anteriormente mencionadas. Si los nuevos socios que traes son Premium en otras categorías: Premium Elite (6 Meses) 5% de descuento en tu próximo abono por cada socio 
+         que traigas. Premium Amateur (3 Meses) 2% de descuento en tu próximo abono por cada socio Premium Amateur que traigas.
+    <br>
+    <br>PREMIUM ELITE🥈
+    <br>Si abonas un plan de 6 meses de cualquiera de las opciones, durante esos meses en curso de tu abono no solo congelas el precio y le ganas a la inflación sino que  tenés
+     la posibilidad de acompañar a 6 nuevos socios que abonen el mismo plan que vos o superior, para que los próximos 6 meses entrenes GRATIS. Si no conseguís 6 y conseguís menos
+      durante el plan en curso, ¡¡No te preocupes!! Te damos  5% de descuento en tu próximo plan por cada nuevo socio que trajiste en las condiciones anteriormente mencionadas. 
+      Si los nuevos socios que traes son Premium Amateur el descuento será del 2% en tu próximo abono por cada socio que traigas.    
+    <br>
+    <br>PREMIUM AMATEUR🥉  
+    <br>Si abonas un plan de 3 meses de cualquiera de las opciones, durante esos meses en curso de tu abono no solo congelas el precio y le ganas a la inflación sino que tenés la
+     posibilidad de acompañar 3 nuevos socios que abonen el mismo plan que vos o superior, para que te regalemos ¡¡1 mes gratis!! </p> 
+
 </div>

@@ -9,6 +9,8 @@ import { PantprincipalComponent } from './componentes/pantprincipal/pantprincipa
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NuevoLoginComponent } from './componentes/login/nuevo-login.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { EditarperfilComponent } from './componentes/perfil/editarperfil.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { NuevoLoginComponent } from './componentes/login/nuevo-login.component';
     LoginComponent,
     PantprincipalComponent,
     NuevoLoginComponent,
+    PerfilComponent,
+    EditarperfilComponent,
   
   ],
   imports: [

@@ -27,8 +27,27 @@ export class AuthService {
     
   }
 
-  public traerId(nuevoUsuario: NuevoUsuario): Observable<NuevoUsuario>{
-    return this.httpClient.get<NuevoUsuario["id"]>(this.authURL + 'traerid' + nuevoUsuario);
+  //con esta declaracion traigo los datos del usuario de mi back
+  public detailName(nombreUsuario: string): Observable<NuevoUsuario> {
+    return this.httpClient.get<NuevoUsuario>(this.authURL + `detailname/${nombreUsuario}`);
+  }
+
+  //agregado para poder completar el CRUD
+  public details(id: number): Observable<NuevoUsuario>{
+    return this.httpClient.get<NuevoUsuario>(this.authURL + `detail/${id}`);
+  }
+
+  
+  public update(id: number, nuevoUsuario: NuevoUsuario): Observable<any>{
+    return this.httpClient.put<any>(this.authURL + `update/${id}`, nuevoUsuario);
+  }
+
+  public foto(id: number, nuevoUsuario: NuevoUsuario): Observable<any>{
+    return this.httpClient.put<any>(this.authURL + `update/${id}`, nuevoUsuario);
+  }
+
+  public delete(id: number): Observable<any>{
+    return this.httpClient.delete<any>(this.authURL + `delete/${id}`);
   }
   
 }

@@ -6,6 +6,8 @@ import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 
+const USERNAME_KEY = 'AuthUsername';
+
 @Component({
   selector: 'app-pantprincipal',
   templateUrl: './pantprincipal.component.html',
@@ -16,16 +18,16 @@ export class PantprincipalComponent implements OnInit {
   usuario: any;
   userId: any;
   id1: any;
-  
+  usuarioLogeado: any;
 
   constructor(private http: HttpClient, private router:Router, private route: ActivatedRoute, private tokenService: TokenService, private auth: AuthService) { }
 
   ngOnInit(): void {
-  
-    this.userId = this.route.snapshot.paramMap.get('id');
+    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
     
-    this.traerUsuario(1);  
-    console.log(this.userId);
+    
+    this.traerUsuario(this.usuarioLogeado);  
+    
       
     if(this.tokenService.getToken()){
       this.isLogged= true;
@@ -44,14 +46,12 @@ export class PantprincipalComponent implements OnInit {
   }
 
  
-  traerUsuario(id:number): void{
-    this.auth.getUsuario(id).subscribe(data => {this.usuario = data})
+  traerUsuario(nombreUsuario: string): void{
+    this.auth.detailName(nombreUsuario).subscribe(data => {this.usuario = data})
     
   }
 
-  idUsuario(){
-    this.id1 = this.usuario.id;
-  }
+
 
 
   traerId(){

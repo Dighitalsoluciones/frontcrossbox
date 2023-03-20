@@ -1,0 +1,36 @@
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" id="output"><span class="font-weight-bold">{{usuario.nombreUsuario}}</span><span class="text-black-50" >{{usuario.email}}</span><span> </span></div>
+       <div><img width="100px" id="mostraranterior"></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Mi Perfil</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Nombre</label><input type="text" class="form-control" placeholder="Ingresa tu nombre" [(ngModel)]="usuario.nombre" required></div>
+                    <div class="col-md-6"><label class="labels">Apellido</label><input type="text" class="form-control" [(ngModel)]="usuario.apellido" required placeholder="Ingresa tu apellido"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Telefono</label><input type="text" class="form-control" placeholder="Ingresa tu telefono" [(ngModel)]="usuario.telefono"></div>
+                    <div class="col-md-12"><label class="labels">Dirección</label><input type="text" class="form-control" placeholder="Ingresa tu calle y el numero" [(ngModel)]="usuario.direccion"></div>
+                    <div class="col-md-12"><label class="labels">Localidad</label><input type="text" class="form-control" placeholder="Ingresa tu localidad" [(ngModel)]="usuario.localidad"></div>
+                    <div class="col-md-12"><label class="labels">Dni</label><input type="number" class="form-control" placeholder="ingresa tu dni" [(ngModel)]="usuario.dni" required></div>
+                    <div class="col-md-12"><label class="labels"> Imagen de Perfil (Opcional)</label>
+                        <input type="file" class="form-control" (change)="capturarImagen($event)" id="imagen" name="imagen" [(ngModel)]="usuario.fotoPerfil">
+                    </div>
+                
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="enter email" [(ngModel)]="usuario.email" required></div>
+                    <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" placeholder="ingresa tu contraseña" [(ngModel)]="usuario.password" required></div>
+                </div>
+                
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" (click)="onUpdate()">Guardar Cambios</button>
+                <button class="btn btn-danger" type="button" (click)="cancelar()" style="margin-left: 12px;">Cancelar</button></div>
+
+            </div>
+        </div>
+       
+    </div>
+</div>

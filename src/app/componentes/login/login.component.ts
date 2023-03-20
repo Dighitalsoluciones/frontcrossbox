@@ -38,13 +38,17 @@ export class LoginComponent implements OnInit {
         this.tokenService.setUserName(data.nombreUsuario);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        this.router.navigate([''])
+        this.router.navigate(['perfil'])
       }, err =>{alert("🐕‍🦺 Nombre de Usuario o Contraseña Incorrecta 🐕‍🦺")
         this.isLogged = false;
         this.isLogginFail = true;
         this.errMsj = err.error.mensaje;
         console.log(this.errMsj);
       })
+  }
+
+  cancelar(): void {
+    this.router.navigate(['']);
   }
 
 

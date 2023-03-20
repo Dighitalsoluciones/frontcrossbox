@@ -1,0 +1,141 @@
+.alineado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divPrincipal {
+  background-image: url("https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/YqE7kCKL4ADoxi6Ds1wC/pub/v2zAn9JXA6tlH72X2rwo.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: #6699;
+  background-position: center center;
+  background-repeat: repeat-y;
+  
+
+}
+
+#cuadradoUno {
+  position: static;
+  top: 600px;
+  width: 80%;
+  max-width: 575px;
+  opacity: 1;
+  height: 210px;
+  background: linear-gradient(#0a0a0a, #0a0a0a);
+  border-radius: 10px;
+  border: solid 0.1em;
+  border-color: white;
+  padding-top: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  text-align: center;
+
+}
+
+#cuadradoDos {
+  margin-top: 10px;
+  position: static;
+  top: 600px;
+  width: 80%;
+  max-width: 575px;
+  opacity: 1;
+  height: 120px;
+  background: linear-gradient(#0a0a0a, #0a0a0a);
+  border-radius: 10px;
+  border: solid 0.1em;
+  border-color: white;
+  padding-top: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  text-align: center;
+}
+
+#cuadradoTres {
+  margin-top: 20px;
+  position: static;
+  top: 600px;
+  width: 80%;
+  max-width: 575px;
+  opacity: 1;
+  height: 885px;
+  background: linear-gradient(#ff072f, #0a0a0a);
+  border-radius: 10px;
+  border: solid 0.1em;
+  border-color: white;
+  padding-top: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  text-align: center;
+}
+
+#logoPrincipal {
+  position: static;
+  max-width: 575px;
+  width: inherit;
+  align-self: center;
+  padding-top: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 3px;
+}
+
+/*A partir de aca css para diferentes resoluciones y vista vertical */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation: portrait) {
+  #cuadradoUno {
+    margin-top: 15px;
+    position: static;
+    top: 600px;
+    width: 80%;
+    max-width: 575px;
+    opacity: 1;
+    height: 335px;
+    background: linear-gradient(#0a0a0a, #0a0a0a);
+    border-radius: 10px;
+    border: solid 0.1em;
+    border-color: white;
+    padding-top: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: center;
+  }
+
+  #cuadradoDos {
+    margin-top: 15px;
+    position: static;
+    top: 600px;
+    width: 80%;
+    max-width: 575px;
+    opacity: 1;
+    height: 155px;
+    background: linear-gradient(#0a0a0a, #0a0a0a);
+    border-radius: 10px;
+    border: solid 0.1em;
+    border-color: white;
+    padding-top: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: center;
+
+  }
+  #cuadradoTres {
+    margin-top: 20px;
+    position: static;
+    top: 600px;
+    width: 80%;
+    max-width: 575px;
+    opacity: 1;
+    height: 1600px;
+    background: linear-gradient(#ff072f, #0a0a0a);
+    border-radius: 10px;
+    border: solid 0.1em;
+    border-color: white;
+    padding-top: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: center;
+  }
+}
+

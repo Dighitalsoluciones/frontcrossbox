@@ -1,15 +1,15 @@
 export class NuevoUsuario {
-    id?: any;
-    nombre!: string;
-    apellido!: string;
-    dni!: string;
-    direccion!: string;
-    localidad!: string;
-    telefono!: string;
-    fotoPerfil!: string;
-    nombreUsuario!: string;
-    email!: string;
-    password!: string;
+    id?: number;
+    nombre: string;
+    apellido: string;
+    dni: string;
+    direccion: string;
+    localidad: string;
+    telefono: string;
+    fotoPerfil: string;
+    nombreUsuario: string;
+    email: string;
+    password: string;
     
     suscripcionActual!: number;
     fechaActualSus!: string;

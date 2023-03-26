@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NuevoUsuario } from '../model/nuevo-usuario';
 import { LoginUsuario } from '../model/login-usuario';
 import { Observable } from 'rxjs';
 import { JwtDto } from '../model/jwt-dto';
+import { Usuarios } from '../model/usuarios';
 
 @Injectable({
   providedIn: 'root'
@@ -50,4 +51,14 @@ export class AuthService {
     return this.httpClient.delete<any>(this.authURL + `delete/${id}`);
   }
   
+  public uploadImage(imageData: string, id:number): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type' : 'application/json'});
+    const options = { headers: headers};
+    const body = { imageData: imageData};
+    return this.httpClient.post<any>(this.authURL + `update/${id}`, body, options);
+  }
+
+  public lista(): Observable<Usuarios[]>{
+    return this.httpClient.get<Usuarios[]>(this.authURL + 'lista');
+  }
 }

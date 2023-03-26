@@ -1,0 +1,51 @@
+<div class="container">
+	<div class="row">
+		<h2>Dashboard del Administrador</h2>
+		<hr/>
+		
+		 <div id="wrapper">
+        
+    
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav" style="margin-left:0;">
+                <li class="sidebar-brand">
+                    
+                        
+                        
+                </li>
+                <li>
+                 <button id="botonesdelmenu" class="btn btn-outline-info" (click)="mostrarUsuariosRegistrados()"> <i class="fa fa-sort-alpha-asc" (click)="mostrarUsuariosRegistrados()"> </i> <span style="margin-left:10px;">Usuarios</span></button>
+                 <a hreflang="#" id="noMostrar"> <i class="fa fa-sort-alpha-asc" (click)="mostrarUsuariosRegistrados()"> </i> <span style="margin-left:10px;">Usuarios</span> </a>
+                </li>
+                <li>
+                    <a href="#"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Section</span> </a>
+                </li>
+                <li>
+                    <a href="#"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Section</span> </a>
+                </li>
+                <li>
+                    <a href="#"> <i class="fa fa-font" aria-hidden="true"> </i> <span style="margin-left:10px;"> Section</span> </a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-info-circle " aria-hidden="true"> </i> <span style="margin-left:10px;">Section </span> </a>
+                </li>
+                <li>
+                    <a href="#"> <i class="fa fa-comment-o" aria-hidden="true"> </i> <span style="margin-left:10px;"> Section</span> </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+   <div *ngIf="usuariosRegistrados">                     
+   <app-usuarios-registrados></app-usuarios-registrados>                      
+   </div>                     
+    
+	</div>
+</div>

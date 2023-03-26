@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NuevoLoginComponent } from './componentes/login/nuevo-login.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { EditarperfilComponent } from './componentes/perfil/editarperfil.component';
+import { DisciplinasComponent } from './componentes/disciplinas/disciplinas.component';
+import { NewDisciplinaComponent } from './componentes/disciplinas/new-disciplina.component';
+import { EditDisciplinaComponent } from './componentes/disciplinas/edit-disciplina.component';
+import { MenuadminComponent } from './componentes/menuadmin/menuadmin.component';
+import { UsuariosRegistradosComponent } from './componentes/menuadmin/usuarios-registrados/usuarios-registrados.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +26,11 @@ import { EditarperfilComponent } from './componentes/perfil/editarperfil.compone
     NuevoLoginComponent,
     PerfilComponent,
     EditarperfilComponent,
+    DisciplinasComponent,
+    NewDisciplinaComponent,
+    EditDisciplinaComponent,
+    MenuadminComponent,
+    UsuariosRegistradosComponent,
   
   ],
   imports: [

@@ -42,7 +42,7 @@ clasesRestantes: number = 0;
       data=>{alert("✅ Usuario creado correctamente");
       this.router.navigate(['']);
     }, err =>{
-      alert("⛔Fallo en la creación del Usuario, debes completar todos los campos⛔");
+      alert("⛔Nombre de Usuario ya existente o debes completar todos los campos⛔");
       this.router.navigate(['login'])
     }
     )

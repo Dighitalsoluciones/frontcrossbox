@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,10 +21,14 @@ export class EditarperfilComponent implements OnInit {
   public previsualizacion: string = "";
   imagenPrevia: any;
   files: any = []
+  imageUrl: string = "";
+
   
 
   constructor(private auth: AuthService, private activatedRouter: ActivatedRoute, 
-    private router: Router, private sanitizer: DomSanitizer) { }
+    private router: Router, private sanitizer: DomSanitizer, private http: HttpClient) { }
+
+  
 
   ngOnInit(): void {
     this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
@@ -54,6 +59,23 @@ export class EditarperfilComponent implements OnInit {
     this.router.navigate(['perfil']);
   }
 
+ /* 
+ onFileSelected(event: any){
+  const file: File = event.target.files[0];
+  this.uploadFile(file);
+}
+
+uploadFile(file: File){
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    const imageBase64 = reader.result as string;
+    this.auth.uploadImage(imageBase64).subscribe((response: any) => {
+      this.imageUrl = response;
+    });
+  };
+} */
+
   //captura el valor del input y muestra la vista previa de la imagen subida
   capturarImagen(event: any) {
     const imagen = event.target.files[0];
@@ -63,7 +85,7 @@ export class EditarperfilComponent implements OnInit {
     
   }
 
-
+/*
 subirImagen = () => {
   const id = Number(this.usuario.id);
   try {
@@ -82,7 +104,7 @@ subirImagen = () => {
     console.log('ERROR', e);
 
   }
-}
+} */
 
   /* No funciona esto era para convertir a base64
   blobFile = async ($event: any) => new Promise((resolve, reject) => {

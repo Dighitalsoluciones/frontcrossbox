@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/service/auth.service';
 export class UsuariosRegistradosComponent implements OnInit {
 
   usuariosRegistrados: Usuarios[] = [];
+  FiltrarUsuariosReg = [];
 
   constructor(private authService: AuthService) { }
 

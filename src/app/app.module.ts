@@ -16,6 +16,7 @@ import { NewDisciplinaComponent } from './componentes/disciplinas/new-disciplina
 import { EditDisciplinaComponent } from './componentes/disciplinas/edit-disciplina.component';
 import { MenuadminComponent } from './componentes/menuadmin/menuadmin.component';
 import { UsuariosRegistradosComponent } from './componentes/menuadmin/usuarios-registrados/usuarios-registrados.component';
+import { FiltrarUsuariosPipe } from './pipes/filtrar-usuarios.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UsuariosRegistradosComponent } from './componentes/menuadmin/usuarios-r
     EditDisciplinaComponent,
     MenuadminComponent,
     UsuariosRegistradosComponent,
+    FiltrarUsuariosPipe,
   
   ],
   imports: [

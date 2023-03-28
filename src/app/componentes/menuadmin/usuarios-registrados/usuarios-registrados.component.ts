@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuarios } from 'src/app/model/usuarios';
+import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class UsuariosRegistradosComponent implements OnInit {
 
-  usuariosRegistrados: Usuarios[] = [];
+  usuariosRegistrados: NuevoUsuario[] = [];
   FiltrarUsuariosReg = [];
 
   constructor(private authService: AuthService) { }
@@ -21,4 +21,5 @@ export class UsuariosRegistradosComponent implements OnInit {
   listaUsuarios(): void{
     this.authService.lista().subscribe(data => {this.usuariosRegistrados = data;})
   }
+  
 }

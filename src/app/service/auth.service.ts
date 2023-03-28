@@ -58,7 +58,7 @@ export class AuthService {
     return this.httpClient.post<any>(this.authURL + `update/${id}`, body, options);
   }
 
-  public lista(): Observable<Usuarios[]>{
-    return this.httpClient.get<Usuarios[]>(this.authURL + 'lista');
+  public lista(): Observable<NuevoUsuario[]>{
+    return this.httpClient.get<NuevoUsuario[]>(this.authURL + 'lista');
   }
 }

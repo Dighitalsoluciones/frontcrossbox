@@ -16,8 +16,16 @@
                         
                 </li>
                 <li>
-                 <button id="botonesdelmenu" class="btn btn-outline-info" (click)="mostrarUsuariosRegistrados()"> <i class="fa fa-sort-alpha-asc" (click)="mostrarUsuariosRegistrados()"> </i> <span style="margin-left:10px;">Usuarios</span></button>
-                 <a hreflang="#" id="noMostrar"> <i class="fa fa-sort-alpha-asc" (click)="mostrarUsuariosRegistrados()"> </i> <span style="margin-left:10px;">Usuarios</span> </a>
+                    <button id="botonesdelmenu" class="btn btn-outline-info" (click)="mostrarUsuariosRegistrados()"> <i class="fa fa-sort-alpha-asc" (click)="mostrarUsuariosRegistrados()"> </i> <span style="margin-left:10px;">Usuarios</span></button>
+                    <a hreflang="#" id="noMostrar"> <i class="fa fa-sort-alpha-asc" (click)="mostrarUsuariosRegistrados()"> </i> <span style="margin-left:10px;">Usuarios</span> </a>
+                </li>
+                <li>
+                    <button id="botonesdelmenu" class="btn btn-outline-info" (click)="mostrarUsuariosRegistrados()"> <i class="fa fa-play-circle-o" (click)="mostrarUsuariosRegistrados()"> </i> <span style="margin-left:10px;">Turnos</span></button>
+                    <a hreflang="#" id="noMostrar"> <i class="fa fa-play-circle-o " (click)="mostrarUsuariosRegistrados()"> </i> <span style="margin-left:10px;">Turnos</span> </a>
+                </li>
+                <li>
+                    <button id="botonesdelmenu" class="btn btn-outline-info" (click)="mostrarDisciplinas()"> <i class="fa fa-puzzle-piece" (click)="mostrarDisciplinas()"> </i> <span style="margin-left:10px;">Disciplinas</span></button>
+                    <a hreflang="#" id="noMostrar"> <i class="fa fa-puzzle-piece" (click)="mostrarDisciplinas()"> </i> <span style="margin-left:10px;">Disciplinas</span> </a>
                 </li>
                 <li>
                     <a href="#"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Section</span> </a>
@@ -42,10 +50,17 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-   <div *ngIf="usuariosRegistrados">                     
+                    <div class="col-lg-12">                           
+   <div *ngIf="usuariosRegistrados">
+    <app-spinnerdecarga></app-spinnerdecarga>                     
    <app-usuarios-registrados></app-usuarios-registrados>                      
-   </div>                     
+   </div>
+   <div *ngIf="disciplinas">  
+    <app-spinnerdecarga></app-spinnerdecarga>                   
+    <app-disciplinas></app-disciplinas>                     
+    </div>      
+    
+</div>
     
 	</div>
 </div>

@@ -11,6 +11,7 @@ export class UsuariosRegistradosComponent implements OnInit {
 
   usuariosRegistrados: NuevoUsuario[] = [];
   FiltrarUsuariosReg = [];
+  modalEliminarUsuario= "none";
 
   constructor(private authService: AuthService) { }
 
@@ -22,4 +23,25 @@ export class UsuariosRegistradosComponent implements OnInit {
     this.authService.lista().subscribe(data => {this.usuariosRegistrados = data;})
   }
   
+  abrirModalEliminarUsuario(){
+    this.modalEliminarUsuario = "block";
+  }
+  cerrarModalEliminarUsuario(){
+    this.modalEliminarUsuario = "none";
+  }
+
+  delete(id?: number){
+    if(id != undefined){
+        this.authService.delete(id).subscribe(
+        data =>{alert("✅ Usuario borrado correctamente");
+          this.listaUsuarios();
+        }, err =>{
+          alert("No se pudo borrar el usuario");
+        }
+      )
+    } else{
+      alert("No se pudo borrar el usuario");
+    }
+  }
+
 }

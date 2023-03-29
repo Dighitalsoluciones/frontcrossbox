@@ -15,6 +15,7 @@ body {
 
 #botonesdelmenu{
     margin-left: 10px;
+    margin-top: 10px;
 }
 
 #noMostrar{
@@ -206,6 +207,7 @@ body {
  } 
 
     #page-content-wrapper {
+        margin-left: 15px;
         padding: 5px;
         position: relative;
     }

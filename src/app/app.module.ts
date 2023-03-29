@@ -18,6 +18,7 @@ import { MenuadminComponent } from './componentes/menuadmin/menuadmin.component'
 import { UsuariosRegistradosComponent } from './componentes/menuadmin/usuarios-registrados/usuarios-registrados.component';
 import { FiltrarUsuariosPipe } from './pipes/filtrar-usuarios.pipe';
 import { CargaSuscripcionComponent } from './componentes/menuadmin/carga-suscripcion/carga-suscripcion.component';
+import { SpinnerdecargaComponent } from './componentes/spinnerdecarga/spinnerdecarga.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CargaSuscripcionComponent } from './componentes/menuadmin/carga-suscrip
     UsuariosRegistradosComponent,
     FiltrarUsuariosPipe,
     CargaSuscripcionComponent,
+    SpinnerdecargaComponent,
   
   ],
   imports: [

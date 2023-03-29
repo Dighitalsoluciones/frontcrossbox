@@ -16,13 +16,13 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <img [src]="[usuario.fotoPerfil]" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4>{{usuario.apellido}} {{usuario.nombre}}</h4>
                       <div *ngIf="usuario.suscripcionActual !=0">
-                      <p class="text-secondary mb-0">Fecha Ultima Suscripción:</p>
+                      <p class="mb-0">Fecha Ultima Suscripción:</p>
                       <p class="text-muted font-size-sm">{{usuario.fechaActualSus}}</p>
-                      <p class="text-secondary mb-0">Cantidad de Clases</p>
+                      <p class="mb-0">Cantidad de Clases:</p>
                       <p class="text-muted font-size-sm">{{usuario.suscripcionActual}}</p>
                     </div>
                     <div *ngIf="usuario.suscripcionActual == 0">
@@ -117,9 +117,13 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
+                  <div class="row d-flex flex-column align-items-center text-center">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                        <input id="inputclases" class="col-sm-3 ph-center" type="number" placeholder="Clases a cargar">
+                     <!-- Direcciona a un link externo
+                        <a style="margin-left: 10px;" class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Cargar Suscripcion</a>
+                    -->
+                     <button class="btn btn-info" style="margin-left: 10px; color: aliceblue;" (click)="cargarSuscripcion(); guardar()">Cargar Suscripcion</button>
                     </div>
                   </div>
                 </div>

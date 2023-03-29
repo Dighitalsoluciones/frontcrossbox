@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MenuadminComponent implements OnInit {
 
   usuariosRegistrados = false;
+  disciplinas = false;
 
   constructor() { }
 
@@ -15,6 +16,12 @@ export class MenuadminComponent implements OnInit {
   }
    
   mostrarUsuariosRegistrados(){
-    this.usuariosRegistrados = true;  
+    this.usuariosRegistrados = true;
+    this.disciplinas = false;  
+  }
+
+  mostrarDisciplinas(){
+    this.disciplinas = true;
+    this.usuariosRegistrados = false;
   }
 }

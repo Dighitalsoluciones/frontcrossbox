@@ -2,7 +2,8 @@
   <div class="card p-4">
     <div class="image d-flex flex-column justify-content-center align-items-center">
       <button class="btn btn-secondary">
-        <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" />
+        <!--<img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" /> -->
+        <img [src]="[mostrarfoto]" height="100" width="100">
       </button>
       <span class="name mt-3">{{perfil.nombre}}</span>
       <span class="idd">{{perfil.email}}</span>
@@ -34,13 +35,9 @@
         <span><i class="fa fa-linkedin"></i></span>
       </div>
 
-      <div class="text mt-3">
-        <span class="idd">Fecha Última Suscripción </span>
-        <span class="join">{{perfil.fechaActualSus}}</span>
-      
-    </div>
+    <span class="idd" style="margin-top: 20px;">Fecha Última Suscripción </span>
       <div class="px-2 rounded mt-4 date">
-        <span class="join">16 de Marzo de 2023</span>
+        <span class="join">{{perfil.fechaActualSus}}</span>
       </div>
       <div class="d-flex mt-2">
         <button class="btn1 btn-dark" routerLink="/editperfil">Editar Perfil</button>

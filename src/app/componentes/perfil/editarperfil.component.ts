@@ -6,6 +6,7 @@ import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 
 const USERNAME_KEY = 'AuthUsername';
+const FOTOPERFIL = 'image';
 
 @Component({
   selector: 'app-editarperfil',
@@ -22,7 +23,7 @@ export class EditarperfilComponent implements OnInit {
   imagenPrevia: any;
   files: any = []
   imageUrl: string = "";
-
+  mostrarfoto: any;
   
 
   constructor(private auth: AuthService, private activatedRouter: ActivatedRoute, 
@@ -40,6 +41,7 @@ export class EditarperfilComponent implements OnInit {
         this.router.navigate(['perfil']);
       }
     )
+    this.mostrarfoto = localStorage.getItem(FOTOPERFIL);
   }
 
   onUpdate(): void{
@@ -135,4 +137,13 @@ subirImagen = () => {
 
 }
 */
+onFileSelected(event: any) {
+  const file: File = event.target.files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    localStorage.setItem('image', reader.result as string);
+  };
+}
+
 }

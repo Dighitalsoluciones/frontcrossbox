@@ -52,4 +52,13 @@ clasesRestantes: number = 0;
     this.router.navigate(['login']);
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      localStorage.setItem('image', reader.result as string);
+    };
+  }
+
 }

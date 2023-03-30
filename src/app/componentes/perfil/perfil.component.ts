@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 
 const USERNAME_KEY = 'AuthUsername';
+const FOTOPERFIL = 'image';
 
 @Component({
   selector: 'app-perfil',
@@ -14,17 +15,20 @@ const USERNAME_KEY = 'AuthUsername';
 export class PerfilComponent implements OnInit {
   usuarioLogeado: any;
   perfil: any;
+  mostrarfoto: any;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private tokenService: TokenService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
     this.traerUsuario(this.usuarioLogeado);
+    this.mostrarfoto = localStorage.getItem(FOTOPERFIL);
   }
 
   traerUsuario(nombreUsuario: string): void{
   this.auth.detailName(nombreUsuario).subscribe(data => {this.perfil = data})
     
   }
+
 
 }

@@ -18,7 +18,7 @@ dni: string = '';
 direccion: string = '';
 localidad: string = '';
 telefono: string = '';
-fotoPerfil: string = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1659721546/IMG%20PROYECTO%20INTEGRADOR/2_asjgvq.png";
+fotoPerfil: string = "";
 nombreUsuario: string = '';
 email: string = '';
 password: string = '';
@@ -28,6 +28,7 @@ fechaActualSus: string = '';
 clasesTomadas: number = 0;
 clasesRestantes: number = 0;
 
+selectedFile: File = null!;
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -52,12 +53,24 @@ clasesRestantes: number = 0;
     this.router.navigate(['login']);
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
+
+  //captura el valor del input y muestra la vista previa de la imagen subida
+  capturarImagen(event: any) {
+    this.selectedFile = event.target.files[0];
+    this.convertToBase64();
+    
+  }
+
+  convertToBase64() {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(this.selectedFile);
     reader.onload = () => {
-      localStorage.setItem('image', reader.result as string);
+      const base64 = reader.result as string;
+      // Aquí puedes enviar la imagen en formato base64 a la base de datos o hacer cualquier otra cosa con ella
+      
+      this.fotoPerfil = base64.toString();
+      console.log(base64);
+      
     };
   }
 

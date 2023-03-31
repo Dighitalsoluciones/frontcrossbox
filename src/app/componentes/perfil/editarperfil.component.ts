@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
@@ -20,10 +20,10 @@ export class EditarperfilComponent implements OnInit {
   perfil: any;
   public imagenOk: any = [];
   public previsualizacion: string = "";
-  imagenPrevia: any;
+  
   files: any = []
-  imageUrl: string = "";
-  mostrarfoto: any;
+  selectedFile: File = null!;
+  url: SafeUrl = "";
   
 
   constructor(private auth: AuthService, private activatedRouter: ActivatedRoute, 
@@ -41,7 +41,7 @@ export class EditarperfilComponent implements OnInit {
         this.router.navigate(['perfil']);
       }
     )
-    this.mostrarfoto = localStorage.getItem(FOTOPERFIL);
+   
   }
 
   onUpdate(): void{
@@ -61,89 +61,30 @@ export class EditarperfilComponent implements OnInit {
     this.router.navigate(['perfil']);
   }
 
- /* 
- onFileSelected(event: any){
-  const file: File = event.target.files[0];
-  this.uploadFile(file);
-}
-
-uploadFile(file: File){
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => {
-    const imageBase64 = reader.result as string;
-    this.auth.uploadImage(imageBase64).subscribe((response: any) => {
-      this.imageUrl = response;
-    });
-  };
-} */
-
   //captura el valor del input y muestra la vista previa de la imagen subida
   capturarImagen(event: any) {
-    const imagen = event.target.files[0];
-    const image: any = document.getElementById('output');
-    image.src = URL.createObjectURL(imagen);
-    console.log(imagen);
+    this.selectedFile = event.target.files[0];
+    this.convertToBase64();
     
   }
 
-/*
-subirImagen = () => {
-  const id = Number(this.usuario.id);
-  try {
-    const formData = new FormData();
-    this.files.forEach((item: any) => {
-      formData.append('files', item)
-    });
-    this.auth.update(id, this.usuario)
-      .subscribe(res => {
-        
-        console.log('Carga exitosa');
-
-
-      });
-  } catch (e) {
-    console.log('ERROR', e);
-
-  }
-} */
-
-  /* No funciona esto era para convertir a base64
-  blobFile = async ($event: any) => new Promise((resolve, reject) => {
-    try {
-      const unsafeImg = window.URL.createObjectURL($event);
-      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-      const reader = new FileReader();
-      reader.readAsDataURL($event);
-      reader.onload = () => {
-        resolve({
-          blob: $event,
-          image,
-          base: reader.result
-        });
-      };
-      reader.onerror = error => {
-        resolve({
-          blob: $event,
-          image,
-          base: null
-        });
-      };
-
-    } catch (e) {
+  convertToBase64() {
+    const reader = new FileReader();
+    reader.readAsDataURL(this.selectedFile);
+    reader.onload = () => {
+      const base64 = reader.result as string;
+      // Aquí puedes enviar la imagen en formato base64 a la base de datos o hacer cualquier otra cosa con ella
       
-    }
-  }) 
+      this.usuario.fotoPerfil = base64.toString();
+      console.log(base64);
+      
+    };
+  }
 
+  devolverImagen(){
+this.url = this.sanitizer.bypassSecurityTrustUrl(JSON.parse(this.usuario.fotoPerfil));
+return this.url;
 }
-*/
-onFileSelected(event: any) {
-  const file: File = event.target.files[0];
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => {
-    localStorage.setItem('image', reader.result as string);
-  };
-}
+
 
 }

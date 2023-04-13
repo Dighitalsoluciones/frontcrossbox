@@ -111,4 +111,14 @@ role="dialog"
         <!-- end row -->
     </div>
     <!-- container -->
+<div *ngFor="let fechas of fechas"></div>
+    <h1>{{fechas}}</h1>
+
+    <input type="text" class="form-control" placeholder="Fecha inicio"
+       bsDatepicker [(ngModel)]="fechaInicio">
+
+<input type="text" class="form-control" placeholder="Fecha fin"
+       bsDatepicker [(ngModel)]="fechaFin">
+
+<button class="btn btn-primary" (click)="getFechas()">Buscar</button>
 </div>

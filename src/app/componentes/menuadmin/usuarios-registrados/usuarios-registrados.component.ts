@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Fecha } from 'src/app/model/fecha';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
+import { FechaService } from 'src/app/service/fecha.service';
 
 @Component({
   selector: 'app-usuarios-registrados',
@@ -12,11 +14,15 @@ export class UsuariosRegistradosComponent implements OnInit {
   usuariosRegistrados: NuevoUsuario[] = [];
   FiltrarUsuariosReg = [];
   modalEliminarUsuario= "none";
+  fechas: Fecha [] = [];
+  fechaInicio: any;
+  fechaFin: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private fechaService: FechaService) { }
 
   ngOnInit(): void {
     this.listaUsuarios();
+   
   }
 
   listaUsuarios(): void{
@@ -42,6 +48,14 @@ export class UsuariosRegistradosComponent implements OnInit {
     } else{
       alert("No se pudo borrar el usuario");
     }
+  }
+
+
+  getFechas(): void {
+    this.fechaService.getFechas(this.fechaInicio, this.fechaFin).subscribe(fechas => {
+      this.fechas = fechas;
+      console.log(fechas);
+    });
   }
 
 }

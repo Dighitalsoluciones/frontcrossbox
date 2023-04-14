@@ -1,0 +1,30 @@
+<h1>Actividades</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Actividad</th>
+        <th>Hora</th>
+        <th>Cupos disponibles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let turno of actividades">
+   
+        <td>{{turno.nombre}}</td>
+        
+      </tr>
+    </tbody>
+    <thead>
+        <tr>
+          <th>Dia</th>
+        <th>Cupos disponibles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dias of semana">
+     
+          <td>{{dias.nombre}}</td>
+          
+        </tr>
+      </tbody>
+  </table>

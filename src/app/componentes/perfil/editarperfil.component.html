@@ -23,8 +23,11 @@
                         <input type="file" (change)="capturarImagen($event)" [(ngModel)]="usuario.fotoPerfil">
                     </div>
                 
-                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="enter email" [(ngModel)]="usuario.email" required></div>
-                    <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" placeholder="ingresa tu contraseña" [(ngModel)]="usuario.password" required></div>
+             
+                    <div class="col-md-12"><label class="labels">Password</label><input id="contraseña" type="password" class="form-control" placeholder="ingresa tu contraseña" [(ngModel)]="usuario.password" required></div>
+                    <div class="col-md-12"><label class="labels">Confirmar Password</label><input id="confirmarcontraseña" type="password" class="form-control" placeholder="repetí la contraseña"></div>
+                    
+                
                 </div>
                 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" (click)="onUpdate()">Guardar Cambios</button>

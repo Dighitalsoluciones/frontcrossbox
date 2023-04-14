@@ -19,6 +19,7 @@ import { UsuariosRegistradosComponent } from './componentes/menuadmin/usuarios-r
 import { FiltrarUsuariosPipe } from './pipes/filtrar-usuarios.pipe';
 import { CargaSuscripcionComponent } from './componentes/menuadmin/carga-suscripcion/carga-suscripcion.component';
 import { SpinnerdecargaComponent } from './componentes/spinnerdecarga/spinnerdecarga.component';
+import { ReservarComponent } from './componentes/reservar/reservar.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SpinnerdecargaComponent } from './componentes/spinnerdecarga/spinnerdec
     FiltrarUsuariosPipe,
     CargaSuscripcionComponent,
     SpinnerdecargaComponent,
+    ReservarComponent,
   
   ],
   imports: [

@@ -1,0 +1,130 @@
+{
+  "dias": [
+    {
+      "id": 1,
+      "dia": "Lunes"
+    },
+    {
+      "id": 2,
+      "dia": "Martes"
+    },
+    {
+      "id": 3,
+      "dia": "Miércoles"
+    },
+    {
+      "id": 4,
+      "dia": "Jueves"
+    },
+    {
+      "id": 5,
+      "dia": "Viernes"
+    },
+    {
+      "id": 6,
+      "dia": "Sabado"
+    },
+    {
+      "id": 1,
+      "dia": "Domingo"
+    }
+  ],
+  "horarios": [
+    {
+      "id": 1,
+      "hora": 8,
+      "cupos": 5
+    },
+    {
+      "id": 2,
+      "hora": 9,
+      "cupos": 4
+    },
+    {
+      "id": 3,
+      "hora": 10,
+      "cupos": 5
+    },
+    {
+      "id": 4,
+      "hora": 12,
+      "cupos": 4
+    }
+  ],
+  "actividades": [{
+      "id": 1,
+      "nombre": "Crossbox",
+      "dias": [{
+        "id": 1,
+        "dia": "Lunes"
+      },
+      {
+        "id": 2,
+        "dia": "Martes"
+      },
+      {
+        "id": 3,
+        "dia": "Miércoles"
+      }],
+      "horarios": [{
+        "id": 1,
+        "hora": 8,
+        "cupos": 5
+      },
+      {
+        "id": 2,
+        "hora": 9,
+        "cupos": 4
+      },
+      {
+        "id": 3,
+        "hora": 10,
+        "cupos": 5
+      }]
+    },
+    {
+      "id": 2,
+      "nombre": "Funcional",
+      "dias": [{
+        "id": 4,
+        "dia": "Jueves"
+      },
+      {
+        "id": 5,
+        "dia": "Viernes"
+      },
+      {
+        "id": 6,
+        "dia": "Sabado"
+      }],
+      "horarios": [{
+        "id": 3,
+        "hora": 10,
+        "cupos": 5
+      },
+      {
+        "id": 4,
+        "hora": 12,
+        "cupos": 4
+      }]
+    },
+    {
+      "id": 3,
+      "nombre": "Boxeo",
+      "dias": [ {
+        "id": 6,
+        "dia": "Sabado"
+      },
+      {
+        "id": 1,
+        "dia": "Domingo"
+      }],
+      "horarios": [{
+        "id": 3,
+        "hora": 10,
+        "cupos": 5
+      }]
+    }
+  ]
+  
+}

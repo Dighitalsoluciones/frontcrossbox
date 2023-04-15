@@ -20,6 +20,7 @@ import { FiltrarUsuariosPipe } from './pipes/filtrar-usuarios.pipe';
 import { CargaSuscripcionComponent } from './componentes/menuadmin/carga-suscripcion/carga-suscripcion.component';
 import { SpinnerdecargaComponent } from './componentes/spinnerdecarga/spinnerdecarga.component';
 import { ReservarComponent } from './componentes/reservar/reservar.component';
+import { CalendarioComponent } from './componentes/calendario/calendario.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ReservarComponent } from './componentes/reservar/reservar.component';
     CargaSuscripcionComponent,
     SpinnerdecargaComponent,
     ReservarComponent,
+    CalendarioComponent,
   
   ],
   imports: [

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actividades } from 'src/app/model/actividades';
 import { ActividadesService } from 'src/app/service/actividades.service';
 
@@ -9,7 +10,9 @@ import { ActividadesService } from 'src/app/service/actividades.service';
 })
 export class ReservarComponent implements OnInit {
 
+  fecha: Date = null!;
   actividades: Actividades[] = [];
+  
   semana = [
     
     {
@@ -32,14 +35,29 @@ export class ReservarComponent implements OnInit {
     },
 ];
 
-  constructor(private actService: ActividadesService) { }
+  constructor(private router: Router, private actividadesService: ActividadesService ) { }
 
   ngOnInit(): void {
     this.traerActividades();
   }
 
   traerActividades(): void{
-    this.actService.getActividades().subscribe(data => {this.actividades = data;})
+    this.actividadesService.getActividades().subscribe(data => {this.actividades = data;})
+  }
+
+  buscarActividades() {
+    this.actividadesService.buscarActividades(this.fecha).subscribe(
+      (actividades: Actividades[]) => {
+        this.actividades = actividades;
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
+  verDetalle(id: number) {
+    this.router.navigate(['/actividades', id]);
   }
 
 }

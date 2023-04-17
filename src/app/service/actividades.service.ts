@@ -29,4 +29,14 @@ export class ActividadesService {
   addActividad(actividad: Actividades): Observable<Actividades>{
     return this.http.post<Actividades>(this.apiUrl, actividad);
   }
+
+  buscarActividades(fecha: Date): Observable<Actividades[]> {
+    const url = `${this.apiUrl}?fecha=${fecha.toISOString()}`;
+    return this.http.get<Actividades[]>(url);
+  }
+
+  reservarActividad(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}/reservar`;
+    return this.http.post(url, {});
+  }
 }

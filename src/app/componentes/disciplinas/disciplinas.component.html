@@ -1,1 +1,30 @@
-<p>Hola Perr</p>
+<div class="container">
+    <h1>Actividades disponibles</h1>
+    <div *ngIf="actividades && actividades.length">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Día</th>
+            <th>Horario</th>
+            <th>Cupo</th>
+            <th>Reservar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let actividad of actividades">
+            <td>{{ actividad.nombre }}</td>
+            <td>{{ actividad.descripcion }}</td>
+            <td>{{ actividad.dia }}</td>
+            <td>{{ actividad.horario }}</td>
+            <td>{{ actividad.cupo }}</td>
+            <td><button type="button" class="btn btn-primary" (click)="reservarActividad(actividad)">Reservar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="!actividades || !actividades.length">
+      <p>No hay actividades disponibles en esta fecha</p>
+    </div>
+  </div>

@@ -1,12 +1,16 @@
 export class Actividades {
     id?: number;
     nombre: string;
-    dias: string [];
-    horarios: string [];
+    descripcion: string;
+    dia: string;
+    horario: string;
+    cupo: number;
 
-    constructor(nombre: string, dias: string [], horarios: string []){
+    constructor(nombre: string, descripcion: string, dia: string, horario: string, cupo: number){
         this.nombre = nombre;
-        this.dias = dias;
-        this.horarios = horarios;
+        this.descripcion = descripcion;
+        this.dia = dia;
+        this.horario = horario;
+        this.cupo = cupo;
     }
 }

@@ -49,6 +49,7 @@ export class ReservarComponent implements OnInit {
     this.actividadesService.buscarActividades(this.fecha).subscribe(
       (actividades: Actividades[]) => {
         this.actividades = actividades;
+        console.log(actividades);
       },
       (error: any) => {
         console.error(error);
@@ -58,6 +59,23 @@ export class ReservarComponent implements OnInit {
 
   verDetalle(id: number) {
     this.router.navigate(['/actividades', id]);
+  }
+
+  reservarActividad(actividades: number) {
+    this.actividadesService.reservarActividad(Number(actividades))
+      .subscribe(() => {
+        alert('La actividad se reservó correctamente');
+        this.buscarActividades();
+        
+      });
+  }
+
+  cancelarReservaActividad(actividad: Actividades) {
+    this.actividadesService.reservarActividad(Number(actividad))
+      .subscribe(() => {
+        alert('La reserva de la actividad fue cancelada');
+        this.buscarActividades();
+      });
   }
 
 }

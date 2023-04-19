@@ -7,7 +7,7 @@ import { Actividades } from '../model/actividades';
   providedIn: 'root'
 })
 export class ActividadesService {
-  private apiUrl = 'http://localhost:5000/actividades/'
+  private apiUrl = 'http://localhost:8080/actividades/'
 
   constructor(private http: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class ActividadesService {
   }
 
   buscarActividades(fecha: Date): Observable<Actividades[]> {
-    const url = `${this.apiUrl}?fecha=${fecha.toISOString()}`;
+    const url = `${this.apiUrl+'fecha/'}?fecha=${fecha}`;
     return this.http.get<Actividades[]>(url);
   }
 

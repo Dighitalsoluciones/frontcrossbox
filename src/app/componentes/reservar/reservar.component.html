@@ -30,13 +30,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let actividad of actividades">
+          <tr *ngFor="let actividad of actividades | ordenarporHs:'asc':'horario'">
             <td>{{ actividad.nombre }}</td>
             <td>{{ actividad.descripcion }}</td>
             <td>{{ actividad.dia }}</td>
             <td>{{ actividad.horario }}</td>
             <td>{{ actividad.cupo }}</td>
-            <td><button type="button" class="btn btn-primary" (click)="reservarActividad(1)">Reservar</button></td>
+            <td *ngIf="(actividad.cupo != 0)"><button type="button" class="btn btn-primary" (click)="reservarActividad(1)">Reservar</button></td>
+            <td *ngIf="(actividad.cupo == 0)"><button type="button" class="btn btn-danger">SIN CUPOS</button></td>
           </tr>
         </tbody>
       </table>

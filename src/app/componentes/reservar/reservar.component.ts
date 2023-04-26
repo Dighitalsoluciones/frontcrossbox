@@ -13,27 +13,6 @@ export class ReservarComponent implements OnInit {
   fecha: Date = null!;
   actividades: Actividades[] = [];
   
-  semana = [
-    
-    {
-        nombre: 'lunes',
-    },
-    {
-        nombre: 'martes',
-    },
-    {
-        nombre: 'miércoles',
-    },
-    {
-        nombre: 'jueves',
-    },
-    {
-        nombre: 'viernes',
-    },
-    {
-        nombre: 'sábado',
-    },
-];
 
   constructor(private router: Router, private actividadesService: ActividadesService ) { }
 

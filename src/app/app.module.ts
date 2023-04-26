@@ -21,6 +21,7 @@ import { CargaSuscripcionComponent } from './componentes/menuadmin/carga-suscrip
 import { SpinnerdecargaComponent } from './componentes/spinnerdecarga/spinnerdecarga.component';
 import { ReservarComponent } from './componentes/reservar/reservar.component';
 import { CalendarioComponent } from './componentes/calendario/calendario.component';
+import { OrdenarporHsPipe } from './pipes/ordenarpor-hs.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CalendarioComponent } from './componentes/calendario/calendario.compone
     SpinnerdecargaComponent,
     ReservarComponent,
     CalendarioComponent,
+    OrdenarporHsPipe,
   
   ],
   imports: [

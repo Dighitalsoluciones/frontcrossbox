@@ -5,6 +5,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { NuevoLoginComponent } from './componentes/login/nuevo-login.component';
 import { CargaSuscripcionComponent } from './componentes/menuadmin/carga-suscripcion/carga-suscripcion.component';
 import { CanActivateViaAuthGuard, MenuadminComponent } from './componentes/menuadmin/menuadmin.component';
+import { NuevaActividadComponent } from './componentes/menuadmin/nueva-actividad/nueva-actividad.component';
 import { EditarperfilComponent } from './componentes/perfil/editarperfil.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { ReservarComponent } from './componentes/reservar/reservar.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'admin', component: MenuadminComponent, canActivate: [CanActivateViaAuthGuard]},
   {path: 'cargarsusc/:id', component: CargaSuscripcionComponent},
   {path: 'reservar', component: ReservarComponent},
+  {path:'nuevoturno', component: NuevaActividadComponent},
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ export class ReservarComponent implements OnInit {
 
   fecha: Date = null!;
   actividades: Actividades[] = [];
+  today: string = new Date().toISOString().split('T')[0];
   
 
   constructor(private router: Router, private actividadesService: ActividadesService ) { }

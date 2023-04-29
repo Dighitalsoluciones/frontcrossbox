@@ -26,17 +26,21 @@ export class ActividadesService {
     return this.http.put<Actividades>(url, actividad)
   }
 
-  addActividad(actividad: Actividades): Observable<Actividades>{
-    return this.http.post<Actividades>(this.apiUrl, actividad);
+  crearActividad(actividad: Actividades): Observable<Actividades> {
+    return this.http.post<Actividades>(this.apiUrl + 'crear', actividad);
+  }
+
+  public save(actividad: Actividades): Observable<any>{
+    return this.http.post<any>(this.apiUrl + 'create', actividad);
   }
 
   buscarActividades(fecha: Date): Observable<Actividades[]> {
-    const url = `${this.apiUrl+'fecha/'}?fecha=${fecha}`;
+    const url = `${this.apiUrl}fecha/?fecha=${fecha}`;
     return this.http.get<Actividades[]>(url);
   }
 
   reservarActividad(id: number): Observable<any> {
-    const url = `${this.apiUrl}/${id}/reservar`;
+    const url = `${this.apiUrl}reservar/${id}`;
     return this.http.post(url, {});
   }
 }

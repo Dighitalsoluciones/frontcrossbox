@@ -29,6 +29,7 @@ export class MenuadminComponent implements OnInit {
   roles: string = "";
   usuariosRegistrados = false;
   disciplinas = false;
+  crearTurnos = false;
 
   constructor() { }
 
@@ -38,10 +39,18 @@ export class MenuadminComponent implements OnInit {
   mostrarUsuariosRegistrados(){
     this.usuariosRegistrados = true;
     this.disciplinas = false;  
+    this.crearTurnos = false;
   }
 
   mostrarDisciplinas(){
     this.disciplinas = true;
+    this.usuariosRegistrados = false;
+    this.crearTurnos = false;
+  }
+
+  mostrarCrearTurnos(){
+    this.crearTurnos = true;
+    this.disciplinas = false;
     this.usuariosRegistrados = false;
   }
 }

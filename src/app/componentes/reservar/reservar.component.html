@@ -1,22 +1,21 @@
 
-  <div class="d-flex flex-row col-10 justify-content-center align-items-center">
-<div class="container">
+<div class="d-flex col-12 justify-content-center align-items-center text-center">
+ <div class="container">
   <h1>Bienvenido a nuestro gimnasio</h1>
   <form>
     <div class="form-group">
       <label for="fecha">Fecha</label>
-      <input type="date" id="fecha" name="fecha" class="form-control" [(ngModel)]="fecha">
+      <input type="date" id="fecha" name="fecha" [min]="today" class="form-control" [(ngModel)]="fecha">
     </div>
-    <button type="button" class="btn btn-primary" (click)="buscarActividades()">Buscar</button>
+    <button type="button" class="btn btn-primary" style="margin-top: 10px;" (click)="buscarActividades()">Buscar</button>
   </form>
 </div>
-
-<div>
-
 </div>
-
-<div class="container">
-    <h1>Actividades disponibles</h1>
+<br>
+<br>
+<div class="d-flex col-12 justify-content-center align-items-center text-center">
+  <div class="container">
+    <h1>TURNOS DISPONIBLES</h1>
     <div *ngIf="actividades && actividades.length">
       <table class="table">
         <thead>
@@ -46,3 +45,4 @@
       <p>No hay actividades disponibles en esta fecha</p>
     </div>
   </div>
+</div>

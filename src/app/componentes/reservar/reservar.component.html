@@ -15,16 +15,16 @@
 <br>
 <div class="d-flex col-12 justify-content-center align-items-center text-center">
   <div class="container">
-    <h1>TURNOS DISPONIBLES</h1>
-    <div *ngIf="actividades && actividades.length">
-      <table class="table">
+    <h1 style="font-family: Impact;">TURNOS DISPONIBLES</h1>
+    <div class="table-responsive-sm" *ngIf="actividades && actividades.length">
+      <table class="table table-bordered table-dark">
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
+            <th>Actividad</th>
+            <th>Observacion</th>
             <th>Día</th>
             <th>Horario</th>
-            <th>Cupo</th>
+            <th>Cupos</th>
             <th>Reservar</th>
           </tr>
         </thead>
@@ -32,7 +32,7 @@
           <tr *ngFor="let actividad of actividades | ordenarporHs:'asc':'horario'">
             <td>{{ actividad.nombre }}</td>
             <td>{{ actividad.descripcion }}</td>
-            <td>{{ actividad.dia }}</td>
+            <td>{{ actividad.dia | date: 'dd/MM/yyyy'}}</td>
             <td>{{ actividad.horario }}</td>
             <td>{{ actividad.cupo }}</td>
             <td *ngIf="(actividad.cupo != 0)"><button type="button" class="btn btn-primary" (click)="reservarActividad(1)">Reservar</button></td>

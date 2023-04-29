@@ -4,7 +4,7 @@
   <h1>Bienvenido a nuestro gimnasio</h1>
   <form>
     <div class="form-group">
-      <label for="fecha">Fecha</label>
+      <label for="fecha">Seleccionar Fecha</label>
       <input type="date" id="fecha" name="fecha" [min]="today" class="form-control" [(ngModel)]="fecha">
     </div>
     <button type="button" class="btn btn-primary" style="margin-top: 10px;" (click)="buscarActividades()">Buscar</button>
@@ -42,7 +42,7 @@
       </table>
     </div>
     <div *ngIf="!actividades || !actividades.length">
-      <p>No hay actividades disponibles en esta fecha</p>
+      <p>No hay turnos disponibles en esta fecha</p>
     </div>
   </div>
 </div>

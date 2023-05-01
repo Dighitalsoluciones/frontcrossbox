@@ -9,7 +9,7 @@ import { ActividadesService } from 'src/app/service/actividades.service';
   styleUrls: ['./reservar.component.css']
 })
 export class ReservarComponent implements OnInit {
-
+  selecActividad: string[] = ["CROSSBOX", "FUNCIONAL", "GAP"];
   fecha: Date = null!;
   actividades: Actividades[] = [];
   today: string = new Date().toISOString().split('T')[0];
@@ -29,7 +29,9 @@ export class ReservarComponent implements OnInit {
     this.actividadesService.buscarActividades(this.fecha).subscribe(
       (actividades: Actividades[]) => {
         this.actividades = actividades;
-        console.log(actividades);
+        this.actividades = this.actividades.filter(filtact => filtact.nombre == "CROSSBOX");
+        
+      
       },
       (error: any) => {
         console.error(error);

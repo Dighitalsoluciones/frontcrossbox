@@ -3,6 +3,14 @@
  <div class="container">
   <h1>Bienvenido a nuestro gimnasio</h1>
   <form>
+    <p>Seleccionar Actividad</p>
+    <div class="form-group">
+        <select name="selectAct">
+           <option [ngValue]="item"  *ngFor="let item of selecActividad">{{item}}</option>
+        </select>
+    </div>
+    <br>
+    <br>
     <div class="form-group">
       <label for="fecha">Seleccionar Fecha</label>
       <input type="date" id="fecha" name="fecha" [min]="today" class="form-control" [(ngModel)]="fecha">
@@ -35,7 +43,7 @@
             <td>{{ actividad.dia | date: 'dd/MM/yyyy'}}</td>
             <td>{{ actividad.horario }}</td>
             <td>{{ actividad.cupo }}</td>
-            <td *ngIf="(actividad.cupo != 0)"><button type="button" class="btn btn-primary" (click)="reservarActividad(1)">Reservar</button></td>
+            <td *ngIf="(actividad.cupo != 0)"><button type="button" class="btn btn-primary" (click)="reservarActividad(actividad.id)">Reservar</button></td>
             <td *ngIf="(actividad.cupo == 0)"><button type="button" class="btn btn-danger">SIN CUPOS</button></td>
           </tr>
         </tbody>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actividades } from 'src/app/model/actividades';
+import { Turno } from 'src/app/model/turno';
 import { ActividadesService } from 'src/app/service/actividades.service';
+import { TurnoService } from 'src/app/service/turno.service';
 
 @Component({
   selector: 'app-reservar',
@@ -13,9 +15,21 @@ export class ReservarComponent implements OnInit {
   fecha: Date = null!;
   actividades: Actividades[] = [];
   today: string = new Date().toISOString().split('T')[0];
+  actividadSeleccionada: string = "";
+
+  //Crear Turno
+  actividad: string = "";
+  dia: string = "";
+  horario: string = "";
+  nombre: string = "";
+  apellido: string = "";
+  dni: string = "";
+  telefono: string = "";
+  fotoPerfil: string = "";
+  nombreUsuario: string = "";
   
 
-  constructor(private router: Router, private actividadesService: ActividadesService ) { }
+  constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService) { }
 
   ngOnInit(): void {
     this.traerActividades();
@@ -29,9 +43,7 @@ export class ReservarComponent implements OnInit {
     this.actividadesService.buscarActividades(this.fecha).subscribe(
       (actividades: Actividades[]) => {
         this.actividades = actividades;
-        this.actividades = this.actividades.filter(filtact => filtact.nombre == "CROSSBOX");
-        
-      
+        this.actividades = this.actividades.filter(filtact => filtact.nombre == this.actividadSeleccionada);
       },
       (error: any) => {
         console.error(error);
@@ -58,6 +70,18 @@ export class ReservarComponent implements OnInit {
         alert('La reserva de la actividad fue cancelada');
         this.buscarActividades();
       });
+  }
+
+  onCreate(): void{
+    const nuevaReserva = new Turno(this.actividad, this.dia, this.horario, this.nombre, this.apellido, this.dni, this.telefono, this.fotoPerfil, this.nombreUsuario);
+    this.turnoServ.save(nuevaReserva).subscribe(
+      data=>{alert("✅ Reserva de la actividad creado correctamente");
+      this.router.navigate(['admin']);
+    }, err =>{
+      alert("⛔Ya existe este Turno o debes completar todos los campos⛔");
+      this.router.navigate(['admin']);
+    }
+    )
   }
 
 }

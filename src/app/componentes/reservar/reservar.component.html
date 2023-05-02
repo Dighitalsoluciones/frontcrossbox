@@ -5,11 +5,10 @@
   <form>
     <p>Seleccionar Actividad</p>
     <div class="form-group">
-        <select name="selectAct">
+        <select name="selectAct" [(ngModel)]="actividadSeleccionada">
            <option [ngValue]="item"  *ngFor="let item of selecActividad">{{item}}</option>
         </select>
     </div>
-    <br>
     <br>
     <div class="form-group">
       <label for="fecha">Seleccionar Fecha</label>

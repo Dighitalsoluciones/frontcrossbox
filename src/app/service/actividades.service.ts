@@ -43,4 +43,8 @@ export class ActividadesService {
     const url = `${this.apiUrl}reservar/${id}`;
     return this.http.post(url, {});
   }
+
+  public details(id: number): Observable<Actividades>{
+    return this.http.get<Actividades>(this.apiUrl + `detail/${id}`);
+  }
 }

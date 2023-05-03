@@ -23,6 +23,8 @@ import { ReservarComponent } from './componentes/reservar/reservar.component';
 import { CalendarioComponent } from './componentes/calendario/calendario.component';
 import { OrdenarporHsPipe } from './pipes/ordenarpor-hs.pipe';
 import { NuevaActividadComponent } from './componentes/menuadmin/nueva-actividad/nueva-actividad.component';
+import { DetalleReservaComponent } from './componentes/reservar/detalle-reserva.component';
+
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { NuevaActividadComponent } from './componentes/menuadmin/nueva-actividad
     CalendarioComponent,
     OrdenarporHsPipe,
     NuevaActividadComponent,
+    DetalleReservaComponent,
   
   ],
   imports: [

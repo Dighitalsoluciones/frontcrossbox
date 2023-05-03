@@ -42,7 +42,7 @@
             <td>{{ actividad.dia | date: 'dd/MM/yyyy'}}</td>
             <td>{{ actividad.horario }}</td>
             <td>{{ actividad.cupo }}</td>
-            <td *ngIf="(actividad.cupo != 0)"><button type="button" class="btn btn-primary" (click)="reservarActividad(actividad.id)">Reservar</button></td>
+            <td *ngIf="(actividad.cupo != 0)"><button type="button" class="btn btn-primary" routerLink="/reserva/{{actividad.id}}">Reservar</button></td>
             <td *ngIf="(actividad.cupo == 0)"><button type="button" class="btn btn-danger">SIN CUPOS</button></td>
           </tr>
         </tbody>

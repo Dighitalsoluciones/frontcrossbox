@@ -9,11 +9,11 @@
           <span class="avatar avatar-text rounded-3 me-4 mb-2">FD</span>
           <div class="row flex-fill">
             <div class="col-sm-5">
-              <h4 class="h5" [(ngModel)]="actividades.nombre">{{actividades.nombre}}</h4>
-              <p class="badge bg-success" style="font-size: large;">{{actividades.dia | date: "dd/MM/yyyy"}}</p>
+              <h4 class="h5" [(ngModel)]="actividada">{{actividades.nombre}}</h4>
+              <p class="badge bg-success" style="font-size: large;"[(ngModel)]="diaa">{{actividades.dia | date: "dd/MM/yyyy"}}</p>
             </div>
             <div class="col-sm-4 py-2">
-              <span style="font-size: large;">HORARIO:  </span> <span class="badge bg-primary" style="font-size: large;">{{actividades.horario}}</span>
+              <span style="font-size: large;">HORARIO:  </span> <span class="badge bg-primary" style="font-size: large;" [(ngModel)]="horarioa">{{actividades.horario}}</span>
             </div>
             <div class="col-sm-3 text-lg-end">
               <button class="btn btn-success stretched-link" (click)="crearReserva()">Confirmar</button>

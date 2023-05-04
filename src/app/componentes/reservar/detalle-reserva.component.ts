@@ -20,17 +20,6 @@ export class DetalleReservaComponent implements OnInit {
   perfil: any;
   actividades2: Actividades[] = [];
 
-  //Crear Turno
-  actividad: string = "";
-  dia: string = "";
-  horario: string = "";
-  nombre: string = "pe";
-  apellido: string = "pi";
-  dni: string = "34";
-  telefono: string = "34";
-  fotoPerfil: string = "";
-  nombreUsuario: string = "po";
-
   constructor(private actiServ: ActividadesService, private activatedRouter: ActivatedRoute, private router: Router, private turnoServ: TurnoService,
    private auth: AuthService) { }
 
@@ -77,10 +66,21 @@ export class DetalleReservaComponent implements OnInit {
       
     }
 
+//Crear Turno
+actividada: string = "";
+diaa: string = "";
+horarioa: string = "";
+nombre: string = "pe";
+apellido: string = "pi";
+dni: string = "34";
+telefono: string = "34";
+fotoPerfil: string = "";
+nombreUsuario: string = "po";    
+
      
 
   crearReserva(): void{
-    const nuevaReserva = new Turno(this.actividades.nombre, this.actividades.dia, this.actividades.horario, this.nombre, this.apellido, this.dni, this.telefono, this.fotoPerfil, this.nombreUsuario);
+    const nuevaReserva = new Turno(this.actividada, this.diaa, this.horarioa, this.nombre, this.apellido, this.dni, this.telefono, this.fotoPerfil, this.nombreUsuario);
     this.turnoServ.save(nuevaReserva).subscribe(
       data=>{alert("✅ Reserva de la actividad creado correctamente");
       this.router.navigate(['reservar']);

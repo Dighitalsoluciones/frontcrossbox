@@ -7,7 +7,7 @@ import { Actividades } from '../model/actividades';
   providedIn: 'root'
 })
 export class ActividadesService {
-  private apiUrl = 'http://localhost:8080/actividades/'
+  apiUrl = 'http://localhost:8080/actividades/'
 
   constructor(private http: HttpClient) { }
 

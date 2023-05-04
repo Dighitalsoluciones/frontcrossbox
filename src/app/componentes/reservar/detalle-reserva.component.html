@@ -16,8 +16,8 @@
               <span style="font-size: large;">HORARIO:  </span> <span class="badge bg-primary" style="font-size: large;">{{actividades.horario}}</span>
             </div>
             <div class="col-sm-3 text-lg-end">
-              <a href="#" class="btn btn-success stretched-link">Confirmar</a>
-              <a href="#" class="btn btn-danger stretched-link" style="margin: 5px 5px;">Cancelar</a>
+              <button class="btn btn-success stretched-link" (click)="crearReserva()">Confirmar</button>
+              <button class="btn btn-danger stretched-link" style="margin: 5px 5px;" (click)="cancelar()">Cancelar</button>
             </div>
           </div>
         </div>

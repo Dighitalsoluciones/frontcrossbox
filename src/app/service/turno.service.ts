@@ -7,7 +7,7 @@ import { Turno } from '../model/turno';
   providedIn: 'root'
 })
 export class TurnoService {
-  private turnUrl = 'http://localhost:8080/turnos/'
+  turnUrl = 'http://localhost:8080/turnos/'
 
   constructor(private http: HttpClient) { }
 

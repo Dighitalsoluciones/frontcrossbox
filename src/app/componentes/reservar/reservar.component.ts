@@ -21,12 +21,12 @@ export class ReservarComponent implements OnInit {
   actividad: string = "";
   dia: string = "";
   horario: string = "";
-  nombre: string = "";
-  apellido: string = "";
-  dni: string = "";
-  telefono: string = "";
-  fotoPerfil: string = "";
-  nombreUsuario: string = "";
+  nombre: string = "Pico";
+  apellido: string = "Palta";
+  dni: string = "35639824";
+  telefono: string = "1111";
+  fotoPerfil: string = "d";
+  nombreUsuario: string = "cach";
   
 
   constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService) { }

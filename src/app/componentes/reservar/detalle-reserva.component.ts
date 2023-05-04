@@ -18,7 +18,6 @@ export class DetalleReservaComponent implements OnInit {
   actividades : Actividades = null!;
   usuarioLogeado: any;
   perfil: any;
-  actividades2: Actividades[] = [];
 
   constructor(private actiServ: ActividadesService, private activatedRouter: ActivatedRoute, private router: Router, private turnoServ: TurnoService,
    private auth: AuthService) { }
@@ -26,7 +25,6 @@ export class DetalleReservaComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
     this.traerUsuario(this.usuarioLogeado);
-    this.traerActividades();
 
     const id = this.activatedRouter.snapshot.params['id'];
     this.actiServ.details(id).subscribe(
@@ -34,7 +32,7 @@ export class DetalleReservaComponent implements OnInit {
         this.actividades = data;
       }, err =>{
         alert("Error al modificar la experiencia");
-        this.router.navigate(['menuarticulos']);
+        this.router.navigate(['']);
       }
     )
     
@@ -57,19 +55,15 @@ export class DetalleReservaComponent implements OnInit {
     this.router.navigate(['reservar']);
   }
 
-  traerActividades(): void{
-    this.actiServ.getActividades().subscribe(data => {this.actividades2 = data;})
-  }
-
   traerUsuario(nombreUsuario: string): void{
     this.auth.detailName(nombreUsuario).subscribe(data => {this.perfil = data})
       
     }
 
 //Crear Turno
-actividada: string = "";
-diaa: string = "";
-horarioa: string = "";
+actividad: string = "";
+dia: string = "";
+horario: string = "";
 nombre: string = "pe";
 apellido: string = "pi";
 dni: string = "34";
@@ -80,13 +74,13 @@ nombreUsuario: string = "po";
      
 
   crearReserva(): void{
-    const nuevaReserva = new Turno(this.actividada, this.diaa, this.horarioa, this.nombre, this.apellido, this.dni, this.telefono, this.fotoPerfil, this.nombreUsuario);
+    const nuevaReserva = new Turno(this.actividades.nombre, this.actividades.dia, this.actividades.horario, this.perfil.nombre, this.perfil.apellido, this.perfil.dni, this.perfil.telefono, this.perfil.fotoPerfil, this.perfil.nombreUsuario);
     this.turnoServ.save(nuevaReserva).subscribe(
       data=>{alert("✅ Reserva de la actividad creado correctamente");
-      this.router.navigate(['reservar']);
+      this.router.navigate(['perfil']);
     }, err =>{
       alert("⛔Ya existe este Turno o debes completar todos los campos⛔");
-      this.router.navigate(['reservar']);
+      this.router.navigate(['perfil']);
     }
     )
   }

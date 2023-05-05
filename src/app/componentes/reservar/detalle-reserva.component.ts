@@ -77,21 +77,38 @@ nombreUsuario: string = "po";
     const nuevaReserva = new Turno(this.actividades.nombre, this.actividades.dia, this.actividades.horario, this.perfil.nombre, this.perfil.apellido, this.perfil.dni, this.perfil.telefono, this.perfil.fotoPerfil, this.perfil.nombreUsuario);
     this.turnoServ.save(nuevaReserva).subscribe(
       data=>{alert("✅ Reserva de la actividad creado correctamente");
-      this.router.navigate(['perfil']);
+      this.modificacionesUsuario();
     }, err =>{
-      alert("⛔Ya existe este Turno o debes completar todos los campos⛔");
+      alert("⛔Error al intentar reservar, verifique el cupo⛔");
       this.router.navigate(['perfil']);
     }
     )
   }
 
-
+  guardar(): void{
+     this.auth.update(this.perfil.id, this.perfil).subscribe(
+      data => {}, err =>{
+        alert("⛔ Error al modificar el perfil ⛔");
+        this.router.navigate(['reservar']);
+      }
+    )
+    
+  }
 
     reservarActividad(actividades: number) {
       this.actiServ.reservarActividad(Number(actividades))
         .subscribe(() => {
           ;
         });
+    }
+
+    modificacionesUsuario(){
+      this.perfil.suscripcionActual --;
+      this.perfil.clasesTomadas ++;
+      this.guardar();
+      this.reservarActividad(this.actividades.id!);
+      this.router.navigate(['reservar']);
+      
     }
 
 

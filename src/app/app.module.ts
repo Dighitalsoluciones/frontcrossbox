@@ -24,6 +24,7 @@ import { CalendarioComponent } from './componentes/calendario/calendario.compone
 import { OrdenarporHsPipe } from './pipes/ordenarpor-hs.pipe';
 import { NuevaActividadComponent } from './componentes/menuadmin/nueva-actividad/nueva-actividad.component';
 import { DetalleReservaComponent } from './componentes/reservar/detalle-reserva.component';
+import { EditarpassComponent } from './componentes/perfil/editarpass.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { DetalleReservaComponent } from './componentes/reservar/detalle-reserva.
     OrdenarporHsPipe,
     NuevaActividadComponent,
     DetalleReservaComponent,
+    EditarpassComponent,
   
   ],
   imports: [

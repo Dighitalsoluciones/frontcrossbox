@@ -14,7 +14,8 @@
       <label for="fecha">Seleccionar Fecha</label>
       <input type="date" id="fecha" name="fecha" [min]="today" class="form-control" [(ngModel)]="fecha">
     </div>
-    <button type="button" class="btn btn-primary" style="margin-top: 10px;" (click)="buscarActividades()">Buscar</button>
+    <button type="button" class="btn btn-primary" style="margin-top: 0px;" (click)="buscarActividades()">Buscar</button>
+    <button type="button" class="btn btn-warning" style="margin: 10px 10px; color: white;" (click)="volver()">Volver</button>
   </form>
 </div>
 </div>
@@ -42,8 +43,9 @@
             <td>{{ actividad.dia | date: 'dd/MM/yyyy'}}</td>
             <td>{{ actividad.horario }}</td>
             <td>{{ actividad.cupo }}</td>
-            <td *ngIf="(actividad.cupo != 0)"><button type="button" class="btn btn-primary" routerLink="/reserva/{{actividad.id}}">Reservar</button></td>
-            <td *ngIf="(actividad.cupo == 0)"><button type="button" class="btn btn-danger">SIN CUPOS</button></td>
+            <td *ngIf="(actividad.cupo != 0 && mostrarTurno())"><button type="button" class="btn btn-primary" routerLink="/reserva/{{actividad.id}}">Reservar</button></td>
+            <td *ngIf="(actividad.cupo == 0 && mostrarTurno())"><button type="button" class="btn btn-danger">SIN CUPOS</button></td>
+            <td *ngIf="(usuario.suscripcionActual <= 0)"><button type="button" class="btn btn-warning" (click)="volver()">SIN SUSCRIPCION</button></td>
           </tr>
         </tbody>
       </table>

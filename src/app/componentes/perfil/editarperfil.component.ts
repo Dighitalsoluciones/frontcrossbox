@@ -1,12 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 
 const USERNAME_KEY = 'AuthUsername';
-const FOTOPERFIL = 'image';
 
 @Component({
   selector: 'app-editarperfil',
@@ -26,8 +24,7 @@ export class EditarperfilComponent implements OnInit {
   url: SafeUrl = "";
   
 
-  constructor(private auth: AuthService, private activatedRouter: ActivatedRoute, 
-    private router: Router, private sanitizer: DomSanitizer, private http: HttpClient) { }
+  constructor(private auth: AuthService, private router: Router, private sanitizer: DomSanitizer) { }
 
   
 

@@ -6,6 +6,7 @@ import { NuevoLoginComponent } from './componentes/login/nuevo-login.component';
 import { CargaSuscripcionComponent } from './componentes/menuadmin/carga-suscripcion/carga-suscripcion.component';
 import { CanActivateViaAuthGuard, MenuadminComponent } from './componentes/menuadmin/menuadmin.component';
 import { NuevaActividadComponent } from './componentes/menuadmin/nueva-actividad/nueva-actividad.component';
+import { EditarpassComponent } from './componentes/perfil/editarpass.component';
 import { EditarperfilComponent } from './componentes/perfil/editarperfil.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { DetalleReservaComponent } from './componentes/reservar/detalle-reserva.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'reservar', component: ReservarComponent},
   {path:'nuevoturno', component: NuevaActividadComponent},
   {path: 'reserva/:id', component: DetalleReservaComponent},
+  {path:'editperfil/pass', component: EditarpassComponent},
 ];
 
 @NgModule({

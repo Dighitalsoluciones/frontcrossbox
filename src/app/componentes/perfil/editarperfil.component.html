@@ -2,7 +2,10 @@
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img [src]="[usuario.fotoPerfil]" class="rounded-circle mt-5" width="150px" id="output"><img class="rounded-circle mt-5" width="150px" id="output"><span class="font-weight-bold">{{usuario.nombreUsuario}}</span><span class="text-black-50" >{{usuario.email}}</span><span> </span></div>
-       <div><img width="100px" id="mostraranterior"></div>
+            <div class="text-center">
+                <button class="btn btn-primary" style="margin-top: 20px;" routerLink="/editperfil/pass">Cambiar Contraseña</button>
+            </div>
+            <div><img width="100px" id="mostraranterior"></div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
@@ -19,13 +22,10 @@
                     <div class="col-md-12"><label class="labels">Localidad</label><input type="text" class="form-control" placeholder="Ingresa tu localidad" [(ngModel)]="usuario.localidad"></div>
                     <div class="col-md-12"><label class="labels">Dni</label><input type="number" class="form-control" placeholder="ingresa tu dni" [(ngModel)]="usuario.dni" required></div>
                     <div class="col-md-12">
-                        <label for="fotoPerfil"> Imagen de Perfil (Opcional)</label>
+                        <label style="margin-top: 10px;" for="fotoPerfil"> Imagen de Perfil (Opcional)</label>
                         <input type="file" (change)="capturarImagen($event)" [(ngModel)]="usuario.fotoPerfil">
                     </div>
-                
-             
-                    <div class="col-md-12"><label class="labels">Password</label><input id="contraseña" type="password" class="form-control" placeholder="ingresa tu contraseña" [(ngModel)]="usuario.password" required></div>
-                    <div class="col-md-12"><label class="labels">Confirmar Password</label><input id="confirmarcontraseña" type="password" class="form-control" placeholder="repetí la contraseña"></div>
+                    
                     
                 
                 </div>

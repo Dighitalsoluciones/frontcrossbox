@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actividades } from 'src/app/model/actividades';
+import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { Turno } from 'src/app/model/turno';
 import { ActividadesService } from 'src/app/service/actividades.service';
+import { AuthService } from 'src/app/service/auth.service';
 import { TurnoService } from 'src/app/service/turno.service';
+
+const USERNAME_KEY = 'AuthUsername';
 
 @Component({
   selector: 'app-reservar',
@@ -16,23 +20,34 @@ export class ReservarComponent implements OnInit {
   actividades: Actividades[] = [];
   today: string = new Date().toISOString().split('T')[0];
   actividadSeleccionada: string = "";
+  usuarioLogeado: any;
+  usuario: NuevoUsuario = null!;
 
   //Crear Turno
   actividad: string = "";
   dia: string = "";
   horario: string = "";
-  nombre: string = "Pico";
-  apellido: string = "Palta";
-  dni: string = "35639824";
-  telefono: string = "1111";
-  fotoPerfil: string = "d";
-  nombreUsuario: string = "cach";
+  nombre: string = "";
+  apellido: string = "";
+  dni: string = "";
+  telefono: string = "";
+  fotoPerfil: string = "";
+  nombreUsuario: string = "";
   
 
-  constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService) { }
+  constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.traerActividades();
+    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
+      this.auth.detailName(this.usuarioLogeado).subscribe(
+      data =>{
+        this.usuario = data;
+      }, err =>{
+        alert("Error al modificar los datos del usuario");
+        this.router.navigate(['perfil']);
+      }
+    )
   }
 
   traerActividades(): void{
@@ -82,6 +97,17 @@ export class ReservarComponent implements OnInit {
       this.router.navigate(['admin']);
     }
     )
+  }
+
+  volver(){
+    this.router.navigate(['perfil']);
+  }
+
+  mostrarTurno(){
+    if(this.usuario.suscripcionActual != 0){
+     return true;
+    }
+    return false;
   }
 
 }

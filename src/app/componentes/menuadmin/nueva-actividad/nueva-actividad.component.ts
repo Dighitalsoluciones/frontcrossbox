@@ -41,7 +41,7 @@ export class NuevaActividadComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigate(['']);
+    location.reload();
   }
 
 }

@@ -52,7 +52,7 @@ export class DetalleReservaComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigate(['reservar']);
+    this.router.navigate(['perfil']);
   }
 
   traerUsuario(nombreUsuario: string): void{

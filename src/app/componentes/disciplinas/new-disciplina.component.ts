@@ -38,7 +38,7 @@ export class NewDisciplinaComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigate(['admin']);
+    location.reload();
   }
 
   //captura el valor del input y muestra la vista previa de la imagen subida

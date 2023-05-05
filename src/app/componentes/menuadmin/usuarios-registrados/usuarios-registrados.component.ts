@@ -17,11 +17,15 @@ export class UsuariosRegistradosComponent implements OnInit {
   fechas: Fecha [] = [];
   fechaInicio: any;
   fechaFin: any;
+  loading = false;
 
   constructor(private authService: AuthService, private fechaService: FechaService) { }
 
   ngOnInit(): void {
     this.listaUsuarios();
+    setTimeout(() => {
+      this.loading = true;
+    }, 1200);
    
   }
 

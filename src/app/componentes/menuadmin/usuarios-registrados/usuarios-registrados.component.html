@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" *ngIf="loading">
     <div class="container">
         <div class="row">
             
@@ -92,7 +92,7 @@ role="dialog"
             <!-- end col -->
             
         </div>
-        <!-- end row -->
+        <!-- paginacion desactivada
         <div class="row">
             <div class="col-12">
                 <div class="text-right">
@@ -108,17 +108,8 @@ role="dialog"
                 </div>
             </div>
         </div>
-        <!-- end row -->
+        
+     -->
     </div>
     <!-- container -->
-<div *ngFor="let fechas of fechas"></div>
-    <h1>{{fechas}}</h1>
-
-    <input type="text" class="form-control" placeholder="Fecha inicio"
-       bsDatepicker [(ngModel)]="fechaInicio">
-
-<input type="text" class="form-control" placeholder="Fecha fin"
-       bsDatepicker [(ngModel)]="fechaFin">
-
-<button class="btn btn-primary" (click)="getFechas()">Buscar</button>
 </div>

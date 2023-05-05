@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NewDisciplinaComponent } from './componentes/disciplinas/new-disciplina.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { NuevoLoginComponent } from './componentes/login/nuevo-login.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'nuevoturno', component: NuevaActividadComponent},
   {path: 'reserva/:id', component: DetalleReservaComponent},
   {path:'editperfil/pass', component: EditarpassComponent},
+  {path:'newdisciplina', component: NewDisciplinaComponent},
 ];
 
 @NgModule({

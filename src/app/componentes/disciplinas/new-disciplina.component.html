@@ -1,77 +1,25 @@
-<div class="container fondoEdit">
-    <div class="row" id="textosColor">
+<div class="container fondoEdit" *ngIf="loading">
+    <div class="row justify-content-between align-items-center" id="textosColor">
         <div>
             <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
                 <div class="form-group" id="espacial">
-                    <label for="Nombre"> Nombre de la Disciplina</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+                    <label for="logo">Nombre de la Disciplina</label>
+                    <input type="text" class="form-control" id="logo" name="logo" [(ngModel)]="nombre" required>
                 </div>
                 <div class="form-group">
-                    <label for="descripcion"> Descripcion de la misma</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="descripcion">
+                    <label for="titulo">Observacion</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="descripcion" required>
                 </div>
                 
-                <div class="form-group">
-                    <label for="imagen"> Imagen </label>
-                    <input type="text" class="form-control" id="imagen" name="imagen" [(ngModel)]="imagen" required>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label for="imagen"> Imagen de la Disciplina</label>
+                    <br>
+                    <input type="file" (change)="capturarImagen($event)" [(ngModel)]="imagen" requerid>
                 </div>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="row mt-3 col-md-6">
-                <div class="form-group">
-                    <label> Horario 1</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs1">
-                </div>
-                <div class="form-group">
-                    <label> Horario 2</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs2">
-                </div>
-                <div class="form-group">
-                    <label> Horario 3</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs3">
-                </div>
-                <div class="form-group">
-                    <label> Horario 4</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs4">
-                </div>
-                <div class="form-group">
-                    <label> Horario 5</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs5">
-                </div>
-                <div class="form-group">
-                    <label> Horario 6</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs6">
-                </div>
-            </div>
-            <div class="row mt-3 col-md-6">
-                <div class="form-group">
-                    <label> Horario 7</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs7">
-                </div>
-                <div class="form-group">
-                    <label> Horario 8</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs8">
-                </div>
-                <div class="form-group">
-                    <label> Horario 9</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs9">
-                </div>
-                <div class="form-group">
-                    <label> Horario 10</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs10">
-                </div>
-                <div class="form-group">
-                    <label> Horario 11</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs11">
-                </div>
-                <div class="form-group">
-                    <label> Horario 12</label>
-                    <input type="text" class="form-control" [(ngModel)]="hs12">
-                </div>
-            </div>
-        </div>
+                <br>
                 
                 <button class="btn btn-success" id="botonAgregar">
-                    CREAR USUARIO
+                    AGREGAR DISCIPLINA
                 </button>
                 <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
                     CANCELAR

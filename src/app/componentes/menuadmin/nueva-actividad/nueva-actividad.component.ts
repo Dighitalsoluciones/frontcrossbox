@@ -15,11 +15,15 @@ export class NuevaActividadComponent implements OnInit {
   dia: string = "";
   horario: string = "";
   cupos: number = 0;
+  loading = false;
   
 
   constructor(private actividadesServ: ActividadesService, private router: Router) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.loading = true;
+    }, 1200);
   }
   
 

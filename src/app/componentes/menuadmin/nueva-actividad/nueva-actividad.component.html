@@ -4,9 +4,12 @@
             <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
                 <div class="form-group" id="espacial">
                     <label for="logo">Nombre de la Actividad</label>
-                    <input type="text" class="form-control" id="logo" name="logo" [(ngModel)]="nombre" required>
+                    <br>
+                    <select [(ngModel)]="nombre">
+                        <option *ngFor="let item of disciplinas" [value]="item">{{item.nombre}}</option>
+                    </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="impHasta">
                     <label for="titulo">Observacion</label>
                     <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="descripcion" required>
                 </div>

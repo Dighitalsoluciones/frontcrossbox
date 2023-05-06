@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actividades } from 'src/app/model/actividades';
+import { Disciplinas } from 'src/app/model/disciplinas';
 import { ActividadesService } from 'src/app/service/actividades.service';
+import { DisciplinasService } from 'src/app/service/disciplinas.service';
 
 @Component({
   selector: 'app-nueva-actividad',
@@ -9,7 +11,7 @@ import { ActividadesService } from 'src/app/service/actividades.service';
   styleUrls: ['./nueva-actividad.component.css']
 })
 export class NuevaActividadComponent implements OnInit {
-
+  disciplinas: Disciplinas [] = [];
   nombre: string = "";
   descripcion: string = "";
   dia: string = "";
@@ -17,13 +19,15 @@ export class NuevaActividadComponent implements OnInit {
   cupos: number = 0;
   loading = false;
   
+  
 
-  constructor(private actividadesServ: ActividadesService, private router: Router) { }
+  constructor(private actividadesServ: ActividadesService, private disciplinasServ: DisciplinasService, private router: Router) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.loading = true;
     }, 1200);
+    this.traerDisciplinas();
   }
   
 
@@ -42,6 +46,10 @@ export class NuevaActividadComponent implements OnInit {
 
   cancelar(): void {
     location.reload();
+  }
+
+  traerDisciplinas(){
+    this.disciplinasServ.lista().subscribe(data => {this.disciplinas = data});
   }
 
 }

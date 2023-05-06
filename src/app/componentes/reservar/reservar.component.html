@@ -6,7 +6,7 @@
     <p>Seleccionar Actividad</p>
     <div class="form-group">
         <select name="selectAct" [(ngModel)]="actividadSeleccionada">
-           <option [ngValue]="item"  *ngFor="let item of selecActividad">{{item}}</option>
+           <option [ngValue]="item"  *ngFor="let item of disciplinas">{{item.nombre}}</option>
         </select>
     </div>
     <br>

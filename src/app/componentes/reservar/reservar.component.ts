@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actividades } from 'src/app/model/actividades';
+import { Disciplinas } from 'src/app/model/disciplinas';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { Turno } from 'src/app/model/turno';
 import { ActividadesService } from 'src/app/service/actividades.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { DisciplinasService } from 'src/app/service/disciplinas.service';
 import { TurnoService } from 'src/app/service/turno.service';
 
 const USERNAME_KEY = 'AuthUsername';
@@ -22,6 +24,7 @@ export class ReservarComponent implements OnInit {
   actividadSeleccionada: string = "";
   usuarioLogeado: any;
   usuario: NuevoUsuario = null!;
+  disciplinas: Disciplinas [] = [];
 
   //Crear Turno
   actividad: string = "";
@@ -35,10 +38,11 @@ export class ReservarComponent implements OnInit {
   nombreUsuario: string = "";
   
 
-  constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService, private auth: AuthService) { }
+  constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService, private auth: AuthService, private disciplinasServ: DisciplinasService) { }
 
   ngOnInit(): void {
     this.traerActividades();
+    this.traerDisciplinas();
     this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
       this.auth.detailName(this.usuarioLogeado).subscribe(
       data =>{
@@ -51,7 +55,11 @@ export class ReservarComponent implements OnInit {
   }
 
   traerActividades(): void{
-    this.actividadesService.getActividades().subscribe(data => {this.actividades = data;})
+    this.actividadesService.getActividades().subscribe(data => {this.actividades = data});
+  }
+
+  traerDisciplinas(): void{
+    this.disciplinasServ.lista().subscribe(data => {this.disciplinas = data});
   }
 
   buscarActividades() {

@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actividades } from 'src/app/model/actividades';
-import { ActividadesService } from 'src/app/service/actividades.service';
+import { Disciplinas } from 'src/app/model/disciplinas';
+import { DisciplinasService } from 'src/app/service/disciplinas.service';
+
 
 @Component({
   selector: 'app-disciplinas',
@@ -9,36 +10,32 @@ import { ActividadesService } from 'src/app/service/actividades.service';
   styleUrls: ['./disciplinas.component.css']
 })
 export class DisciplinasComponent implements OnInit {
-  @Input() fecha: Date = null!;
-  actividades: Actividades[] = [];
+disciplinas: Disciplinas [] = [];
+loading = false; 
 
-  constructor(private router: Router, private actividadesService: ActividadesService) { }
+  constructor(private disciplinaServ: DisciplinasService, private router: Router) { }
 
   ngOnInit(): void {
-    this.buscarActividades();
-  }
-
-  buscarActividades() {
-    if (this.fecha) {
-      this.actividadesService.buscarActividades(this.fecha)
-        .subscribe(actividades => this.actividades = actividades);
-    }
-  }
-
-  reservarActividad(actividad: Actividades) {
-    this.actividadesService.reservarActividad(Number(actividad))
-      .subscribe(() => {
-        alert('La actividad se reservó correctamente');
-        this.buscarActividades();
-      });
-  }
-
-  cancelarReservaActividad(actividad: Actividades) {
-    this.actividadesService.reservarActividad(Number(actividad))
-      .subscribe(() => {
-        alert('La reserva de la actividad fue cancelada');
-        this.buscarActividades();
-      });
-  }
-
+    this.traerDisciplinas();
+    setTimeout(() => {
+      this.loading = true;
+    }, 1200);
 }
+
+traerDisciplinas(){
+  this.disciplinaServ.lista().subscribe(data => {this.disciplinas = data});
+}
+
+eliminar(id?: number){
+  if(id != undefined){
+  this.disciplinaServ.delete(id).subscribe(data =>{alert("Registro eliminado correctamente");
+this.traerDisciplinas();
+},err =>{alert("No se pudo borrar el registro")},
+ )
+ }else{
+  alert("No se pudo borrar el registro")
+ }
+}
+}
+
+

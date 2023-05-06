@@ -14,6 +14,7 @@ export class NewDisciplinaComponent implements OnInit {
   nombre: string = '';
   descripcion: string = '';
   imagen: string = '';
+  profesor: string = '';
   loading = false;
   selectedFile: File = null!;
 
@@ -26,7 +27,7 @@ export class NewDisciplinaComponent implements OnInit {
   }
 
   onCreate(): void{
-    const nuevaDisciplina = new Disciplinas(this.nombre, this.descripcion, this.imagen);
+    const nuevaDisciplina = new Disciplinas(this.nombre, this.descripcion, this.imagen, this.profesor);
     this.disciplinasServ.save(nuevaDisciplina).subscribe(
       data=>{alert("✅ Disciplina creada correctamente");
       this.router.navigate(['admin']);
@@ -38,7 +39,7 @@ export class NewDisciplinaComponent implements OnInit {
   }
 
   cancelar(): void {
-    location.reload();
+    this.router.navigate(['admin']);
   }
 
   //captura el valor del input y muestra la vista previa de la imagen subida

@@ -1,30 +1,45 @@
-<div class="container">
-    <h1>Actividades disponibles</h1>
-    <div *ngIf="actividades && actividades.length">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Día</th>
-            <th>Horario</th>
-            <th>Cupo</th>
-            <th>Reservar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let actividad of actividades">
-            <td>{{ actividad.nombre }}</td>
-            <td>{{ actividad.descripcion }}</td>
-            <td>{{ actividad.dia }}</td>
-            <td>{{ actividad.horario }}</td>
-            <td>{{ actividad.cupo }}</td>
-            <td><button type="button" class="btn btn-primary" (click)="reservarActividad(actividad)">Reservar</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div *ngIf="!actividades || !actividades.length">
-      <p>No hay actividades disponibles en esta fechas</p>
-    </div>
+<div class="container" *ngIf="loading">
+  <div class="row">
+      <div class="col-12 mb-3 mb-lg-5">
+          <div class="position-relative card table-nowrap table-card">
+              <div class="card-header align-items-center">
+                  <h5 class="mb-0">Disciplinas Creadas</h5>
+                  <p class="mb-0 small text-muted">Total creadas {{disciplinas.length}}</p>
+              </div>
+              <div class="table-responsive">
+                  <table class="table mb-0">
+                      <thead class="small text-uppercase bg-body text-muted">
+                          <tr>
+                              <th>Imagen</th>
+                              <th>Nombre</th>
+                              <th>Editar</th>
+                              <th>Eliminar</th>
+                              <th>Profesor</th>
+                          </tr>
+                      </thead>
+                      <tbody *ngFor="let disciplina of disciplinas">
+                          <tr class="align-middle">
+                              <td>
+                                <img [src]="[disciplina.imagen]" height="80" width="80">
+                              </td>
+                              <td>
+                                {{disciplina.nombre}}
+                              </td>
+                              <td>
+                                <button class="btn btn-warning">Editar</button></td>
+                              <td>
+                                <button class="btn btn-danger" (click)="eliminar(disciplina.id)">Eliminar</button>
+                              </td>
+                              <td>
+                                  <span class="badge fs-6 fw-normal bg-tint-success text-success">Profesor</span>
+                              </td>
+                      </tbody>
+                  </table>
+              </div>
+              <div class="card-footer text-end">
+                  <button class="btn btn-success" routerLink="/newdisciplina">Crear Nueva</button>
+              </div>
+          </div>
+      </div>
   </div>
+</div>

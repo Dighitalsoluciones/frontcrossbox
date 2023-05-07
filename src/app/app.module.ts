@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,12 @@ import { OrdenarporHsPipe } from './pipes/ordenarpor-hs.pipe';
 import { NuevaActividadComponent } from './componentes/menuadmin/nueva-actividad/nueva-actividad.component';
 import { DetalleReservaComponent } from './componentes/reservar/detalle-reserva.component';
 import { EditarpassComponent } from './componentes/perfil/editarpass.component';
+import { MisReservasComponent } from './componentes/mis-reservas/mis-reservas.component';
+//esto es para cambiar el formato de la hora de EN a Español
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
+
 
 
 @NgModule({
@@ -50,6 +56,7 @@ import { EditarpassComponent } from './componentes/perfil/editarpass.component';
     NuevaActividadComponent,
     DetalleReservaComponent,
     EditarpassComponent,
+    MisReservasComponent,
   
   ],
   imports: [
@@ -58,7 +65,7 @@ import { EditarpassComponent } from './componentes/perfil/editarpass.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

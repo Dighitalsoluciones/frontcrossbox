@@ -131,3 +131,9 @@ body {
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+
+#imgPerfil{
+    height: 110px; 
+    width: 110px;
+    border-radius: 90px;
+}

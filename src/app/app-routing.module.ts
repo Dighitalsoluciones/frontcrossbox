@@ -12,6 +12,7 @@ import { EditarperfilComponent } from './componentes/perfil/editarperfil.compone
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { DetalleReservaComponent } from './componentes/reservar/detalle-reserva.component';
 import { ReservarComponent } from './componentes/reservar/reservar.component';
+import { MisReservasComponent } from './componentes/mis-reservas/mis-reservas.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'reserva/:id', component: DetalleReservaComponent},
   {path:'editperfil/pass', component: EditarpassComponent},
   {path:'newdisciplina', component: NewDisciplinaComponent},
+  {path:'misreservas', component: MisReservasComponent},
 ];
 
 @NgModule({

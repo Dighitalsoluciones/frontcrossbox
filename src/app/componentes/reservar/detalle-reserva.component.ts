@@ -23,9 +23,6 @@ export class DetalleReservaComponent implements OnInit {
    private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
-    this.traerUsuario(this.usuarioLogeado);
-
     const id = this.activatedRouter.snapshot.params['id'];
     this.actiServ.details(id).subscribe(
       data =>{
@@ -35,6 +32,9 @@ export class DetalleReservaComponent implements OnInit {
         this.router.navigate(['']);
       }
     )
+    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
+    this.traerUsuario(this.usuarioLogeado);
+    
     
   }
 
@@ -52,7 +52,7 @@ export class DetalleReservaComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigate(['perfil']);
+    this.router.navigate(['reservar']);
   }
 
   traerUsuario(nombreUsuario: string): void{
@@ -60,18 +60,6 @@ export class DetalleReservaComponent implements OnInit {
       
     }
 
-//Crear Turno
-actividad: string = "";
-dia: string = "";
-horario: string = "";
-nombre: string = "pe";
-apellido: string = "pi";
-dni: string = "34";
-telefono: string = "34";
-fotoPerfil: string = "";
-nombreUsuario: string = "po";    
-
-     
 
   crearReserva(): void{
     const nuevaReserva = new Turno(this.actividades.nombre, this.actividades.dia, this.actividades.horario, this.perfil.nombre, this.perfil.apellido, this.perfil.dni, this.perfil.telefono, this.perfil.fotoPerfil, this.perfil.nombreUsuario);
@@ -107,9 +95,12 @@ nombreUsuario: string = "po";
       this.perfil.clasesTomadas ++;
       this.guardar();
       this.reservarActividad(this.actividades.id!);
-      this.router.navigate(['reservar']);
+      this.router.navigate(['']);
       
     }
 
+    recargar(){
+      location.reload();
+    }
 
 }

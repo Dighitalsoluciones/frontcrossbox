@@ -1,12 +1,12 @@
 <div class="container fondoEdit" *ngIf="loading">
     <div class="row justify-content-between align-items-center" id="textosColor">
         <div>
-            <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+            <div>
                 <div class="form-group" id="espacial">
-                    <label for="logo">Nombre de la Actividad</label>
+                    <label for="nombre">Nombre de la Actividad</label>
                     <br>
-                    <select [(ngModel)]="nombre">
-                        <option *ngFor="let item of disciplinas" [value]="item">{{item.nombre}}</option>
+                    <select [(ngModel)]="nombre" name="nombre">
+                        <option *ngFor="let item of disciplinas" [value]="item.nombre">{{item.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group" id="impHasta">
@@ -29,14 +29,14 @@
                     <label for="ubicacion">Cupos</label>
                     <input type="number" class="form-control" id="ubicacion" name="ubicacion" [(ngModel)]="cupos" required>
                 </div>
-                <button class="btn btn-success" id="botonAgregar">
+                <button class="btn btn-success" id="botonAgregar" (click)="onCreate()">
                     AGREGAR TURNO
                 </button>
                 <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
                     CANCELAR
                 </button>
                 
-            </form>
+            </div>
         </div>
     </div>
 </div>

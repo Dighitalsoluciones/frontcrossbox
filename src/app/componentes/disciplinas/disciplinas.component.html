@@ -12,9 +12,10 @@
                           <tr>
                               <th>Imagen</th>
                               <th>Nombre</th>
+                              <th>Profesor</th>
                               <th>Editar</th>
                               <th>Eliminar</th>
-                              <th>Profesor</th>
+                              
                           </tr>
                       </thead>
                       <tbody *ngFor="let disciplina of disciplinas">
@@ -26,13 +27,14 @@
                                 {{disciplina.nombre}}
                               </td>
                               <td>
+                                <span class="badge fs-6 fw-normal bg-tint-success text-success">{{disciplina.profesor}}</span>
+                            </td>
+                              <td>
                                 <button class="btn btn-warning">Editar</button></td>
                               <td>
                                 <button class="btn btn-danger" (click)="eliminar(disciplina.id)">Eliminar</button>
                               </td>
-                              <td>
-                                  <span class="badge fs-6 fw-normal bg-tint-success text-success">Profesor</span>
-                              </td>
+                             
                       </tbody>
                   </table>
               </div>

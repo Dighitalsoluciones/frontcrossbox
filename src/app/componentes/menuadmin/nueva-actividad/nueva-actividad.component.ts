@@ -32,7 +32,6 @@ export class NuevaActividadComponent implements OnInit {
   
 
   onCreate(): void{
-    
     const nuevaActividad = new Actividades(this.nombre, this.descripcion, this.dia, this.horario, this.cupos);
     this.actividadesServ.save(nuevaActividad).subscribe(
       data=>{alert("✅ Turno de la actividad creado correctamente");

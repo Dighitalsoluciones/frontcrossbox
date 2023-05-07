@@ -26,18 +26,6 @@ export class ReservarComponent implements OnInit {
   usuario: NuevoUsuario = null!;
   disciplinas: Disciplinas [] = [];
 
-  //Crear Turno
-  actividad: string = "";
-  dia: string = "";
-  horario: string = "";
-  nombre: string = "";
-  apellido: string = "";
-  dni: string = "";
-  telefono: string = "";
-  fotoPerfil: string = "";
-  nombreUsuario: string = "";
-  
-
   constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService, private auth: AuthService, private disciplinasServ: DisciplinasService) { }
 
   ngOnInit(): void {
@@ -95,18 +83,7 @@ export class ReservarComponent implements OnInit {
       });
   }
 
-  onCreate(): void{
-    const nuevaReserva = new Turno(this.actividad, this.dia, this.horario, this.nombre, this.apellido, this.dni, this.telefono, this.fotoPerfil, this.nombreUsuario);
-    this.turnoServ.save(nuevaReserva).subscribe(
-      data=>{alert("✅ Reserva de la actividad creado correctamente");
-      this.router.navigate(['admin']);
-    }, err =>{
-      alert("⛔Ya existe este Turno o debes completar todos los campos⛔");
-      this.router.navigate(['admin']);
-    }
-    )
-  }
-
+ 
   volver(){
     this.router.navigate(['perfil']);
   }

@@ -30,6 +30,7 @@ import { MisReservasComponent } from './componentes/mis-reservas/mis-reservas.co
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { FiltrarActividadesPipe } from './pipes/filtrar-actividades.pipe';
+import { VerActividadComponent } from './componentes/menuadmin/ver-actividad/ver-actividad.component';
 registerLocaleData(localeEs, 'es');
 
 
@@ -59,6 +60,7 @@ registerLocaleData(localeEs, 'es');
     EditarpassComponent,
     MisReservasComponent,
     FiltrarActividadesPipe,
+    VerActividadComponent,
   
   ],
   imports: [

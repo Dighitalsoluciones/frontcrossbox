@@ -44,7 +44,7 @@ export class NuevaActividadComponent implements OnInit {
   }
 
   cancelar(): void {
-    location.reload();
+    this.router.navigate(['admin']);
   }
 
   traerDisciplinas(){

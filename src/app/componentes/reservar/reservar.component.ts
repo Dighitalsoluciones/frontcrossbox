@@ -29,7 +29,6 @@ export class ReservarComponent implements OnInit {
   constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService, private auth: AuthService, private disciplinasServ: DisciplinasService) { }
 
   ngOnInit(): void {
-    this.traerActividades();
     this.traerDisciplinas();
     this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
       this.auth.detailName(this.usuarioLogeado).subscribe(

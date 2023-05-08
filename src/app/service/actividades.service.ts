@@ -11,9 +11,8 @@ export class ActividadesService {
 
   constructor(private http: HttpClient) { }
 
-  getActividades(): Observable<Actividades[]>{
-    
-    return this.http.get<Actividades[]>(this.apiUrl)
+  public getActividades(): Observable<Actividades[]>{
+    return this.http.get<Actividades[]>(this.apiUrl + 'lista');
   }
   
   deleteActividad(actividad: Actividades): Observable<Actividades>{

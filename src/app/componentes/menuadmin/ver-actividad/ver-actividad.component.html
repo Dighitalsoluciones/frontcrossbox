@@ -1,0 +1,57 @@
+<div class="container" *ngIf="loading">
+    <div class="row">
+        <div class="col-12 mb-3 mb-lg-5">
+            <div class="position-relative card table-nowrap table-card">
+                <div class="card-header align-items-center">
+                    <h5 class="mb-0">Turnos de las Actividades</h5>
+                    <p class="mb-0 small text-muted">Total creadas {{actividades.length}}</p>
+                    <div class="form-group">
+                        <select name="actividadSeleccionada" [(ngModel)]="actividadSeleccionada">
+                           <option [ngValue]="item.nombre" *ngFor="let item of disciplinas">{{item.nombre}}</option>
+                        </select>
+                        <button class="btn btn-primary" style="margin-left: 10px;" (click)="buscarPorActividad()">FILTRAR</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted">
+                            <tr>
+                                <th>Actividad</th>
+                                <th>Dia</th>
+                                <th>Horario</th>
+                                <th>Cupos</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let turnoActividad of buscarPorAct | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'nombre'">
+                            <tr class="align-middle">
+                                <td>
+                                  {{turnoActividad.nombre}}
+                                </td>
+                                <td>
+                                  <span class="badge fs-6 fw-normal bg-tint-success text-success">{{turnoActividad.dia | date:'EEEE, dd LLLL yyyy'}}</span>
+                              </td>
+                              <td>
+                                <span class="badge fs-6 fw-normal bg-tint-success text-success">{{turnoActividad.horario}}</span>
+                              </td>
+                              <td>
+                                <span class="badge fs-6 fw-normal bg-tint-success text-success">{{turnoActividad.cupo}}</span>
+                             </td>
+                                <td>
+                                  <button class="btn btn-warning">Editar</button></td>
+                                <td>
+                                  <button class="btn btn-danger">Eliminar</button>
+                                </td>
+                               
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer text-end">
+                    <button class="btn btn-success" routerLink="/newdisciplina" routerLink="/nuevoturno">Crear Nuevo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

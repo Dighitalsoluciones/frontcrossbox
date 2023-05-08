@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+import { Actividades } from 'src/app/model/actividades';
+import { Disciplinas } from 'src/app/model/disciplinas';
+import { ActividadesService } from 'src/app/service/actividades.service';
+import { DisciplinasService } from 'src/app/service/disciplinas.service';
+
+@Component({
+  selector: 'app-ver-actividad',
+  templateUrl: './ver-actividad.component.html',
+  styleUrls: ['./ver-actividad.component.css']
+})
+export class VerActividadComponent implements OnInit {
+
+  actividades: Actividades [] = [];
+  disciplinas: Disciplinas [] = [];
+  loading: boolean = false;
+  actividadSeleccionada: string = "";
+  buscarPorAct: any;
+
+  constructor(private actividadesServ: ActividadesService, private disciplinaServ: DisciplinasService) { }
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.loading = true;
+    }, 1200);
+    this.traerActividades();
+    this.traerDisciplinas();
+  }
+
+  traerActividades(){
+    this.actividadesServ.getActividades().subscribe(data => {this.actividades = data});
+  }
+
+  traerDisciplinas(){
+    this.disciplinaServ.lista().subscribe(data => {this.disciplinas = data});
+  }
+
+  buscarPorActividad(){
+    this.buscarPorAct = this.actividades.filter(filtrarAct => filtrarAct.nombre == this.actividadSeleccionada);
+  }
+}

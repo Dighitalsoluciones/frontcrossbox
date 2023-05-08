@@ -16,7 +16,7 @@ export class MisReservasComponent implements OnInit {
   usuarioLogeado: any;
   misReservas: any;
   reservasDeHoy: any;
-
+  
   constructor(private turnoService: TurnoService, private router: Router) { }
 
   ngOnInit(): void {
@@ -36,4 +36,17 @@ export class MisReservasComponent implements OnInit {
   volver(){
     this.router.navigate(['perfil']);
   }
+
+  eliminar(id?: number){
+    if(id != undefined){
+    this.turnoService.delete(id).subscribe(data =>{alert("Registro eliminado correctamente");
+    this.reservasDelUsuario();
+    },err =>{alert("No se pudo borrar el registro")},
+     )
+     }else{
+      alert("No se pudo borrar el registro")
+     }
+    }
+ 
+    
 }

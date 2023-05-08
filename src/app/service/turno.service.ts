@@ -20,9 +20,8 @@ export class TurnoService {
     return this.http.get<Turno[]>(this.turnUrl + 'lista');
   }
   
-  eliminarTurno(turno: Turno): Observable<Turno>{
-    const url = `${this.turnUrl}/${turno.id}`
-    return this.http.delete<Turno>(url)
+  public delete(id: number): Observable<any>{
+    return this.http.delete<any>(this.turnUrl + `delete/${id}`);
   }
 
   actualizarTurno(turno: Turno): Observable<Turno>{

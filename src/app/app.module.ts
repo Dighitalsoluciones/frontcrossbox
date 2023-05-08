@@ -29,6 +29,7 @@ import { MisReservasComponent } from './componentes/mis-reservas/mis-reservas.co
 //esto es para cambiar el formato de la hora de EN a Español
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { FiltrarActividadesPipe } from './pipes/filtrar-actividades.pipe';
 registerLocaleData(localeEs, 'es');
 
 
@@ -57,6 +58,7 @@ registerLocaleData(localeEs, 'es');
     DetalleReservaComponent,
     EditarpassComponent,
     MisReservasComponent,
+    FiltrarActividadesPipe,
   
   ],
   imports: [

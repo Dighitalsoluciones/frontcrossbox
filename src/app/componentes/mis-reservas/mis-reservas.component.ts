@@ -1,4 +1,6 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Turno } from 'src/app/model/turno';
 import { TurnoService } from 'src/app/service/turno.service';
 
@@ -11,13 +13,15 @@ const USERNAME_KEY = 'AuthUsername';
 })
 export class MisReservasComponent implements OnInit {
   reservas: Turno [] = [];
-  usuarioLogeado = USERNAME_KEY
+  usuarioLogeado: any;
+  misReservas: any;
+  reservasDeHoy: any;
 
-  constructor(private turnoService: TurnoService) { }
+  constructor(private turnoService: TurnoService, private router: Router) { }
 
   ngOnInit(): void {
     this.TraerReservas();
-    this.reservasDelUsuario();
+    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
   }
 
   TraerReservas(){
@@ -25,6 +29,11 @@ export class MisReservasComponent implements OnInit {
   }
 
   reservasDelUsuario(){
-    this.reservas = this.reservas.filter(reserva => reserva.nombreUsuario = this.usuarioLogeado)
+    this.misReservas = this.reservas.filter(reserva => reserva.nombreUsuario == this.usuarioLogeado);
+    this.reservasDeHoy = this.misReservas.filter((reserva: { dia: string; }) => reserva.dia >= formatDate(Date.now(), 'yyyy-MM-dd', 'es'));
+  }
+
+  volver(){
+    this.router.navigate(['perfil']);
   }
 }

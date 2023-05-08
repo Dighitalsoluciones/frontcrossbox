@@ -95,7 +95,7 @@ export class DetalleReservaComponent implements OnInit {
       this.perfil.clasesTomadas ++;
       this.guardar();
       this.reservarActividad(this.actividades.id!);
-      this.router.navigate(['']);
+      this.router.navigate(['misreservas']);
       
     }
 

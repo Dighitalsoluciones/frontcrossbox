@@ -4,12 +4,13 @@
             <div class="position-relative card table-nowrap table-card">
                 <div class="card-header align-items-center">
                     <h5 class="mb-0">Turnos de las Actividades</h5>
-                    <p class="mb-0 small text-muted">Total creadas {{actividades.length}}</p>
+                    <p class="mb-0 small text-muted">Turnos Totales Creados {{actividades.length}}</p>
                     <div class="form-group">
                         <select name="actividadSeleccionada" [(ngModel)]="actividadSeleccionada">
                            <option [ngValue]="item.nombre" *ngFor="let item of disciplinas">{{item.nombre}}</option>
                         </select>
                         <button class="btn btn-primary" style="margin-left: 10px;" (click)="buscarPorActividad()">FILTRAR</button>
+                        <button id="btn-crear" class="btn btn-success text-end" routerLink="/newdisciplina" routerLink="/nuevoturno" style="margin-left: 10px;">Crear Nuevo</button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -37,7 +38,7 @@
                                 <span class="badge fs-6 fw-normal bg-tint-success text-success">{{turnoActividad.horario}}</span>
                               </td>
                               <td>
-                                <span class="badge fs-6 fw-normal bg-tint-success text-success">{{turnoActividad.cupo}}</span>
+                                <span class="badge fs-6 fw-normal" [ngClass]="{'color-rojo': turnoActividad.cupo === 0, 'color-verde': turnoActividad.cupo !== 0}">{{turnoActividad.cupo}}</span>
                              </td>
                                 <td>
                                   <button class="btn btn-warning">Editar</button></td>
@@ -48,9 +49,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer text-end">
+              <!-- Boton anterior   <div class="card-footer text-end">
                     <button class="btn btn-success" routerLink="/newdisciplina" routerLink="/nuevoturno">Crear Nuevo</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

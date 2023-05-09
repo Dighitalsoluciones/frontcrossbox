@@ -35,3 +35,22 @@ table th {
 .fa-arrow-down {
     color: #FF00FF;
 }
+
+.color-rojo {
+    color: red;;
+  }
+  
+.color-verde {
+    color: green;
+  }
+
+
+/*A partir de aca css para diferentes resoluciones y vista vertical */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation: portrait) {  
+#btn-crear{
+    margin-top: 10px;
+    align-items: center;
+    text-justify: center;
+    align-content: center;
+}
+}

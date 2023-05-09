@@ -41,6 +41,18 @@ export class EditarperfilComponent implements OnInit {
    
   }
 
+  obtenerUsuarioLogeado(){
+    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
+      this.auth.detailName(this.usuarioLogeado).subscribe(
+      data =>{
+        this.usuario = data;
+      }, err =>{
+        alert("Error al modificar los datos del usuario");
+        this.router.navigate(['perfil']);
+      }
+    )
+  }
+
   onUpdate(): void{
     const id = Number(this.usuario.id);
     this.auth.update(id, this.usuario).subscribe(

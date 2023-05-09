@@ -14,10 +14,9 @@ export class ActividadesService {
   public getActividades(): Observable<Actividades[]>{
     return this.http.get<Actividades[]>(this.apiUrl + 'lista');
   }
-  
-  deleteActividad(actividad: Actividades): Observable<Actividades>{
-    const url = `${this.apiUrl}/${actividad.id}`
-    return this.http.delete<Actividades>(url)
+
+  public delete(id: number): Observable<any>{
+    return this.http.delete<any>(this.apiUrl + `delete/${id}`);
   }
 
   updateActividad(actividad: Actividades): Observable<Actividades>{

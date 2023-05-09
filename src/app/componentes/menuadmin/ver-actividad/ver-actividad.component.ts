@@ -38,4 +38,16 @@ export class VerActividadComponent implements OnInit {
   buscarPorActividad(){
     this.buscarPorAct = this.actividades.filter(filtrarAct => filtrarAct.nombre == this.actividadSeleccionada);
   }
+
+  eliminar(id?: number){
+    if(id != undefined){
+      this.actividadesServ.delete(id).subscribe(data =>{alert("Registro eliminado correctamente");
+      this.traerActividades();
+      location.reload();
+      },err =>{alert("No se pudo borrar el registro")},
+       )
+       }else{
+        alert("No se pudo borrar el registro")
+       }
+  }
 }

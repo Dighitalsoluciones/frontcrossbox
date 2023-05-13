@@ -4,13 +4,13 @@
             <div class="position-relative card table-nowrap table-card">
                 <div class="card-header align-items-center">
                     <h5 class="mb-0">Turnos de las Actividades</h5>
-                    <p class="mb-0 small text-muted">Turnos Totales Creados {{actividades.length}}</p>
+                    <p class="mb-0 small text-muted">Turnos Totales Creados {{filtroActuales.length}}</p>
                     <div class="form-group">
                         <select name="actividadSeleccionada" [(ngModel)]="actividadSeleccionada">
                            <option [ngValue]="item.nombre" *ngFor="let item of disciplinas">{{item.nombre}}</option>
                         </select>
                         <button class="btn btn-primary" style="margin-left: 10px;" (click)="buscarPorActividad()">FILTRAR</button>
-                        <button id="btn-crear" class="btn btn-success text-end" routerLink="/newdisciplina" routerLink="/nuevoturno" style="margin-left: 10px;">Crear Nuevo</button>
+                        <button id="btn-crear" class="btn btn-success text-end" routerLink="/newdisciplina" routerLink="/nuevoturno" style="margin-left: 10px;">CREAR NUEVO</button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -26,7 +26,7 @@
                                 
                             </tr>
                         </thead>
-                        <tbody *ngFor="let turnoActividad of buscarPorAct | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'nombre'">
+                        <tbody *ngFor="let turnoActividad of filtroActuales | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'nombre'">
                             <tr class="align-middle">
                                 <td>
                                   {{turnoActividad.nombre}}

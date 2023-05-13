@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Actividades } from 'src/app/model/actividades';
 import { Disciplinas } from 'src/app/model/disciplinas';
@@ -16,6 +17,7 @@ export class VerActividadComponent implements OnInit {
   loading: boolean = false;
   actividadSeleccionada: string = "";
   buscarPorAct: any;
+  filtroActuales= [];
 
   constructor(private actividadesServ: ActividadesService, private disciplinaServ: DisciplinasService) { }
 
@@ -37,6 +39,9 @@ export class VerActividadComponent implements OnInit {
 
   buscarPorActividad(){
     this.buscarPorAct = this.actividades.filter(filtrarAct => filtrarAct.nombre == this.actividadSeleccionada);
+    this.filtroActuales = this.buscarPorAct;
+    this.filtroActuales = this.buscarPorAct.filter((filtrardia: { dia: string; }) => filtrardia.dia >= formatDate(Date.now(), 'yyyy-MM-dd', 'es'));
+    
   }
 
   eliminar(id?: number){

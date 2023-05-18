@@ -31,6 +31,7 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { FiltrarActividadesPipe } from './pipes/filtrar-actividades.pipe';
 import { VerActividadComponent } from './componentes/menuadmin/ver-actividad/ver-actividad.component';
+import { EditVerActividadComponent } from './componentes/menuadmin/ver-actividad/edit-ver-actividad/edit-ver-actividad.component';
 registerLocaleData(localeEs, 'es');
 
 
@@ -61,6 +62,8 @@ registerLocaleData(localeEs, 'es');
     MisReservasComponent,
     FiltrarActividadesPipe,
     VerActividadComponent,
+    EditVerActividadComponent,
+  
   
   ],
   imports: [

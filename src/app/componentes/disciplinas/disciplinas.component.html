@@ -30,7 +30,7 @@
                                 <span class="badge fs-6 fw-normal bg-tint-success text-success">{{disciplina.profesor}}</span>
                             </td>
                               <td>
-                                <button class="btn btn-warning">Editar</button></td>
+                                <button class="btn btn-warning" routerLink="/editdisciplina/{{disciplina.id}}">Editar</button></td>
                               <td>
                                 <button class="btn btn-danger" (click)="eliminar(disciplina.id)">Eliminar</button>
                               </td>

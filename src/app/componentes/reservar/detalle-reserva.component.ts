@@ -40,7 +40,7 @@ export class DetalleReservaComponent implements OnInit {
 
   onUpdate(): void{
     const id = this.activatedRouter.snapshot.params['id'];
-    this.actiServ.updateActividad(id).subscribe(
+    this.actiServ.update(id, this.actividades).subscribe(
       data => {alert("✅ Articulo modificado correctamente");
         this.router.navigate(['reservar']);
       }, err =>{

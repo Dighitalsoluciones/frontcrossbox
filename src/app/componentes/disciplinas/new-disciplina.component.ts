@@ -47,6 +47,7 @@ export class NewDisciplinaComponent implements OnInit {
     this.selectedFile = event.target.files[0];
     this.convertToBase64();
     
+    
   }
 
   convertToBase64() {

@@ -41,7 +41,7 @@
                                 <span class="badge fs-6 fw-normal" [ngClass]="{'color-rojo': turnoActividad.cupo === 0, 'color-verde': turnoActividad.cupo !== 0}">{{turnoActividad.cupo}}</span>
                              </td>
                                 <td>
-                                  <button class="btn btn-warning">Editar</button></td>
+                                  <button class="btn btn-warning" routerLink="/editturno/{{turnoActividad.id}}">Editar</button></td>
                                 <td>
                                   <button class="btn btn-danger" (click)="eliminar(turnoActividad.id)">Eliminar</button>
                                 </td>

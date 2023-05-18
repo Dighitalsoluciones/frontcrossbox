@@ -1,0 +1,42 @@
+<div class="container fondoEdit" *ngIf="loading">
+    <div class="row justify-content-between align-items-center" id="textosColor">
+        <div>
+            <div>
+                <div class="form-group" id="espacial">
+                    <label for="nombre">Nombre de la Actividad</label>
+                    <br>
+                    <select [(ngModel)]="actividad.nombre" required name="nombre">
+                        <option  *ngFor="let item of disciplinas" [ngValue]="item.nombre">{{item.nombre}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6" id="impHasta">
+                    <label for="titulo">Observacion</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="actividad.descripcion">
+                </div>
+                
+                <div class="form-group" id="impHasta">
+                <label for="desde">Dia</label>
+                <br>
+                <input type="date" id="desde" name="desde" value="" [(ngModel)]="actividad.dia" required>
+                </div>
+                <div class="form-group" id="impHasta">
+                    <label for="desde">Horario</label>
+                    <br>
+                    <input type="time" id="hasta" name="hasta" value="" [(ngModel)]="actividad.horario" required>
+                 </div>
+                
+                <div class="form-group col-md-6" id="impHasta">
+                    <label for="ubicacion">Cupos</label>
+                    <input type="number" class="form-control" id="ubicacion" name="ubicacion" [(ngModel)]="actividad.cupo" required>
+                </div>
+                <button class="btn btn-success" id="botonAgregar" (click)="onUpdate()">
+                    ACTUALIZAR
+                </button>
+                <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
+                    CANCELAR
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>

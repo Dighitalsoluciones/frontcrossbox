@@ -1,36 +1,36 @@
 <div class="container fondoEdit">
     <div class="row justify-content-between align-items-center" id="textosColor">
         <div>
-            <div>
+            <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
                 <div class="form-group" id="espacial">
-                    <div class="form-group col-md-6" id="impHasta">
-                        <label for="titulo">Nombre</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="disciplinas.nombre" required>
-                    </div>
-                <div class="form-group col-md-6" id="impHasta">
-                    <label for="titulo">Descripcion</label>
+                    <label for="logo">Nombre de la Disciplina</label>
+                    <input type="text" class="form-control" id="logo" name="logo" [(ngModel)]="disciplinas.nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="titulo">Descripción</label>
                     <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="disciplinas.descripcion">
                 </div>
-    
-                <div class="form-group col-md-6" id="impHasta">
-                    <label for="profesor">Profesor</label>
-                    <input type="text" class="form-control" id="titulo" name="profesor" [(ngModel)]="disciplinas.profesor">
+
+                <div class="form-group">
+                    <label for="profe">Profesor/es</label>
+                    <input type="text" class="form-control" id="titulo" name="profe" [(ngModel)]="disciplinas.profesor">
                 </div>
+                
                 <div class="form-group" style="margin-top: 10px;">
                     <label for="imagen"> Imagen de la Disciplina</label>
                     <br>
                     <input type="file" (change)="capturarImagen($event)" [(ngModel)]="disciplinas.imagen" requerid>
                 </div>
                 <br>
-                             
-                <button class="btn btn-success" id="botonAgregar" (click)="onUpdate()">
+                
+                <button class="btn btn-success" id="botonAgregar">
                     ACTUALIZAR
                 </button>
                 <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
                     CANCELAR
                 </button>
                 
-            </div>
+            </form>
         </div>
     </div>
 </div>

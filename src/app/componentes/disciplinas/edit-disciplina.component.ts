@@ -49,7 +49,7 @@ url: SafeUrl = "";
       const base64 = reader.result as string;
       // Aquí puedes enviar la imagen en formato base64 a la base de datos o hacer cualquier otra cosa con ella
       
-      this.imagen = base64.toString();
+      this.disciplinas.imagen = base64.toString();
       console.log(base64);
       
     };

@@ -15,6 +15,7 @@ import { ReservarComponent } from './componentes/reservar/reservar.component';
 import { MisReservasComponent } from './componentes/mis-reservas/mis-reservas.component';
 import { EditVerActividadComponent } from './componentes/menuadmin/ver-actividad/edit-ver-actividad/edit-ver-actividad.component';
 import { EditDisciplinaComponent } from './componentes/disciplinas/edit-disciplina.component';
+import { DetailAdmReservasComponent } from './componentes/menuadmin/adm-reservas/detail-adm-reservas.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path:'misreservas', component: MisReservasComponent},
   {path:'editturno/:id', component: EditVerActividadComponent},
   {path:'editdisciplina/:id', component: EditDisciplinaComponent},
+  {path:'detailreserva/:id', component: DetailAdmReservasComponent},
 ];
 
 @NgModule({

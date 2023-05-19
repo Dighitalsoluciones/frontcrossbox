@@ -32,6 +32,8 @@ import { registerLocaleData } from '@angular/common';
 import { FiltrarActividadesPipe } from './pipes/filtrar-actividades.pipe';
 import { VerActividadComponent } from './componentes/menuadmin/ver-actividad/ver-actividad.component';
 import { EditVerActividadComponent } from './componentes/menuadmin/ver-actividad/edit-ver-actividad/edit-ver-actividad.component';
+import { AdmReservasComponent } from './componentes/menuadmin/adm-reservas/adm-reservas.component';
+import { DetailAdmReservasComponent } from './componentes/menuadmin/adm-reservas/detail-adm-reservas.component';
 registerLocaleData(localeEs, 'es');
 
 
@@ -63,6 +65,8 @@ registerLocaleData(localeEs, 'es');
     FiltrarActividadesPipe,
     VerActividadComponent,
     EditVerActividadComponent,
+    AdmReservasComponent,
+    DetailAdmReservasComponent,
   
   
   ],

@@ -1,0 +1,8 @@
+/*A partir de aca css para diferentes resoluciones y vista vertical */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation: portrait) {  
+    #btn-verTodas{
+        margin-top: 10px;
+        align-items: center;
+        align-content: center;
+    }
+    }

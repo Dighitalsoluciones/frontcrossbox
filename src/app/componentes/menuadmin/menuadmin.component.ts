@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { TokenService } from 'src/app/service/token.service';
 
 @Injectable({providedIn: 'root'})
@@ -30,6 +30,7 @@ export class MenuadminComponent implements OnInit {
   usuariosRegistrados = false;
   disciplinas = false;
   crearTurnos = false;
+  reservas = false;
 
   constructor() { }
 
@@ -40,16 +41,26 @@ export class MenuadminComponent implements OnInit {
     this.usuariosRegistrados = true;
     this.disciplinas = false;  
     this.crearTurnos = false;
+    this.reservas = false;
   }
 
   mostrarDisciplinas(){
     this.disciplinas = true;
     this.usuariosRegistrados = false;
     this.crearTurnos = false;
+    this.reservas = false;
   }
 
   mostrarCrearTurnos(){
     this.crearTurnos = true;
+    this.disciplinas = false;
+    this.usuariosRegistrados = false;
+    this.reservas = false;
+  }
+
+  mostrarReservas(){
+    this.reservas = true;
+    this.crearTurnos = false;
     this.disciplinas = false;
     this.usuariosRegistrados = false;
   }

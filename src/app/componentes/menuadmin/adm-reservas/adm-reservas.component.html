@@ -1,0 +1,115 @@
+<div *ngIf="loading">
+    <div class="row">
+        <div class="col-12 mb-3 mb-lg-5">
+            <div class="position-relative card table-nowrap table-card">
+                <div class="card-header align-items-center">
+                    <h5 class="mb-0">Reservas de los Clientes</h5>
+                    <p class="mb-0 small text-muted" *ngIf="habilitarPorActividad">Reservas Totales {{filtroActuales.length}}</p>
+                    <p class="mb-0 small text-muted" *ngIf="habilitarTodas">Reservas Totales {{diasActuales.length}}</p>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <select name="actividadSeleccionada" [(ngModel)]="actividadSeleccionada">
+                           <option [ngValue]="item.nombre" *ngFor="let item of disciplinas">{{item.nombre}}</option>
+                        </select>
+                        <button class="btn btn-primary" style="margin-left: 10px;" (click)="buscarPorActividad()">FILTRAR</button>
+                        <button class="btn btn-success" id="btn-verTodas" style="margin-left: 10px;" (click)="verTodas()">VER TODAS</button>
+                        <div class="input-group" style="margin-bottom: 15px; margin-top: 15px;">
+                            <input type="text" class="form-control bg-light border-0 small" name="FiltrarUsuariosReg" placeholder="🔎 Apellido (minusculas)" style="margin: 0px 15px 0px 15px;" [(ngModel)]="FiltrarUsuariosReg"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                        </div>
+                <div class="table-responsive" *ngIf="habilitarPorActividad">
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted">
+                            <tr>
+                                <th>Actividad</th>
+                                <th class="text-center">Dia</th>
+                                <th>Horario</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Detalles</th>
+                                <th>Eliminar</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let reserva of filtroActuales | filtrarUsuarios: FiltrarUsuariosReg | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'actividad'">
+                            <tr class="align-middle">
+                                <td>
+                                  {{reserva.actividad}}
+                                </td>
+                                <td>
+                                  <span class="badge fs-6 fw-normal bg-tint-success text-success">{{reserva.dia | date:'EEEE, dd LLLL yyyy'}}</span>
+                              </td>
+                              <td>
+                                <span class="badge fs-6 fw-normal bg-tint-success text-success">{{reserva.horario}}</span>
+                              </td>
+                              <td>
+                                <span class="badge fs-6 fw-normal" style="color: black;">{{reserva.apellido}}</span>
+                             </td>
+                             <td>
+                                <span class="badge fs-6 fw-normal" style="color: black;">{{reserva.nombre}}</span>
+                             </td>
+                             <td>
+                                <span class="badge fs-6 fw-normal" style="color: red;">{{reserva.nombreUsuario}}</span>
+                             </td>
+                                <td>
+                                  <button class="btn btn-warning" routerLink="/detailreserva/{{reserva.id}}">Detalles</button></td>
+                                <td>
+                                  <button class="btn btn-danger" (click)="eliminar(reserva.id)">Eliminar</button>
+                                </td>
+                               
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-responsive" *ngIf="habilitarTodas">
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted">
+                            <tr>
+                                <th>Actividad</th>
+                                <th class="text-center">Dia</th>
+                                <th>Horario</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Detalles</th>
+                                <th>Eliminar</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let reserva of diasActuales | filtrarUsuarios: FiltrarUsuariosReg | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'actividad'">
+                            <tr class="align-middle">
+                                <td>
+                                  {{reserva.actividad}}
+                                </td>
+                                <td>
+                                  <span class="badge fs-6 fw-normal bg-tint-success text-success">{{reserva.dia | date:'EEEE, dd LLLL yyyy'}}</span>
+                              </td>
+                              <td>
+                                <span class="badge fs-6 fw-normal bg-tint-success text-success">{{reserva.horario}}</span>
+                              </td>
+                              <td>
+                                <span class="badge fs-6 fw-normal" style="color: black;">{{reserva.apellido}}</span>
+                             </td>
+                             <td>
+                                <span class="badge fs-6 fw-normal" style="color: black;">{{reserva.nombre}}</span>
+                             </td>
+                             <td>
+                                <span class="badge fs-6 fw-normal" style="color: red;">{{reserva.nombreUsuario}}</span>
+                             </td>
+                                <td>
+                                  <button class="btn btn-warning" routerLink="/detailreserva/{{reserva.id}}">Detalles</button></td>
+                                <td>
+                                  <button class="btn btn-danger" (click)="eliminar(reserva.id)">Eliminar</button>
+                                </td>
+                               
+                        </tbody>
+                    </table>
+                </div>
+              <!-- Boton anterior   <div class="card-footer text-end">
+                    <button class="btn btn-success" routerLink="/newdisciplina" routerLink="/nuevoturno">Crear Nuevo</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+

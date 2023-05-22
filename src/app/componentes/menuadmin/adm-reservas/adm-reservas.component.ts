@@ -57,17 +57,6 @@ export class AdmReservasComponent implements OnInit {
     
   }
 
-  eliminar(id?: number){
-    if(id != undefined){
-      this.reservaServ.delete(id).subscribe(data =>{alert("Registro eliminado correctamente");
-      this.traerDatosUsuario();
-      location.reload();
-      },err =>{alert("No se pudo borrar el registro")},
-       )
-       }else{
-        alert("No se pudo borrar el registro")
-       }
-  }
 
   verTodas(){
     this.habilitarPorActividad = false;
@@ -76,21 +65,5 @@ export class AdmReservasComponent implements OnInit {
     this.diasActuales = this.reservas.filter((filtrardia: { dia: string; }) => filtrardia.dia >= formatDate(Date.now(), 'yyyy-MM-dd', 'es'));
   }
 
-  traerDatosUsuario(){
-    this.authServ.detailName(this.reservados.nombreUsuario).subscribe(data => {this.usuario = data});
-    this.usuario.clasesTomadas ++;
-    this.usuario.suscripcionActual --;
-    this.guardar();
-  }
-
-  guardar(): void{
-    this.authServ.update(this.usuario.id, this.usuario).subscribe(
-     data => {}, err =>{
-       alert("⛔ Error al modificar el perfil ⛔");
-       this.router.navigate(['reservar']);
-     }
-   )
-   
- }
 
 }

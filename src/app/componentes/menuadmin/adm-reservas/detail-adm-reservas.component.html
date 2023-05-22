@@ -38,6 +38,8 @@
         
                   <div class="col-12 col-md-4 text-center" style="margin-top: 5px;">
                     <button class="f-n-hover btn btn-info btn-raised px-4 py-25 w-75 text-600" routerLink="/admin">VOLVER</button>
+                    <button *ngIf="noMostrarBtnBorrar" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-75 text-600" (click)="mostrarBotonConf();traerDatosUsuario()">BORRAR</button>
+                    <button *ngIf="botonConf" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-75 text-600" (click)="traerDatosUsuario();eliminar(detalleReserva.id)">CONFIRMAR</button>
                   </div>
                 </div>      
               </div>                   

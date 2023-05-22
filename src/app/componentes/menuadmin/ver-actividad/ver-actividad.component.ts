@@ -18,6 +18,7 @@ export class VerActividadComponent implements OnInit {
   actividadSeleccionada: string = "";
   buscarPorAct: any;
   filtroActuales= [];
+  p: number = 1;
 
   constructor(private actividadesServ: ActividadesService, private disciplinaServ: DisciplinasService) { }
 
@@ -55,4 +56,10 @@ export class VerActividadComponent implements OnInit {
         alert("No se pudo borrar el registro")
        }
   }
+
+  pageChangeEvent(event: number){
+    this.p = event;
+    this.filtroActuales;
+}
+
 }

@@ -30,7 +30,7 @@
                                 
                             </tr>
                         </thead>
-                        <tbody *ngFor="let reserva of filtroActuales | filtrarUsuarios: FiltrarUsuariosReg | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'actividad'">
+                        <tbody *ngFor="let reserva of filtroActuales | filtrarUsuarios: FiltrarUsuariosReg | paginate: { itemsPerPage: 10, currentPage: p, totalItems: filtroActuales.length}| ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'actividad'">
                             <tr class="align-middle">
                                 <td>
                                   {{reserva.actividad}}
@@ -73,7 +73,7 @@
                                 
                             </tr>
                         </thead>
-                        <tbody *ngFor="let reserva of diasActuales | filtrarUsuarios: FiltrarUsuariosReg | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'actividad'">
+                        <tbody *ngFor="let reserva of diasActuales | filtrarUsuarios: FiltrarUsuariosReg | paginate: { itemsPerPage: 10, currentPage: p, totalItems: diasActuales.length}| ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'dia' | ordenarporHs:'asc':'actividad'">
                             <tr class="align-middle">
                                 <td>
                                   {{reserva.actividad}}
@@ -106,5 +106,10 @@
             </div>
         </div>
     </div>
+    <div>
+        <pagination-controls (pageChange)="pageChangeEvent($event)" *ngIf="habilitarTodas"></pagination-controls>
+        <pagination-controls (pageChange)="pageChangeEventPorAct($event)" *ngIf="habilitarPorActividad"></pagination-controls>
+    </div>
 </div>
+
 

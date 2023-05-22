@@ -25,6 +25,7 @@ export class AdmReservasComponent implements OnInit {
   diasActuales: any;
   reservados: any;
   usuario: any;
+  p: number = 1;
 
   constructor(private reservaServ: TurnoService, private disciplinaServ: DisciplinasService, private authServ: AuthService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -64,6 +65,15 @@ export class AdmReservasComponent implements OnInit {
     this.actividadSeleccionada = "";
     this.diasActuales = this.reservas.filter((filtrardia: { dia: string; }) => filtrardia.dia >= formatDate(Date.now(), 'yyyy-MM-dd', 'es'));
   }
+
+  pageChangeEvent(event: number){
+    this.p = event;
+    this.diasActuales();
+}
+pageChangeEventPorAct(event: number){
+  this.p = event;
+  this.filtroActuales;
+}
 
 
 }

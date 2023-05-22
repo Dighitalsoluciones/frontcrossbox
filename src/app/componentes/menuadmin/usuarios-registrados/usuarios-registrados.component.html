@@ -53,16 +53,18 @@ role="dialog"
                         <div class="text-right">
                             <button (click)="delete(usuaReg.id)" style="color: red; margin-bottom: 10px;"><i class="fa fa-window-close" aria-hidden="true"></i> Eliminar</button>
                         </div>
-                        <div class="thumb-lg member-thumb mx-auto"><img [src]="[usuaReg.fotoPerfil]" class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                        <div class="thumb-lg member-thumb mx-auto"><img [src]="[usuaReg.fotoPerfil]" class="rounded-circle img-thumbnail" alt="profile-image" height="200px" width="200px"></div>
                         <div class="" style="margin-top: 5px;">
                             <h4>{{usuaReg.nombre}} {{usuaReg.apellido}}</h4>
                             <p class="text-muted"><span><a href="#" class="text-pink">{{usuaReg.email}}</a></span></p>
                         </div>
+                        <!--En el futuro para mostrar medallas
                         <ul class="social-links list-inline">
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
                         </ul>
+                        -->
                         <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" routerLink="/cargarsusc/{{usuaReg.id}}">Cargar Suscripción</button>
                         <div class="mt-4">
                             <div class="row">

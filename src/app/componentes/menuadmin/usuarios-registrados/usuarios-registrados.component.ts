@@ -18,8 +18,9 @@ export class UsuariosRegistradosComponent implements OnInit {
   fechaInicio: any;
   fechaFin: any;
   loading = false;
+  usuario: any;
 
-  constructor(private authService: AuthService, private fechaService: FechaService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.listaUsuarios();
@@ -52,14 +53,6 @@ export class UsuariosRegistradosComponent implements OnInit {
     } else{
       alert("No se pudo borrar el usuario");
     }
-  }
-
-
-  getFechas(): void {
-    this.fechaService.getFechas(this.fechaInicio, this.fechaFin).subscribe(fechas => {
-      this.fechas = fechas;
-      console.log(fechas);
-    });
   }
 
 }

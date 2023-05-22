@@ -19,6 +19,7 @@ export class UsuariosRegistradosComponent implements OnInit {
   fechaFin: any;
   loading = false;
   usuario: any;
+  p: number = 1;
 
   constructor(private authService: AuthService) { }
 
@@ -54,5 +55,10 @@ export class UsuariosRegistradosComponent implements OnInit {
       alert("No se pudo borrar el usuario");
     }
   }
+
+  pageChangeEvent(event: number){
+    this.p = event;
+    this.listaUsuarios();
+}
 
 }

@@ -34,6 +34,7 @@ import { VerActividadComponent } from './componentes/menuadmin/ver-actividad/ver
 import { EditVerActividadComponent } from './componentes/menuadmin/ver-actividad/edit-ver-actividad/edit-ver-actividad.component';
 import { AdmReservasComponent } from './componentes/menuadmin/adm-reservas/adm-reservas.component';
 import { DetailAdmReservasComponent } from './componentes/menuadmin/adm-reservas/detail-adm-reservas.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 registerLocaleData(localeEs, 'es');
 
 
@@ -75,6 +76,7 @@ registerLocaleData(localeEs, 'es');
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]

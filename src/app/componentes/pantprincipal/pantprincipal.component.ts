@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, getNgModuleById, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 
@@ -25,7 +23,8 @@ export class PantprincipalComponent implements OnInit {
   constructor(private http: HttpClient, private router:Router, private route: ActivatedRoute, private tokenService: TokenService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
+    const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
+    this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
     this.roles = JSON.stringify(sessionStorage.getItem(AUTHORITIES_KEY));   
     this.traerUsuario(this.usuarioLogeado);  
       

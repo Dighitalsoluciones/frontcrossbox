@@ -20,22 +20,22 @@
         </div>
         <div class="row mt-2">
           <div class="col-md-6"><label class="labels">Nombre</label><input type="text" class="form-control"
-              placeholder="Ingresa tu nombre" [(ngModel)]="usuario.nombre" required *ngIf="usuario && usuario.nombre"></div>
+              placeholder="Ingresa tu nombre" [(ngModel)]="usuario.nombre" required *ngIf="usuario"></div>
           <div class="col-md-6"><label class="labels">Apellido</label><input type="text" class="form-control"
-              [(ngModel)]="usuario.apellido" required placeholder="Ingresa tu apellido" *ngIf="usuario && usuario.apellido"></div>
+              [(ngModel)]="usuario.apellido" required placeholder="Ingresa tu apellido" *ngIf="usuario"></div>
         </div>
         <div class="row mt-3">
           <div class="col-md-12"><label class="labels">Telefono</label><input type="text" class="form-control"
-              placeholder="Ingresa tu telefono" [(ngModel)]="usuario.telefono" *ngIf="usuario && usuario.telefono"></div>
+              placeholder="Ingresa tu telefono" [(ngModel)]="usuario.telefono" *ngIf="usuario"></div>
           <div class="col-md-12"><label class="labels">Dirección</label><input type="text" class="form-control"
-              placeholder="Ingresa tu calle y el numero" [(ngModel)]="usuario.direccion" *ngIf="usuario && usuario.direccion"></div>
+              placeholder="Ingresa tu calle y el numero" [(ngModel)]="usuario.direccion" *ngIf="usuario"></div>
           <div class="col-md-12"><label class="labels">Localidad</label><input type="text" class="form-control"
-              placeholder="Ingresa tu localidad" [(ngModel)]="usuario.localidad" *ngIf="usuario && usuario.localidad"></div>
+              placeholder="Ingresa tu localidad" [(ngModel)]="usuario.localidad" *ngIf="usuario"></div>
           <div class="col-md-12"><label class="labels">Dni</label><input type="number" class="form-control"
-              placeholder="ingresa tu dni" [(ngModel)]="usuario.dni" required *ngIf="usuario && usuario.dni"></div>
+              placeholder="ingresa tu dni" [(ngModel)]="usuario.dni" required *ngIf="usuario"></div>
           <div class="col-md-12">
             <label style="margin-top: 10px;" for="fotoPerfil"> Imagen de Perfil (Opcional)</label>
-            <input type="file" (change)="capturarImagen($event)" [(ngModel)]="usuario.fotoPerfil" *ngIf="usuario && usuario.fotoPerfil">
+            <input type="file" (change)="capturarImagen($event)" [(ngModel)]="usuario.fotoPerfil" *ngIf="usuario">
           </div>
 
 

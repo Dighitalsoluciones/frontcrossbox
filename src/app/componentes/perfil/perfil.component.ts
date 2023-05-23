@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 
 const USERNAME_KEY = 'AuthUsername';
-const FOTOPERFIL = 'image';
+
 
 @Component({
   selector: 'app-perfil',
@@ -17,9 +17,10 @@ export class PerfilComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
+    const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
+    this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
     this.traerUsuario(this.usuarioLogeado);
-    this.mostrarfoto = localStorage.getItem(FOTOPERFIL);
+   
   }
 
   traerUsuario(nombreUsuario: string): void{

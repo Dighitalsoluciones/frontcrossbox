@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Turno } from 'src/app/model/turno';
 import { AuthService } from 'src/app/service/auth.service';
 import { TurnoService } from 'src/app/service/turno.service';
-import { UsuariosRegistradosComponent } from '../usuarios-registrados/usuarios-registrados.component';
 
 @Component({
   selector: 'app-detail-adm-reservas',

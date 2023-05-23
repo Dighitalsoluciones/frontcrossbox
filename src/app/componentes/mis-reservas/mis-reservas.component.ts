@@ -21,7 +21,8 @@ export class MisReservasComponent implements OnInit {
 
   ngOnInit(): void {
     this.TraerReservas();
-    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
+    const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
+    this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
   }
 
   TraerReservas(){

@@ -18,7 +18,8 @@ export class EditarpassComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
+    const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
+    this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
       this.auth.detailName(this.usuarioLogeado).subscribe(
       data =>{
         this.usuario = data;

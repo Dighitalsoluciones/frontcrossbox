@@ -21,8 +21,10 @@ export class TokenService {
   }
 
   public setUserName(userName: string): void {
+    //codificacion de usuario
+    const userCod = btoa(JSON.stringify(userName));
     window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, userName);
+    window.sessionStorage.setItem(USERNAME_KEY, userCod);
   }
 
   public getUserName(): string {

@@ -32,7 +32,8 @@ export class DetalleReservaComponent implements OnInit {
         this.router.navigate(['']);
       }
     )
-    this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
+    const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
+    this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
     this.traerUsuario(this.usuarioLogeado);
     
     

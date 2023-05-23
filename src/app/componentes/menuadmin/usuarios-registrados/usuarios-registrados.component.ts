@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Fecha } from 'src/app/model/fecha';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
-import { FechaService } from 'src/app/service/fecha.service';
 
 @Component({
   selector: 'app-usuarios-registrados',

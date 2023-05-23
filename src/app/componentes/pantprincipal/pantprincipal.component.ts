@@ -18,15 +18,18 @@ export class PantprincipalComponent implements OnInit {
   userId: any;
   id1: any;
   usuarioLogeado: any;
-  roles: string = "";
+  roles: any;
 
   constructor(private http: HttpClient, private router:Router, private route: ActivatedRoute, private tokenService: TokenService, private auth: AuthService) { }
 
   ngOnInit(): void {
     const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
     this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
-    this.roles = JSON.stringify(sessionStorage.getItem(AUTHORITIES_KEY));   
+    const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
+    this.roles = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
     this.traerUsuario(this.usuarioLogeado);  
+    console.log(this.roles);
+    console.log(this.roles.includes("ROLE_USER"))
       
     if(this.tokenService.getToken()){
       this.isLogged= true;
@@ -51,8 +54,6 @@ export class PantprincipalComponent implements OnInit {
   }
 
 
-
-
   traerId(){
     this.route.paramMap.subscribe(paramMap => {
       this.userId = paramMap.get('id');
@@ -74,7 +75,8 @@ export class PantprincipalComponent implements OnInit {
   /*
   IsAdmin2() {
     // Obtener el objeto de autoridades almacenado en sessionStorage
-    const authorities = JSON.parse(sessionStorage.getItem('AuthAuthorities'));
+    const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
+    this.roles = authCodificado ? JSON.parse(atob(authCodificado)) : [];
   
     // Verificar si el objeto contiene la autoridad 'ROLE_ADMIN'
     if (authorities && Array.isArray(authorities)) {

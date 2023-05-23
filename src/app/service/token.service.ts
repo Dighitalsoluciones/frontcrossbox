@@ -32,8 +32,10 @@ export class TokenService {
  }
 
  public setAuthorities(authorities: string[]): void {
+  //codificacion de authorities
+  const authCod = btoa(JSON.stringify(authorities));
   window.sessionStorage.removeItem(AUTHORITIES_KEY);
-  window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+  window.sessionStorage.setItem(AUTHORITIES_KEY, authCod);
   }
  
   public getAuthorities(): string[] {

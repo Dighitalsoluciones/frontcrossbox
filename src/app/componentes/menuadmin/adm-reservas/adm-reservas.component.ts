@@ -43,6 +43,7 @@ export class AdmReservasComponent implements OnInit {
 
   traerReservas(){
     this.reservaServ.lista().subscribe(data => {this.reservas = data});
+    
   }
 
   traerDisciplinas(){
@@ -55,6 +56,7 @@ export class AdmReservasComponent implements OnInit {
     this.buscarPorAct = this.reservas.filter(filtrarRes => filtrarRes.actividad == this.actividadSeleccionada);
     this.filtroActuales = this.buscarPorAct;
     this.filtroActuales = this.buscarPorAct.filter((filtrardia: { dia: string; }) => filtrardia.dia >= formatDate(Date.now(), 'yyyy-MM-dd', 'es'));
+    this.sortFiltroActualesByFechaYHorario();
     
   }
 
@@ -64,6 +66,7 @@ export class AdmReservasComponent implements OnInit {
     this.habilitarTodas = true;
     this.actividadSeleccionada = "";
     this.diasActuales = this.reservas.filter((filtrardia: { dia: string; }) => filtrardia.dia >= formatDate(Date.now(), 'yyyy-MM-dd', 'es'));
+    this.sortDiasActualesByFechaYHorario();
   }
 
   pageChangeEvent(event: number){
@@ -74,6 +77,88 @@ pageChangeEventPorAct(event: number){
   this.p = event;
   this.filtroActuales;
 }
+
+/* UTILIZANDO FILTRO POR FECHA Y HORA
+sortDiasActualesByFecha() {
+  this.diasActuales.sort((a: { dia: string | number | Date; }, b: { dia: string | number | Date; }) => {
+    const fechaA = new Date(a.dia);
+    const fechaB = new Date(b.dia);
+    return fechaA.getTime() - fechaB.getTime();
+  });
+}
+*/
+
+sortDiasActualesByFechaYHorario() {
+  this.diasActuales.sort((a: {
+    horario: any; dia: string | number | Date; 
+}, b: {
+    horario: any; dia: string | number | Date; 
+}) => {
+    const fechaA = new Date(a.dia);
+    const fechaB = new Date(b.dia);
+
+    // Ordenar por fecha
+    if (fechaA < fechaB) {
+      return -1;
+    }
+    if (fechaA > fechaB) {
+      return 1;
+    }
+
+    // Si las fechas son iguales, ordenar por horario
+    const horaA = a.horario;
+    const horaB = b.horario;
+    if (horaA < horaB) {
+      return -1;
+    }
+    if (horaA > horaB) {
+      return 1;
+    }
+
+    return 0; // Si las fechas y los horarios son iguales
+  });
+}
+
+sortFiltroActualesByFechaYHorario() {
+  this.filtroActuales.sort((a: {
+    horario: any; dia: string | number | Date; 
+}, b: {
+    horario: any; dia: string | number | Date; 
+}) => {
+    const fechaA = new Date(a.dia);
+    const fechaB = new Date(b.dia);
+
+    // Ordenar por fecha
+    if (fechaA < fechaB) {
+      return -1;
+    }
+    if (fechaA > fechaB) {
+      return 1;
+    }
+
+    // Si las fechas son iguales, ordenar por horario
+    const horaA = a.horario;
+    const horaB = b.horario;
+    if (horaA < horaB) {
+      return -1;
+    }
+    if (horaA > horaB) {
+      return 1;
+    }
+
+    return 0; // Si las fechas y los horarios son iguales
+  });
+}
+
+/* UTILIZANDO FILTRO POR FECHA Y HORA
+sortFiltroActualesByFecha() {
+  this.filtroActuales.sort((a: { dia: string | number | Date; }, b: { dia: string | number | Date; }) => {
+    const fechaA = new Date(a.dia);
+    const fechaB = new Date(b.dia);
+    return fechaA.getTime() - fechaB.getTime();
+  });
+}
+*/
 
 
 }

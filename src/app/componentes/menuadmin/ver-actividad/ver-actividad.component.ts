@@ -42,7 +42,7 @@ export class VerActividadComponent implements OnInit {
     this.buscarPorAct = this.actividades.filter(filtrarAct => filtrarAct.nombre == this.actividadSeleccionada);
     this.filtroActuales = this.buscarPorAct;
     this.filtroActuales = this.buscarPorAct.filter((filtrardia: { dia: string; }) => filtrardia.dia >= formatDate(Date.now(), 'yyyy-MM-dd', 'es'));
-    
+    this.sortDiasActualesByFechaYHorario();
   }
 
   eliminar(id?: number){
@@ -60,6 +60,37 @@ export class VerActividadComponent implements OnInit {
   pageChangeEvent(event: number){
     this.p = event;
     this.filtroActuales;
+}
+
+sortDiasActualesByFechaYHorario() {
+  this.filtroActuales.sort((a: {
+    horario: any; dia: string | number | Date; 
+}, b: {
+    horario: any; dia: string | number | Date; 
+}) => {
+    const fechaA = new Date(a.dia);
+    const fechaB = new Date(b.dia);
+
+    // Ordenar por fecha
+    if (fechaA < fechaB) {
+      return -1;
+    }
+    if (fechaA > fechaB) {
+      return 1;
+    }
+
+    // Si las fechas son iguales, ordenar por horario
+    const horaA = a.horario;
+    const horaB = b.horario;
+    if (horaA < horaB) {
+      return -1;
+    }
+    if (horaA > horaB) {
+      return 1;
+    }
+
+    return 0; // Si las fechas y los horarios son iguales
+  });
 }
 
 }

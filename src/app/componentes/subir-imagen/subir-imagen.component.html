@@ -1,0 +1,17 @@
+<form (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="imagen" #imagenInputFile
+        (change)="onFileChange($event)" accept="image/png, image/jpeg, image/gif">
+        <label class="custom-file-label" for="imagen">Elige una imagen</label>
+    </div>
+    <div class="form-group d-flex justify-content-between">
+        <button type="submit" class="btn btn-outline-success">SUBIR</button>
+    </div>
+</form>
+
+<div *ngFor="let imagenes of listaImagen">
+    <h1>{{imagenes.nombre}}</h1>
+    <img src="{{imagenes.imagenUrl}}" style="height: 100px; width: 100px;">
+    <button class="btn btn-danger" (click)="borrar(imagenes.id!)">Eliminar</button>
+   
+</div>

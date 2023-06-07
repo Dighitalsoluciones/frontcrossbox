@@ -35,6 +35,7 @@ import { EditVerActividadComponent } from './componentes/menuadmin/ver-actividad
 import { AdmReservasComponent } from './componentes/menuadmin/adm-reservas/adm-reservas.component';
 import { DetailAdmReservasComponent } from './componentes/menuadmin/adm-reservas/detail-adm-reservas.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SubirImagenComponent } from './componentes/subir-imagen/subir-imagen.component';
 registerLocaleData(localeEs, 'es');
 
 
@@ -68,6 +69,7 @@ registerLocaleData(localeEs, 'es');
     EditVerActividadComponent,
     AdmReservasComponent,
     DetailAdmReservasComponent,
+    SubirImagenComponent,
   
   
   ],

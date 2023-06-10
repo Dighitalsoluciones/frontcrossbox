@@ -16,10 +16,11 @@ export class NuevoUsuario {
     clasesTomadas!: number;
     clasesRestantes!: number;
     authorities!: string[];
+    idImagenCloudinary: string;
 
     constructor(nombre: string, apellido: string, dni: string, direccion: string, localidad: string, telefono: string,
         fotoPerfil: string, nombreUsuario: string, email: string, password: string, suscripcionActual: number,
-        fechaActualSus: string, clasesTomadas: number, clasesRestantes: number){
+        fechaActualSus: string, clasesTomadas: number, clasesRestantes: number, idImagenCloudinary: string){
             
             this.nombre = nombre;
             this.apellido = apellido;
@@ -36,5 +37,6 @@ export class NuevoUsuario {
             this.fechaActualSus = fechaActualSus;
             this.clasesTomadas = clasesTomadas;
             this.clasesRestantes = clasesRestantes;
+            this.idImagenCloudinary = idImagenCloudinary;
         }
 }

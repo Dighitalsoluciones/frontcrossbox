@@ -27,6 +27,7 @@ suscripcionActual: number = 0;
 fechaActualSus: string = '';
 clasesTomadas: number = 0;
 clasesRestantes: number = 0;
+idImagenCloudinary: string = "";
 
 selectedFile: File = null!;
 
@@ -38,7 +39,7 @@ selectedFile: File = null!;
   onCreate(): void{
     const nuevousuario = new NuevoUsuario(this.nombre, this.apellido, this.dni, this.direccion, this.localidad, this.telefono,
       this.fotoPerfil, this.nombreUsuario, this.email, this.password, this.suscripcionActual,
-      this.fechaActualSus, this.clasesTomadas, this.clasesRestantes);
+      this.fechaActualSus, this.clasesTomadas, this.clasesRestantes, this.idImagenCloudinary);
     this.auth.nuevo(nuevousuario).subscribe(
       data=>{alert("✅ Usuario creado correctamente");
       this.router.navigate(['']);

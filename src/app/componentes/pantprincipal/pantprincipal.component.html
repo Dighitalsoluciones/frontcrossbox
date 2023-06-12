@@ -4,7 +4,7 @@
         <button style="margin-top: 10px;" type="button" class="btn btn-success my-2 my-sm-0" (click)="login()" *ngIf="!isLogged">LOGIN</button>
         <button type="button" class="btn btn-info my-2 my-sm-0" routerLink="/perfil" *ngIf="isLogged">IR A MI PERFIL</button>
         <button type="button" class="btn btn-danger my-2 my-sm-0" (click)="onLogout()" *ngIf="isLogged" style="margin-left: 20px;">LOGOUT</button>
-        <button style="margin-top: 10px;" type="button" class="btn btn-success my-2 my-sm-0" routerLink="/probar" >PROBAR</button>
+      <!-- <button style="margin-top: 10px;" type="button" class="btn btn-success my-2 my-sm-0" routerLink="/probar" >PROBAR</button> ERA LA DEMO PARA SUBIR A CLOUDINARY-->
     
     </div>
     <div style="margin-top: 10px;" class="d-flex flex-row justify-content-center align-items-center"><button style="margin-top: 10px;" type="button" class="btn btn-success my-2 my-sm-0" routerLink="/admin" *ngIf="IsAdmin()">MENU ADMIN</button></div>

@@ -7,12 +7,12 @@ import { AuthService } from 'src/app/service/auth.service';
 const USERNAME_KEY = 'AuthUsername';
 
 @Component({
-  selector: 'app-editarperfil',
-  templateUrl: './editarperfil.component.html',
-  styleUrls: ['./editarperfil.component.css']
+  selector: 'app-editarimagen',
+  templateUrl: './editarimagen.component.html',
+  styleUrls: ['./editarimagen.component.css']
 })
-export class EditarperfilComponent implements OnInit {
-  
+export class EditarimagenComponent implements OnInit {
+
   usuario: NuevoUsuario = null!;
   usuarioLogeado: any;
   perfil: any;
@@ -22,11 +22,8 @@ export class EditarperfilComponent implements OnInit {
   files: any = []
   selectedFile: File = null!;
   url: SafeUrl = "";
-  
 
   constructor(private auth: AuthService, private router: Router, private sanitizer: DomSanitizer) { }
-
-  
 
   ngOnInit(): void {
     const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
@@ -39,7 +36,6 @@ export class EditarperfilComponent implements OnInit {
         this.router.navigate(['perfil']);
       }
     )
-   
   }
 
   obtenerUsuarioLogeado(){
@@ -56,8 +52,8 @@ export class EditarperfilComponent implements OnInit {
 
   onUpdate(): void{
     const id = Number(this.usuario.id);
-    this.auth.update(id, this.usuario).subscribe(
-      data => {alert("✅ Perfil actualizado");
+    this.auth.updateimg(id, this.usuario).subscribe(
+      data => {alert("✅ Imagen actualizada");
         this.router.navigate(['perfil']);
       }, err =>{
         alert("⛔ Error al modificar el articulo ⛔");

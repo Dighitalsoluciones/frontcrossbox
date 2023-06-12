@@ -47,8 +47,8 @@ export class AuthService {
     return this.httpClient.put<any>(this.authURL + `updatepass/${id}`, nuevoUsuario);
   }
 
-  public foto(id: number, nuevoUsuario: NuevoUsuario): Observable<any>{
-    return this.httpClient.put<any>(this.authURL + `update/${id}`, nuevoUsuario);
+  public updateimg(id: number, nuevoUsuario: NuevoUsuario): Observable<any>{
+    return this.httpClient.put<any>(this.authURL + `updateimg/${id}`, nuevoUsuario);
   }
 
   public delete(id: number): Observable<any>{

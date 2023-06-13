@@ -1,4 +1,4 @@
-<div class="container fondoEdit">
+<div class="container fondoEdit" *ngIf="isAdmin()">
     <div class="row justify-content-between align-items-center" id="textosColor">
         <div>
             <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
@@ -34,3 +34,7 @@
         </div>
     </div>
 </div>
+<div *ngIf="!isAdmin()">
+    <h1> No puedes acceder a este menu</h1>
+    <button routerLink="/">Volver</button>
+  </div>

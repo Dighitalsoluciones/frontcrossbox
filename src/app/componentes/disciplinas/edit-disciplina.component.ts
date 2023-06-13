@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Disciplinas } from 'src/app/model/disciplinas';
+import { AuthService } from 'src/app/service/auth.service';
 import { DisciplinasService } from 'src/app/service/disciplinas.service';
+
+const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Component({
   selector: 'app-edit-disciplina',
@@ -16,7 +19,11 @@ selectedFile: File = null!;
 imagen: string = '';
 url: SafeUrl = "";
 
-  constructor(private disciplinasServ: DisciplinasService, private activatedRoute: ActivatedRoute, private route: Router, private sanitizer: DomSanitizer) { }
+rol: any;
+usuarioLog: any;
+usuarioLogeado: any;
+
+  constructor(private disciplinasServ: DisciplinasService, private activatedRoute: ActivatedRoute, private route: Router, private sanitizer: DomSanitizer, private authServ: AuthService) { }
 
   ngOnInit(): void {
     this.traerDisciplinas();
@@ -29,11 +36,26 @@ url: SafeUrl = "";
           this.route.navigate(['admin']);
         }
       )
+      const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
+    this.rol = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
+    this.traerUsuario(this.usuarioLogeado);  
   }
 
   traerDisciplinas(){
     this.disciplinasServ.lista().subscribe(data => {this.disciplinas});
   }
+
+  traerUsuario(nombreUsuario: string): void{
+    this.authServ.detailName(nombreUsuario).subscribe(data => {this.usuarioLog = data})
+    
+  }
+
+  isAdmin() {
+    if(this.rol.includes("ROLE_ADMIN"))
+      return true;
+    else
+      return false;
+    }
 
 
    //captura el valor del input y muestra la vista previa de la imagen subida

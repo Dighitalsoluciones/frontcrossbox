@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 
+const AUTHORITIES_KEY = 'AuthAuthorities';
+
 @Component({
   selector: 'app-carga-suscripcion',
   templateUrl: './carga-suscripcion.component.html',
@@ -12,6 +14,9 @@ import { AuthService } from 'src/app/service/auth.service';
 export class CargaSuscripcionComponent implements OnInit {
 
   usuario: NuevoUsuario = null!;
+  rol: any;
+  usuarioLog: any;
+  usuarioLogeado: any;
 
   constructor(private authServ: AuthService, private activatedRouter: ActivatedRoute, private router: Router) { }
 
@@ -25,7 +30,22 @@ export class CargaSuscripcionComponent implements OnInit {
         this.router.navigate(['']);
       }
     )
+    const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
+    this.rol = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
+    this.traerUsuario(this.usuarioLogeado);  
   }
+
+  traerUsuario(nombreUsuario: string): void{
+    this.authServ.detailName(nombreUsuario).subscribe(data => {this.usuarioLog = data})
+    
+  }
+
+  isAdmin() {
+    if(this.rol.includes("ROLE_ADMIN"))
+      return true;
+    else
+      return false;
+    }
 
   onUpdate(): void{
     const id = this.activatedRouter.snapshot.params['id'];

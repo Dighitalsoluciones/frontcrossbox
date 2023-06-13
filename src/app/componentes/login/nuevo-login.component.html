@@ -1,4 +1,4 @@
-<div class="container fondoEdit">
+<div class="container fondoEdit" *ngIf="!isLogged">
     <div class="row" id="textosColor">
         <div>
             <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
@@ -59,3 +59,7 @@
         </div>
     </div>
 </div>
+<div *ngIf="isLogged">
+    <h1> Debes realizar un Logout para crear un usuario nuevo</h1>
+    <button routerLink="/">Volver</button>
+  </div>

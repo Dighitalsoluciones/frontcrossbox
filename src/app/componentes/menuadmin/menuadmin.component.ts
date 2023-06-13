@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
+
+const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({providedIn: 'root'})
 export class CanActivateViaAuthGuard implements CanActivate {
+
   constructor(private tokenService: TokenService, private router: Router) { }
 
   canActivate() {
@@ -31,11 +34,29 @@ export class MenuadminComponent implements OnInit {
   disciplinas = false;
   crearTurnos = false;
   reservas = false;
+  usuarioLogeado: any;
+  rol: any;
+  usuario: any;
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+    const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
+    this.rol = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
+    this.traerUsuario(this.usuarioLogeado);  
   }
+
+  traerUsuario(nombreUsuario: string): void{
+    this.auth.detailName(nombreUsuario).subscribe(data => {this.usuario = data})
+    
+  }
+
+  isAdmin() {
+    if(this.rol.includes("ROLE_ADMIN"))
+      return true;
+    else
+      return false;
+    }
    
   mostrarUsuariosRegistrados(){
     this.usuariosRegistrados = true;

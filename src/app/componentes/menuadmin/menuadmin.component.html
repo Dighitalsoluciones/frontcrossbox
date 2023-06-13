@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="isAdmin()">
   <div class="row">
     <h2>Dashboard del Administrador</h2>
     <hr />
@@ -123,4 +123,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="!isAdmin()">
+  <h1> No puedes acceder a este menu</h1>
+  <button routerLink="/">Volver</button>
 </div>

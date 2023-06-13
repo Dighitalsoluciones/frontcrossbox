@@ -4,6 +4,8 @@ import { Turno } from 'src/app/model/turno';
 import { AuthService } from 'src/app/service/auth.service';
 import { TurnoService } from 'src/app/service/turno.service';
 
+const AUTHORITIES_KEY = 'AuthAuthorities';
+
 @Component({
   selector: 'app-detail-adm-reservas',
   templateUrl: './detail-adm-reservas.component.html',
@@ -16,14 +18,33 @@ export class DetailAdmReservasComponent implements OnInit {
   botonConf: boolean = false;
   noMostrarBtnBorrar: boolean = true;
 
+  rol: any;
+  usuarioLog: any;
+  usuarioLogeado: any;
+
   constructor(private reservaServ: TurnoService, private activatedRoute: ActivatedRoute, private authServ: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
     this.reservaServ.detail(id).subscribe(data => {this.detalleReserva = data});
-
     setTimeout(() => {this.loading = true}, 1200);
+    
+    const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
+    this.rol = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
+    this.traerUsuario(this.usuarioLogeado);  
   }
+
+  traerUsuario(nombreUsuario: string): void{
+    this.authServ.detailName(nombreUsuario).subscribe(data => {this.usuarioLog = data})
+    
+  }
+
+  isAdmin() {
+    if(this.rol.includes("ROLE_ADMIN"))
+      return true;
+    else
+      return false;
+    }
 
 
   eliminar(id?: number){

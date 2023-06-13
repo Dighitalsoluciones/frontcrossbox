@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { Usuarios } from 'src/app/model/usuarios';
 import { AuthService } from 'src/app/service/auth.service';
+import { TokenService } from 'src/app/service/token.service';
 
 
 @Component({
@@ -30,10 +31,16 @@ clasesRestantes: number = 0;
 idImagenCloudinary: string = "";
 
 selectedFile: File = null!;
+isLogged = false;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    if(this.tokenService.getToken()){
+      this.isLogged= true;
+    }else{
+      this.isLogged = false;
+    }
   }
 
   onCreate(): void{

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Disciplinas } from 'src/app/model/disciplinas';
+import { AuthService } from 'src/app/service/auth.service';
 import { DisciplinasService } from 'src/app/service/disciplinas.service';
+
+const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Component({
   selector: 'app-new-disciplina',
@@ -18,13 +21,32 @@ export class NewDisciplinaComponent implements OnInit {
   loading = false;
   selectedFile: File = null!;
 
-  constructor(private disciplinasServ: DisciplinasService, private router: Router) { }
+  rol: any;
+  usuarioLog: any;
+  usuarioLogeado: any;
+
+  constructor(private disciplinasServ: DisciplinasService, private router: Router, private authServ: AuthService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.loading = true;
     }, 1200);
+    const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
+    this.rol = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
+    this.traerUsuario(this.usuarioLogeado);  
   }
+
+  traerUsuario(nombreUsuario: string): void{
+    this.authServ.detailName(nombreUsuario).subscribe(data => {this.usuarioLog = data})
+    
+  }
+
+  isAdmin() {
+    if(this.rol.includes("ROLE_ADMIN"))
+      return true;
+    else
+      return false;
+    }
 
   onCreate(): void{
     const nuevaDisciplina = new Disciplinas(this.nombre, this.descripcion, this.imagen, this.profesor);

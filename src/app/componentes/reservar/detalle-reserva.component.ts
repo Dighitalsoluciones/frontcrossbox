@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { TurnoService } from 'src/app/service/turno.service';
 
 const USERNAME_KEY = 'AuthUsername';
+const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Component({
   selector: 'app-detalle-reserva',
@@ -18,6 +19,9 @@ export class DetalleReservaComponent implements OnInit {
   actividades : Actividades = null!;
   usuarioLogeado: any;
   perfil: any;
+
+  rol: any;
+  usuarioLog: any;
 
   constructor(private actiServ: ActividadesService, private activatedRouter: ActivatedRoute, private router: Router, private turnoServ: TurnoService,
    private auth: AuthService) { }
@@ -35,6 +39,10 @@ export class DetalleReservaComponent implements OnInit {
     const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
     this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
     this.traerUsuario(this.usuarioLogeado);
+    
+    const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
+    this.rol = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
+    this.traerUsuario(this.usuarioLogeado);  
     
     
   }
@@ -60,6 +68,13 @@ export class DetalleReservaComponent implements OnInit {
     this.auth.detailName(nombreUsuario).subscribe(data => {this.perfil = data})
       
     }
+
+    isAdmin() {
+      if(this.rol.includes("ROLE_ADMIN"))
+        return true;
+      else
+        return false;
+      }
 
 
   crearReserva(): void{

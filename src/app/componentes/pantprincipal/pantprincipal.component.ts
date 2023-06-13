@@ -15,7 +15,6 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 export class PantprincipalComponent implements OnInit {
   isLogged = false;
   usuario: any;
-  userId: any;
   id1: any;
   usuarioLogeado: any;
   roles: any;
@@ -28,8 +27,6 @@ export class PantprincipalComponent implements OnInit {
     const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
     this.roles = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
     this.traerUsuario(this.usuarioLogeado);  
-    console.log(this.roles);
-    console.log(this.roles.includes("ROLE_USER"))
       
     if(this.tokenService.getToken()){
       this.isLogged= true;
@@ -53,15 +50,6 @@ export class PantprincipalComponent implements OnInit {
     
   }
 
-
-  traerId(){
-    this.route.paramMap.subscribe(paramMap => {
-      this.userId = paramMap.get('id');
-      console.log(this.userId)
-      return this.userId ;
-  });
-  
-  }
 
   //con esta funcion determino si el usuario logeado es administrador
   IsAdmin() {

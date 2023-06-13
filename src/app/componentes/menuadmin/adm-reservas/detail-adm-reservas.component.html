@@ -1,6 +1,6 @@
 <div *ngIf="loading" id="principal">
 
-    <div class="container">
+    <div class="container"  *ngIf="isAdmin()">
         <div class="mt-5">
               <div class="d-style btn btn-brc-tp border-2 bgc-white btn-outline-blue btn-h-outline-blue btn-a-outline-blue w-100 my-2 py-3 shadow-sm">
                 <!-- Basic Plan -->
@@ -46,4 +46,8 @@
             </div>
         </div>
 
+</div>
+<div *ngIf="!isAdmin()">
+  <h1> No puedes acceder a este menu</h1>
+  <button routerLink="/">Volver</button>
 </div>

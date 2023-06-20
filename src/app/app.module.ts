@@ -37,6 +37,7 @@ import { DetailAdmReservasComponent } from './componentes/menuadmin/adm-reservas
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SubirImagenComponent } from './componentes/subir-imagen/subir-imagen.component';
 import { EditarimagenComponent } from './componentes/perfil/editarimagen.component';
+import { RecoveryComponent } from './componentes/login/recovery.component';
 registerLocaleData(localeEs, 'es');
 
 
@@ -72,6 +73,7 @@ registerLocaleData(localeEs, 'es');
     DetailAdmReservasComponent,
     SubirImagenComponent,
     EditarimagenComponent,
+    RecoveryComponent,
   
   
   ],

@@ -18,6 +18,7 @@ import { EditDisciplinaComponent } from './componentes/disciplinas/edit-discipli
 import { DetailAdmReservasComponent } from './componentes/menuadmin/adm-reservas/detail-adm-reservas.component';
 import { SubirImagenComponent } from './componentes/subir-imagen/subir-imagen.component';
 import { EditarimagenComponent } from './componentes/perfil/editarimagen.component';
+import { RecoveryComponent } from './componentes/login/recovery.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path:'detailreserva/:id', component: DetailAdmReservasComponent, canActivate: [CanActivateViaAuthGuard]},
  // {path:'probar', component: SubirImagenComponent},
   {path:'editperfil/img', component: EditarimagenComponent, canActivate: [CanActivateViaAuthGuard]},
+  {path:'recovery', component: RecoveryComponent},
 ];
 
 @NgModule({

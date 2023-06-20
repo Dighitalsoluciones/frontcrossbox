@@ -1,0 +1,13 @@
+<div class="card text-center">
+    <div class="card-header">
+      Recuperación de contraseña:
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Escribe tu correo registrado</h5>
+      <input class="col-md-4" type="email" [(ngModel)]="email">
+      <button class="btn btn-primary" (click)="recovery(email)" Style="margin-left: 10px;">ENVIAR</button>
+    </div>
+    <div class="card-footer text-muted">
+      Te enviaremos un email con una contraseña provisoria...
+    </div>
+  </div>

@@ -33,6 +33,10 @@ export class AuthService {
     return this.httpClient.get<NuevoUsuario>(this.authURL + `detailname/${nombreUsuario}`);
   }
 
+  public recovery(email: string): Observable<NuevoUsuario> {
+    return this.httpClient.get<NuevoUsuario>(this.authURL + `recovery/${email}`);
+  }
+
   //agregado para poder completar el CRUD
   public details(id: number): Observable<NuevoUsuario>{
     return this.httpClient.get<NuevoUsuario>(this.authURL + `detail/${id}`);

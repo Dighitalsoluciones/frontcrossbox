@@ -28,7 +28,7 @@
                 </form>
 
                 <div class="filter-result">
-                    <p class="mb-30 ff-montserrat">Proximas Reservas : {{reservasDeHoy.length}}</p>
+                    <p class="mb-30 ff-montserrat">Proximas Reservas : {{reservasDeHoy?.length}}</p>
 
                     <div class="job-box d-md-flex align-items-center justify-content-between mb-30" *ngFor="let reserva of reservasDeHoy | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'actividad'| ordenarporHs:'asc':'dia' "> 
                         <div class="job-left my-4 d-md-flex align-items-center flex-wrap">

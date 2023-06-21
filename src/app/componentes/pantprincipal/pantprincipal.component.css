@@ -1,7 +1,7 @@
 .alineado {
-  display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .divPrincipal {
@@ -11,9 +11,15 @@
   background-color: #6699;
   background-position: center center;
   background-repeat: repeat-y;
-  
-
 }
+
+ #logoPrincipal{
+  object-fit: cover;
+  width:100%;
+  height:100%;
+  }
+
+
 
 #cuadradoUno {
   position: static;

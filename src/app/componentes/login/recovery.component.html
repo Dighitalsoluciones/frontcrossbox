@@ -5,7 +5,10 @@
     <div class="card-body">
       <h5 class="card-title">Escribe tu correo registrado</h5>
       <input class="col-md-4" type="email" [(ngModel)]="email">
+      <div class="align-content-center" style="margin-top: 10px;">
       <button class="btn btn-primary" (click)="recovery(email)" Style="margin-left: 10px;">ENVIAR</button>
+      <button class="btn btn-danger" (click)="back()" Style="margin-left: 10px;">VOLVER</button>
+      </div>
     </div>
     <div class="card-footer text-muted">
       Te enviaremos un email con una contraseña provisoria...

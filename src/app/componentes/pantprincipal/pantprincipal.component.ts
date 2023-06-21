@@ -46,8 +46,9 @@ export class PantprincipalComponent implements OnInit {
 
  
   traerUsuario(nombreUsuario: string): void{
+    if(nombreUsuario != null){
     this.auth.detailName(nombreUsuario).subscribe(data => {this.usuario = data})
-    
+    }
   }
 
 

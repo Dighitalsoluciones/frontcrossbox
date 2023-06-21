@@ -22,4 +22,8 @@ export class RecoveryComponent implements OnInit {
     this.router.navigate(["/"]);
   }
 
+  back(){
+    window.history.back();
+  }
+
 }

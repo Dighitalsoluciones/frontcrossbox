@@ -7,15 +7,15 @@
   
   <div class="card mb-3" id="cel2">
     <div class="card-body">
-      <div class="d-flex flex-column flex-lg-row">
+      <div class="d-flex flex-column flex-lg-row" *ngIf="actividades && actividades.nombre">
         <span class="avatar avatar-text rounded-3 me-4 mb-2">{{actividades.nombre.slice(0,3)}}</span>
         <div class="row flex-fill">
           <div class="col-sm-5">
-            <h4 class="h5" [(ngModel)]="actividades.nombre">{{actividades.nombre}}</h4>
-            <p class="badge bg-success" style="font-size: large;" [(ngModel)]="actividades.dia">{{actividades.dia | date: 'dd/MM/yyyy'}}</p>
+            <h4 class="h5">{{actividades.nombre}}</h4>
+            <p class="badge bg-success" style="font-size: large;">{{actividades.dia | date: 'dd/MM/yyyy'}}</p>
           </div>
           <div class="col-sm-4 py-2">
-            <span style="font-size: large;">HORARIO:  </span> <span class="badge bg-primary" style="font-size: large;" [(ngModel)]="actividades.horario">{{actividades.horario}}</span>
+            <span style="font-size: large;">HORARIO:  </span> <span class="badge bg-primary" style="font-size: large;">{{actividades.horario}}</span>
           </div>
           <div class="col-sm-3 text-lg-end">
             <button class="btn btn-success" (click)="crearReserva()">Confirmar</button>

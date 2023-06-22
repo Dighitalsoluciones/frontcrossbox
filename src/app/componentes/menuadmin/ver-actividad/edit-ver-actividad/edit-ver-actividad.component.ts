@@ -47,8 +47,9 @@ usuarioLogeado: any;
   }
 
   traerUsuario(nombreUsuario: string): void{
+    if(nombreUsuario != null){
     this.authServ.detailName(nombreUsuario).subscribe(data => {this.usuarioLog = data})
-    
+    }
   }
 
   isAdmin() {

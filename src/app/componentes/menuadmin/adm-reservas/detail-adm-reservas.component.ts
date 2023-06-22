@@ -35,8 +35,9 @@ export class DetailAdmReservasComponent implements OnInit {
   }
 
   traerUsuario(nombreUsuario: string): void{
+    if(nombreUsuario != null){
     this.authServ.detailName(nombreUsuario).subscribe(data => {this.usuarioLog = data})
-    
+    }
   }
 
   isAdmin() {
@@ -60,12 +61,13 @@ export class DetailAdmReservasComponent implements OnInit {
   }
 
   traerDatosUsuario(){
+    if(this.detalleReserva.nombreUsuario != null){
     this.authServ.detailName(this.detalleReserva.nombreUsuario).subscribe(data => {this.usuario = data});
     this.usuario.clasesTomadas --;
     this.usuario.suscripcionActual ++;
     this.guardar();
     console.log(this.usuario.suscripcionActual);
-  
+    }
   }
 
   guardar(): void{

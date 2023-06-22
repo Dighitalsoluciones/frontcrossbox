@@ -65,8 +65,9 @@ export class DetalleReservaComponent implements OnInit {
   }
 
   traerUsuario(nombreUsuario: string): void{
+    if(nombreUsuario != null){
     this.auth.detailName(nombreUsuario).subscribe(data => {this.perfil = data})
-      
+    }
     }
 
     isAdmin() {

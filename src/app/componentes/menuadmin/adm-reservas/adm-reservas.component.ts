@@ -38,7 +38,9 @@ export class AdmReservasComponent implements OnInit {
     }, 1200);
 
     const id = this.activatedRoute.snapshot.params['nombreUsuario'];
+    if(id != null){
     this.reservaServ.detail(id).subscribe(data => {this.reservados = data});
+    }
   }
 
   traerReservas(){

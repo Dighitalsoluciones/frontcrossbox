@@ -5,7 +5,7 @@
                 <div class="form-group" id="espacial">
                     <label for="nombre">Nombre de la Actividad</label>
                     <br>
-                    <select [(ngModel)]="actividad.nombre" required name="nombre">
+                    <select [(ngModel)]="actividad.nombre" required>
                         <option  *ngFor="let item of disciplinas" [ngValue]="item.nombre">{{item.nombre}}</option>
                     </select>
                 </div>

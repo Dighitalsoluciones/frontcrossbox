@@ -2,24 +2,24 @@
     <div class="row justify-content-between align-items-center" id="textosColor">
         <div>
             <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
-                <div class="form-group" id="espacial">
-                    <label for="logo">Nombre de la Disciplina</label>
+                <div class="form-group form-outline" id="espacial" *ngIf="disciplinas && disciplinas.nombre">
+                    <label for="nombre">Nombre de la Disciplina</label>
                     <input type="text" class="form-control" id="logo" name="logo" [(ngModel)]="disciplinas.nombre" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-outline" *ngIf="disciplinas && disciplinas.descripcion">
                     <label for="titulo">Descripción</label>
                     <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="disciplinas.descripcion">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group form-outline" *ngIf="disciplinas && disciplinas.profesor">
                     <label for="profe">Profesor/es</label>
                     <input type="text" class="form-control" id="titulo" name="profe" [(ngModel)]="disciplinas.profesor">
                 </div>
                 
-                <div class="form-group" style="margin-top: 10px;">
+                <div class="form-group form-outline" style="margin-top: 10px;" *ngIf="disciplinas && disciplinas.imagen">
                     <label for="imagen"> Imagen de la Disciplina</label>
                     <br>
-                    <input type="file" (change)="capturarImagen($event)" [(ngModel)]="disciplinas.imagen" requerid>
+                    <input type="file" (change)="capturarImagen($event)" name="imagen" [(ngModel)]="disciplinas.imagen" required>
                 </div>
                 <br>
                 

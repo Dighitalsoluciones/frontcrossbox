@@ -1,4 +1,4 @@
-<div class="container" style="background-color: cadetblue;" id="cel" *ngIf="isAdmin()">
+<div class="container" style="background-color: cadetblue;" id="cel">
   <div class="text-center mb-5" id="cel1">
     <h3>Confirmación de Reserva</h3>
     <p class="lead" style="color: aliceblue;">Por favor confirma la reserva</p>
@@ -27,8 +27,4 @@
   </div>
   <br>
   <br>
-</div>
-<div *ngIf="!isAdmin()">
-  <h1> No puedes acceder a este menu</h1>
-  <button routerLink="/">Volver</button>
 </div>

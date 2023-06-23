@@ -10,9 +10,10 @@ export class Turno {
     dni: string;
     telefono: string;
     nombreUsuario: string;
+    id_actividad: number;
 
     constructor(actividad: string, dia: string, horario: string, nombre: string, apellido: string, dni: string,
-        telefono: string, nombreUsuario: string){
+        telefono: string, nombreUsuario: string, id_actividad: number){
             this.actividad = actividad;
             this.dia = dia;
             this.horario = horario;
@@ -21,5 +22,6 @@ export class Turno {
             this.dni = dni;
             this.telefono = telefono;
             this.nombreUsuario = nombreUsuario;
+            this.id_actividad = id_actividad;
         }
 }

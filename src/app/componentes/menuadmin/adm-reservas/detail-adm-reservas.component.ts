@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Actividades } from 'src/app/model/actividades';
+import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { Turno } from 'src/app/model/turno';
+import { ActividadesService } from 'src/app/service/actividades.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { TurnoService } from 'src/app/service/turno.service';
 
@@ -14,15 +17,16 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 export class DetailAdmReservasComponent implements OnInit {
   detalleReserva: Turno = null!
   loading: boolean = false;
-  usuario: any;
+  usuario: NuevoUsuario = null!;
   botonConf: boolean = false;
   noMostrarBtnBorrar: boolean = true;
+  actividad: Actividades = null!;
 
   rol: any;
   usuarioLog: any;
   usuarioLogeado: any;
 
-  constructor(private reservaServ: TurnoService, private activatedRoute: ActivatedRoute, private authServ: AuthService, private router: Router) { }
+  constructor(private reservaServ: TurnoService, private activatedRoute: ActivatedRoute, private authServ: AuthService, private router: Router, private actividadServ: ActividadesService) { }
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
@@ -66,12 +70,12 @@ export class DetailAdmReservasComponent implements OnInit {
     this.usuario.clasesTomadas --;
     this.usuario.suscripcionActual ++;
     this.guardar();
-    console.log(this.usuario.suscripcionActual);
+    
     }
   }
 
   guardar(): void{
-    this.authServ.update(this.usuario.id, this.usuario).subscribe(
+    this.authServ.update(Number(this.usuario.id), this.usuario).subscribe(
      data => {}, err =>{
        alert("⛔ No se pudo realizar la acción ⛔");
        this.router.navigate(['admin']);
@@ -84,5 +88,26 @@ mostrarBotonConf(){
   this.noMostrarBtnBorrar = false;
 }
 
+guardarAct(){
+  if(this.detalleReserva.id_actividad != null){
+  this.actividadServ.update(this.detalleReserva.id_actividad, this.actividad).subscribe(data => {}, err =>{alert("⛔ No se pudo realizar la acción ⛔");
+  this.router.navigate(['admin']);
+   }
+  )
+ }
+}
+
+devolverCupo(){
+  if(this.detalleReserva.id_actividad != null){
+  this.actividadServ.details(this.detalleReserva.id_actividad).subscribe(data => {this.actividad = data});
+  this.actividad.cupo ++;
+  this.guardarAct();
+  }
+}
+
+unificarFunciones(){
+  this.devolverCupo();
+  this.eliminar(this.detalleReserva.id);
+}
 
 }

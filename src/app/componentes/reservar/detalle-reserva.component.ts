@@ -79,7 +79,7 @@ export class DetalleReservaComponent implements OnInit {
 
 
   crearReserva(): void{
-    const nuevaReserva = new Turno(this.actividades.nombre, this.actividades.dia, this.actividades.horario, this.perfil.nombre, this.perfil.apellido, this.perfil.dni, this.perfil.telefono, this.perfil.nombreUsuario);
+    const nuevaReserva = new Turno(this.actividades.nombre, this.actividades.dia, this.actividades.horario, this.perfil.nombre, this.perfil.apellido, this.perfil.dni, this.perfil.telefono, this.perfil.nombreUsuario, Number(this.actividades.id));
     this.turnoServ.save(nuevaReserva).subscribe(
       data=>{alert("✅ Reserva de la actividad creado correctamente");
       this.modificacionesUsuario();

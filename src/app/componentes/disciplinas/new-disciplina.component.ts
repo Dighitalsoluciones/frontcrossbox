@@ -18,6 +18,7 @@ export class NewDisciplinaComponent implements OnInit {
   descripcion: string = '';
   imagen: string = '';
   profesor: string = '';
+  idImagenCloudinary: string = '';
   loading = false;
   selectedFile: File = null!;
 
@@ -50,7 +51,7 @@ export class NewDisciplinaComponent implements OnInit {
     }
 
   onCreate(): void{
-    const nuevaDisciplina = new Disciplinas(this.nombre, this.descripcion, this.imagen, this.profesor);
+    const nuevaDisciplina = new Disciplinas(this.nombre, this.descripcion, this.imagen, this.profesor, this.idImagenCloudinary);
     this.disciplinasServ.save(nuevaDisciplina).subscribe(
       data=>{alert("✅ Disciplina creada correctamente");
       this.router.navigate(['admin']);
@@ -81,7 +82,7 @@ export class NewDisciplinaComponent implements OnInit {
       // Aquí puedes enviar la imagen en formato base64 a la base de datos o hacer cualquier otra cosa con ella
       
       this.imagen = base64.toString();
-      console.log(base64);
+      
       
     };
   }

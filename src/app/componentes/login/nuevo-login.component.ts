@@ -77,7 +77,7 @@ isLogged = false;
       // Aquí puedes enviar la imagen en formato base64 a la base de datos o hacer cualquier otra cosa con ella
       
       this.fotoPerfil = base64.toString();
-      console.log(base64);
+      
       
     };
   }

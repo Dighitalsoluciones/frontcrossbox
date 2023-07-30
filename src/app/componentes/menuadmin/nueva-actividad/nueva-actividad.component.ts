@@ -35,7 +35,7 @@ export class NuevaActividadComponent implements OnInit {
     const nuevaActividad = new Actividades(this.nombre, this.descripcion, this.dia, this.horario, this.cupos);
     this.actividadesServ.save(nuevaActividad).subscribe(
       data=>{alert("✅ Turno de la actividad creado correctamente");
-      this.router.navigate(['admin']);
+      //this.router.navigate(['admin']); comentado para evitar que redireccione a pantalla admin y hacer mas rapida la creacion
     }, err =>{
       alert("⛔Ya existe este Turno o debes completar todos los campos⛔");
       this.router.navigate(['admin']);

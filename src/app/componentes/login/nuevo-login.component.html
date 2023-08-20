@@ -58,6 +58,14 @@
             </form>
         </div>
     </div>
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" 
+  size = "medium" 
+  color = "#fff" 
+  type = "square-jelly-box" 
+  [fullScreen] = "true">
+  <img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1692470033/loading-gif_fskhni.gif">
+  <p class="d-flex justify-content-center text-center mt-4 pt-1" style="color: white" > Cargando... </p>
+  </ngx-spinner>
 </div>
 <div *ngIf="isLogged">
     <h1> Debes realizar un Logout para crear un usuario nuevo</h1>

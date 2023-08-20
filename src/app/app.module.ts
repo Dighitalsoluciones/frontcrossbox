@@ -1,13 +1,12 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { PantprincipalComponent } from './componentes/pantprincipal/pantprincipal.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NuevoLoginComponent } from './componentes/login/nuevo-login.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { EditarperfilComponent } from './componentes/perfil/editarperfil.component';
@@ -38,6 +37,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SubirImagenComponent } from './componentes/subir-imagen/subir-imagen.component';
 import { EditarimagenComponent } from './componentes/perfil/editarimagen.component';
 import { RecoveryComponent } from './componentes/login/recovery.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InterceptorService } from './service/interceptor.service';
 registerLocaleData(localeEs, 'es');
 
 
@@ -83,8 +85,13 @@ registerLocaleData(localeEs, 'es');
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es'}],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es'},
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,7 +12,7 @@ import { Usuarios } from '../model/usuarios';
 export class AuthService {
   
 
-  authURL = 'https://bkcrossbox-665d49fceaed.herokuapp.com/auth/'
+  authURL = 'http://localhost:8080/auth/'
   constructor(private httpClient: HttpClient) { }
 
   public nuevo(nuevoUsuario: NuevoUsuario): Observable<any>{

@@ -7,7 +7,7 @@ import { Actividades } from '../model/actividades';
   providedIn: 'root'
 })
 export class ActividadesService {
-  apiUrl = 'https://bkcrossbox-665d49fceaed.herokuapp.com/actividades/'
+  apiUrl = 'http://localhost:8080/actividades/'
 
   constructor(private http: HttpClient) { }
 

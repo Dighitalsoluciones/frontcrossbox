@@ -7,7 +7,7 @@ import { Disciplinas } from '../model/disciplinas';
   providedIn: 'root'
 })
 export class DisciplinasService {
-  disURL = 'https://bkcrossbox-665d49fceaed.herokuapp.com/disciplinas/'
+  disURL = 'http://localhost:8080/disciplinas/'
 
   constructor(private httpClient: HttpClient) { }
   

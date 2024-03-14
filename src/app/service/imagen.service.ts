@@ -8,7 +8,7 @@ import { Imagen } from '../model/imagen';
 })
 export class ImagenService {
 
-  imagenURL = 'https://bkcrossbox-665d49fceaed.herokuapp.com/cloudinary/'
+  imagenURL = 'http://localhost:8080/cloudinary/'
 
   constructor(private httpClient: HttpClient) { }
 

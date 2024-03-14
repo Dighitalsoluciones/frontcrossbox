@@ -7,7 +7,7 @@ import { Turno } from '../model/turno';
   providedIn: 'root'
 })
 export class TurnoService {
-  turnUrl = 'https://bkcrossbox-665d49fceaed.herokuapp.com/turnos/'
+  turnUrl = 'http://localhost:8080/turnos/'
 
   constructor(private http: HttpClient) { }
 

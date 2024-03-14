@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FechaService {
 
-  fechaURL = 'https://bkcrossbox-665d49fceaed.herokuapp.com/fechas/'
+  fechaURL = 'http://localhost:8080/fechas/'
   constructor(private httpClient: HttpClient) { }
 
   public getFechas(fechaInicio: Date, fechaFin: Date): Observable<any> {

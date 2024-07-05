@@ -74,7 +74,7 @@ export class AuthService {
     return this.httpClient.get<NuevoUsuario[]>(`${this.authURL}lista`, { params });
   }
 
-  public listaFiltro(): Observable<NuevoUsuario[]> {
-    return this.httpClient.get<NuevoUsuario[]>(this.authURL + 'listaFiltro');
-  }
+  public listaFiltro(filtro: string): Observable<NuevoUsuario[]> {
+    return this.httpClient.get<NuevoUsuario[]>(`${this.authURL}listaFiltro?filtro=${filtro}`);
+}
 }

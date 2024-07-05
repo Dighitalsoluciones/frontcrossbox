@@ -10,15 +10,17 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class UsuariosRegistradosComponent implements OnInit {
 
-  usuariosRegistrados: NuevoUsuario[] = [];
-  FiltrarUsuariosReg = [];
+  res: any[] = [];
+  usuariosRegistrados: any;
+  filtrarUsuariosReg = [];
   modalEliminarUsuario= "none";
   fechas: Fecha [] = [];
   fechaInicio: any;
   fechaFin: any;
   loading = false;
   usuario: any;
-  p: number = 1;
+  p: number = 0;
+  backendPage = 0;
 
   constructor(private authService: AuthService) { }
 
@@ -30,8 +32,30 @@ export class UsuariosRegistradosComponent implements OnInit {
    
   }
 
-  listaUsuarios(): void{
-    this.authService.lista().subscribe(data => {this.usuariosRegistrados = data;})
+  listaUsuarios(): void {
+    this.authService.lista(this.p, 12).subscribe(data => {
+      this.usuariosRegistrados = data;
+    });
+  }
+
+  listaUsuariosConFiltro(page: number): void {
+    this.authService.lista(page, 1000).subscribe(data => {
+      // Filtra los usuarios aquí antes de asignarlos a la variable
+      const usuariosFiltrados = this.usuariosRegistrados.content.filter((usuario: { apellido: never[][]; }) => {
+        // Aplica tu lógica de filtrado (por ejemplo, por nombre o algún otro criterio)
+        // Devuelve true si el usuario debe incluirse en la lista filtrada
+        return usuario.apellido.includes(this.filtrarUsuariosReg);
+      });
+  
+      // Asigna los usuarios filtrados a la variable
+      this.usuariosRegistrados = { ...data, content: usuariosFiltrados };
+    });
+  }
+
+  listaUsuariosPaginados(p: number): void {
+    this.authService.lista(p, 15).subscribe(data => {
+      this.usuariosRegistrados = data;
+    });
   }
   
   abrirModalEliminarUsuario(){
@@ -45,7 +69,7 @@ export class UsuariosRegistradosComponent implements OnInit {
     if(id != undefined){
         this.authService.delete(id).subscribe(
         data =>{alert("✅ Usuario borrado correctamente");
-          this.listaUsuarios();
+          this.listaUsuariosPaginados(this.backendPage);
         }, err =>{
           alert("No se pudo borrar el usuario");
         }
@@ -55,9 +79,10 @@ export class UsuariosRegistradosComponent implements OnInit {
     }
   }
 
-  pageChangeEvent(event: number){
+  pageChanged(event: number) {
     this.p = event;
-    this.listaUsuarios();
-}
+    this.backendPage = event - 1;
+    this.listaUsuariosPaginados(this.backendPage);
+  }
 
 }

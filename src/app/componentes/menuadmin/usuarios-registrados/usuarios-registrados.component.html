@@ -39,7 +39,7 @@ role="dialog"
          <form
          class="d-flex d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
          <div class="input-group" style="margin-bottom: 10px;">
-             <input type="text" class="form-control bg-light border-0 small" name="FiltrarUsuariosReg" placeholder="🔎 Apellido (minusculas)" style="margin: 0px 15px 0px 15px;" [(ngModel)]="FiltrarUsuariosReg"
+             <input type="text" class="form-control bg-light border-0 small" name="FiltrarUsuariosReg" placeholder="🔎 Apellido (minusculas)" style="margin: 0px 15px 0px 15px;" [(ngModel)]="filtrarUsuariosReg"
                  aria-label="Search" aria-describedby="basic-addon2">
              <div class="input-group-append">
                  
@@ -47,7 +47,7 @@ role="dialog"
          </div>
      </form>
         <div class="row">
-            <div class="col-lg-4" *ngFor="let usuaReg of usuariosRegistrados | filtrarUsuarios: FiltrarUsuariosReg | paginate: { itemsPerPage: 6, currentPage: p, totalItems: usuariosRegistrados.length}">
+            <div class="col-lg-4" *ngFor="let usuaReg of usuariosRegistrados.content | filtrarUsuarios: filtrarUsuariosReg | paginate: { itemsPerPage: 15, currentPage: p, totalItems: usuariosRegistrados.totalElements }">
                 <div class="card text-center card-box">
                     <div class="member-card pt-2 pb-2">
                         <div class="text-right">
@@ -90,7 +90,7 @@ role="dialog"
             
         </div>
         <div>
-            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </div>
         <!-- paginacion desactivada
         <div class="row">

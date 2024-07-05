@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { NuevoUsuario } from '../model/nuevo-usuario';
 import { LoginUsuario } from '../model/login-usuario';
 import { Observable } from 'rxjs';
@@ -66,7 +66,11 @@ export class AuthService {
     return this.httpClient.post<any>(this.authURL + `update/${id}`, body, options);
   }
 
-  public lista(): Observable<NuevoUsuario[]>{
-    return this.httpClient.get<NuevoUsuario[]>(this.authURL + 'lista');
-  }
+  public lista(page: number, size: number): Observable<NuevoUsuario[]> {
+    const params = new HttpParams()
+        .set('page', page.toString())
+        .set('size', size.toString());
+
+    return this.httpClient.get<NuevoUsuario[]>(`${this.authURL}lista`, { params });
+}
 }

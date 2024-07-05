@@ -49,6 +49,7 @@ export class UsuariosRegistradosComponent implements OnInit {
   filtrarUsuarios() {
     this.mostrarSoloFiltrados = true;
     this.botonBuscar = false;
+    this.p = 0;
     // Valor del input en minúsculas
     this.filtro = this.filtrarUsuariosReg.toLowerCase();
     if (this.filtro.length != 0) {

@@ -52,19 +52,13 @@ export class UsuariosRegistradosComponent implements OnInit {
     this.p = 0;
     // Valor del input en minúsculas
     this.filtro = this.filtrarUsuariosReg.toLowerCase();
-    if (this.filtro.length != 0) {
-      this.authService.listaFiltro().subscribe(data => {
-        const usuariosFiltrados = data.filter(usuario => {
-          const apellidoUsuario = usuario.apellido.toLowerCase();
-          // Búsqueda aproximada
-          return apellidoUsuario.includes(this.filtro);
-        });
-        this.usuariosFiltrados = usuariosFiltrados;
+    if (this.filtro.length !== 0) {
+      this.authService.listaFiltro(this.filtro).subscribe(data => {
+        this.usuariosFiltrados = data;
       });
     } else {
       this.listaUsuarios();
     }
-
   }
 
   listaUsuariosPaginados(p: number): void {

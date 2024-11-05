@@ -1,0 +1,68 @@
+.reservation-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 1rem;
+}
+
+.reservation-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.reservation-title {
+  color: #2d3748;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.logo-img {
+  height: 100px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+.reservation-form {
+  margin-bottom: 2rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.table {
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.table-dark th {
+  background-color: #2d3748;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.alert-info {
+  background-color: #ebf8ff;
+  border-color: #4299e1;
+  color: #2b6cb0;
+}
+
+@media (max-width: 768px) {
+  .reservation-card {
+    padding: 1rem;
+  }
+
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+}

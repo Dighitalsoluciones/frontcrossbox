@@ -1,30 +1,43 @@
-<div class="container" style="background-color: cadetblue;" id="cel">
-  <div class="text-center mb-5" id="cel1">
-    <h3>Confirmación de Reserva</h3>
-    <p class="lead" style="color: aliceblue;">Por favor confirma la reserva</p>
-    <button class="btn btn-primary" style="margin: 5px 5px;" (click)="recargar()">🔄 Actualizar</button>
-  </div>
-  
-  <div class="card mb-3" id="cel2">
+<div class="reservation-container">
+  <div class="reservation-card">
+    <div class="card-header">
+      <h2 class="card-title">Confirmación de Reserva</h2>
+      <p class="card-subtitle">Por favor confirma la reserva</p>
+    </div>
     <div class="card-body">
-      <div class="d-flex flex-column flex-lg-row" *ngIf="actividades && actividades.nombre">
-        <span class="avatar avatar-text rounded-3 me-4 mb-2">{{actividades.nombre.slice(0,3)}}</span>
-        <div class="row flex-fill">
-          <div class="col-sm-5">
-            <h4 class="h5">{{actividades.nombre}}</h4>
-            <p class="badge bg-success" style="font-size: large;">{{actividades.dia | date: 'dd/MM/yyyy'}}</p>
-          </div>
-          <div class="col-sm-4 py-2">
-            <span style="font-size: large;">HORARIO:  </span> <span class="badge bg-primary" style="font-size: large;">{{actividades.horario}}</span>
-          </div>
-          <div class="col-sm-3 text-lg-end">
-            <button class="btn btn-success" (click)="crearReserva()">Confirmar</button>
-            <button class="btn btn-danger" style="margin: 5px 5px;" (click)="cancelar()">Cancelar</button>
-          </div>
+      <button
+        class="btn btn-outline-primary update-button"
+        (click)="recargar()"
+      >
+        <i class="fas fa-sync-alt mr-2"></i>
+        Actualizar
+      </button>
+      <div class="activity-details justify-content-center" *ngIf="actividades">
+        <div class="activity-avatar">
+          {{ actividades.nombre.slice(0, 3) }}
+        </div>
+        <div class="activity-info">
+          <h4>{{ actividades.nombre }}</h4>
+          <p>
+            <i class="far fa-calendar-alt"></i>
+            {{ actividades.dia | date : "dd/MM/yyyy" }}
+          </p>
+          <p>
+            <i class="far fa-clock"></i>
+            {{ actividades.horario }}
+          </p>
         </div>
       </div>
     </div>
+    <div class="card-footer">
+      <button class="btn btn-danger" (click)="cancelar()">
+        <i class="fas fa-times mr-2"></i>
+        Cancelar
+      </button>
+      <button class="btn btn-success" (click)="crearReserva()">
+        <i class="fas fa-check mr-2"></i>
+        Confirmar
+      </button>
+    </div>
   </div>
-  <br>
-  <br>
 </div>

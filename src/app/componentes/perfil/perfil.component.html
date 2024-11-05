@@ -1,53 +1,52 @@
-<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-  <div class="card p-4">
-    <div class="image d-flex flex-column justify-content-center align-items-center">
-      <button class="btn btn-secondary">
-        <!--<img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" /> -->
-        <img [src]="[perfil.fotoPerfil]" id="imgPerfil" *ngIf="perfil && perfil.fotoPerfil">
-      </button>
-      <span class="name mt-3" *ngIf="perfil && perfil.nombre">{{perfil.nombre}}</span>
-      <span class="idd" *ngIf="perfil && perfil.email">{{perfil.email}}</span>
-      <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-       
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="profile-avatar-container">
+        <img
+          [src]="perfil?.fotoPerfil"
+          [alt]="perfil?.nombre"
+          class="profile-avatar"
+        />
       </div>
-      <div class="d-flex flex-row justify-content-center align-items-center mt-3">
-        <span class="number" *ngIf="perfil && perfil.suscripcionActual">Clases Actuales 📲 {{perfil.suscripcionActual}}
-        </span>
-        <span style="color: red; font-family: Impact;" *ngIf="perfil?.suscripcionActual <= 0">SIN CLASES DISPONIBLES</span>
-      </div>
-      <div class="d-flex flex-row justify-content-center align-items-center mt-3">
-        <span class="number" *ngIf="perfil && perfil.clasesTomadas">Clases Tomadas 💪 {{perfil.clasesTomadas}}
-        </span>
-      </div>
-      <div class="d-flex flex-row justify-content-center align-items-center mt-3" style="margin-bottom: 10px;">
-        <span class="number" *ngIf="perfil && perfil.clasesRestantes">Clases Restantes ⏳ {{perfil.clasesRestantes}}
-        </span>
-      </div>
-      
-      <div class="mt-2 text-center d-flex flex-row justify-content-center align-items-center">
-        <button class="btn btn-primary profile-button" type="button" routerLink="/misreservas">Mis Reservas</button>
-        <button class="btn btn-success" type="button" style="margin-left: 12px;" routerLink="/reservar">Nueva Reserva</button>
-      </div>
-
-      <!--Redes funcionalidad aun no realizada
-      <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
-        <span><i class="fa fa-twitter"></i></span>
-        <span><i class="fa fa-facebook-f"></i></span>
-        <span><i class="fa fa-instagram"></i></span>
-        <span><i class="fa fa-linkedin"></i></span>
-      </div> -->
-
-    <span class="idd" style="margin-top: 20px;">Fecha Última Suscripción </span>
-      <div class="px-2 rounded mt-4 date" style="margin-bottom: 30px;">
-        <span class="join" *ngIf="perfil && perfil.fechaActualSus">{{perfil.fechaActualSus}}</span>
-      </div>
-      <div class="d-flex mt-2">
-        <button class="btn1 btn-dark" routerLink="/editperfil">Editar Perfil</button>
+      <h2 class="profile-name">{{ perfil?.nombre }}</h2>
+      <p class="profile-email">{{ perfil?.email }}</p>
+    </div>
+    <div class="profile-stats">
+      <div>
+        <p class="stat-value">{{ perfil?.suscripcionActual }}</p>
+        <p class="stat-label">Clases Actuales</p>
       </div>
       <div>
-        <button class="btn1 btn-dark" routerLink="" style="margin-top: 2px;">Volver</button>
+        <p class="stat-value">{{ perfil?.clasesTomadas }}</p>
+        <p class="stat-label">Clases Tomadas</p>
       </div>
-       
+      <div>
+        <p class="stat-value">{{ perfil?.clasesRestantes }}</p>
+        <p class="stat-label">Clases Restantes</p>
+      </div>
+    </div>
+    <p *ngIf="perfil?.suscripcionActual <= 0" class="no-classes">
+      SIN CLASES DISPONIBLES
+    </p>
+    <div class="profile-actions">
+      <button class="btn btn-outline-primary" routerLink="/misreservas">
+        <i class="fas fa-calendar-check mr-2"></i> Mis Reservas
+      </button>
+      <button class="btn btn-dark" routerLink="/reservar">
+        <i class="fas fa-plus-circle mr-2"></i> Nueva Reserva
+      </button>
+    </div>
+    <div class="profile-footer">
+      <p class="subscription-date">Fecha Última Suscripción</p>
+      <p class="fw-medium">{{ perfil?.fechaActualSus }}</p>
+      <div class="d-flex justify-content-center gap-2 mt-3">
+        <button class="btn btn-outline-secondary" routerLink="/editperfil">
+          <i class="fas fa-pencil-alt mr-2"></i> Editar Perfil
+        </button>
+        <button class="btn btn-secondary" routerLink="">
+          <i class="fas fa-home mr-2"></i> Volver
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,56 +1,152 @@
-<div class="container rounded bg-white mt-5 mb-5">
-  <div class="row">
-    <div class="col-md-3 border-right">
-      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img [src]="[usuario.fotoPerfil]" 
-          class="rounded-circle mt-5" width="150" height="150" id="output" *ngIf="usuario && usuario.fotoPerfil"><img class="rounded-circle mt-5" width="150px"
-          id="output">
-          <button class="btn btn-primary" style="margin-bottom: 15px;" routerLink="/editperfil/img"><i class="fa-solid fa-pencil fa-bounce fa-xl"></i>
-            Cambiar Foto
-            </button>
-          <span
-          class="font-weight-bold" *ngIf="usuario && usuario.nombreUsuario">{{usuario.nombreUsuario}}</span><span
-          class="text-black-50" *ngIf="usuario && usuario.email">{{usuario.email}}</span><span> </span></div>
-      <div class="text-center">
-        <button class="btn btn-primary" style="margin-top: 10px;" routerLink="/editperfil/pass">
-        Cambiar Contraseña
-        </button>
+<div class="edit-profile-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 border-end">
+                <div
+                  class="d-flex flex-column align-items-center text-center p-3 py-5"
+                >
+                  <div class="position-relative mb-3">
+                    <img
+                      [src]="usuario.fotoPerfil"
+                      class="rounded-circle img-thumbnail"
+                      width="150"
+                      height="150"
+                      id="output"
+                      *ngIf="usuario && usuario.fotoPerfil"
+                    />
+                    <button
+                      class="btn btn-sm btn-primary position-absolute bottom-0 end-0"
+                      routerLink="/editperfil/img"
+                    >
+                      <i class="fas fa-pencil-alt"></i>
+                    </button>
+                  </div>
+                  <h5 class="mb-1" *ngIf="usuario && usuario.nombreUsuario">
+                    {{ usuario.nombreUsuario }}
+                  </h5>
+                  <p class="text-muted mb-3" *ngIf="usuario && usuario.email">
+                    {{ usuario.email }}
+                  </p>
+                  <button
+                    class="btn btn-outline-primary w-100"
+                    routerLink="/editperfil/pass"
+                  >
+                    <i class="fas fa-key me-2"></i>Cambiar Contraseña
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-md-8">
+                <h4 class="mb-4">Mi Perfil</h4>
+                <form (ngSubmit)="onUpdate()" #profileForm="ngForm">
+                  <div class="row g-3">
+                    <div class="col-md-6" *ngIf="usuario">
+                      <label for="nombre" class="form-label">Nombre</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nombre"
+                        [ngModel]="usuario.nombre"
+                        (ngModelChange)="usuario.nombre = $event"
+                        #nameInput="ngModel"
+                        name="nombre"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6" *ngIf="usuario">
+                      <label for="apellido" class="form-label">Apellido</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="apellido"
+                        [ngModel]="usuario.apellido"
+                        (ngModelChange)="usuario.apellido = $event"
+                        #nameInput="ngModel"
+                        name="apellido"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6" *ngIf="usuario">
+                      <label for="telefono" class="form-label">Teléfono</label>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="telefono"
+                        [ngModel]="usuario.telefono"
+                        (ngModelChange)="usuario.telefono = $event"
+                        #nameInput="ngModel"
+                        name="telefono"
+                      />
+                    </div>
+                    <div class="col-md-6" *ngIf="usuario">
+                      <label for="dni" class="form-label">DNI</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="dni"
+                        [ngModel]="usuario.dni"
+                        (ngModelChange)="usuario.dni = $event"
+                        #nameInput="ngModel"
+                        name="dni"
+                        required
+                      />
+                    </div>
+                    <div class="col-12" *ngIf="usuario">
+                      <label for="direccion" class="form-label"
+                        >Dirección</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="direccion"
+                        [ngModel]="usuario.direccion"
+                        (ngModelChange)="usuario.direccion = $event"
+                        #nameInput="ngModel"
+                        name="direccion"
+                        placeholder="Calle y número"
+                      />
+                    </div>
+                    <div class="col-12" *ngIf="usuario">
+                      <label for="localidad" class="form-label"
+                        >Localidad</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="localidad"
+                        [ngModel]="usuario.localidad"
+                        (ngModelChange)="usuario.localidad = $event"
+                        #nameInput="ngModel"
+                        name="localidad"
+                      />
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end mt-4">
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary me-2"
+                      (click)="cancelar()"
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      [disabled]="!profileForm.form.valid"
+                    >
+                      Guardar Cambios
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div><img width="100px" id="mostraranterior"></div>
     </div>
-    
-    <div class="col-md-5 border-right">
-      <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4 class="text-right">Mi Perfil</h4>
-        </div>
-        <div class="row mt-2">
-          <div class="col-md-6"><label class="labels">Nombre</label><input type="text" class="form-control"
-              placeholder="Ingresa tu nombre" [(ngModel)]="usuario.nombre" required *ngIf="usuario"></div>
-          <div class="col-md-6"><label class="labels">Apellido</label><input type="text" class="form-control"
-              [(ngModel)]="usuario.apellido" required placeholder="Ingresa tu apellido" *ngIf="usuario"></div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-md-12"><label class="labels">Telefono</label><input type="text" class="form-control"
-              placeholder="Ingresa tu telefono" [(ngModel)]="usuario.telefono" *ngIf="usuario"></div>
-          <div class="col-md-12"><label class="labels">Dirección</label><input type="text" class="form-control"
-              placeholder="Ingresa tu calle y el numero" [(ngModel)]="usuario.direccion" *ngIf="usuario"></div>
-          <div class="col-md-12"><label class="labels">Localidad</label><input type="text" class="form-control"
-              placeholder="Ingresa tu localidad" [(ngModel)]="usuario.localidad" *ngIf="usuario"></div>
-          <div class="col-md-12"><label class="labels">Dni</label><input type="number" class="form-control"
-              placeholder="ingresa tu dni" [(ngModel)]="usuario.dni" required *ngIf="usuario"></div>
-          
-
-
-
-        </div>
-
-        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button"
-            (click)="onUpdate()">Guardar Cambios</button>
-          <button class="btn btn-danger" type="button" (click)="cancelar()" style="margin-left: 12px;">Cancelar</button>
-        </div>
-
-      </div>
-    </div>
-
   </div>
 </div>

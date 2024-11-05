@@ -2,48 +2,78 @@
   <div class="profile-card">
     <div class="profile-header">
       <div class="profile-avatar-container">
+        <div *ngIf="isLoading" class="skeleton-avatar"></div>
         <img
+          *ngIf="!isLoading"
           [src]="perfil?.fotoPerfil"
           [alt]="perfil?.nombre"
           class="profile-avatar"
         />
       </div>
-      <h2 class="profile-name">{{ perfil?.nombre }}</h2>
-      <p class="profile-email">{{ perfil?.email }}</p>
+      <div *ngIf="isLoading" class="skeleton-text skeleton-name"></div>
+      <h2 *ngIf="!isLoading" class="profile-name">{{ perfil?.nombre }}</h2>
+      <div *ngIf="isLoading" class="skeleton-text skeleton-email"></div>
+      <p *ngIf="!isLoading" class="profile-email">{{ perfil?.email }}</p>
     </div>
     <div class="profile-stats">
-      <div>
-        <p class="stat-value">{{ perfil?.suscripcionActual }}</p>
-        <p class="stat-label">Clases Actuales</p>
-      </div>
-      <div>
-        <p class="stat-value">{{ perfil?.clasesTomadas }}</p>
-        <p class="stat-label">Clases Tomadas</p>
-      </div>
-      <div>
-        <p class="stat-value">{{ perfil?.clasesRestantes }}</p>
-        <p class="stat-label">Clases Restantes</p>
+      <div *ngFor="let i of [1, 2, 3]">
+        <div *ngIf="isLoading" class="skeleton-text skeleton-stat-value"></div>
+        <p *ngIf="!isLoading" class="stat-value">
+          {{
+            i === 1
+              ? perfil?.suscripcionActual
+              : i === 2
+              ? perfil?.clasesTomadas
+              : perfil?.clasesRestantes
+          }}
+        </p>
+        <div *ngIf="isLoading" class="skeleton-text skeleton-stat-label"></div>
+        <p *ngIf="!isLoading" class="stat-label">
+          {{
+            i === 1
+              ? "Clases Actuales"
+              : i === 2
+              ? "Clases Tomadas"
+              : "Clases Restantes"
+          }}
+        </p>
       </div>
     </div>
-    <p *ngIf="perfil?.suscripcionActual <= 0" class="no-classes">
+    <p *ngIf="!isLoading && perfil?.suscripcionActual <= 0" class="no-classes">
       SIN CLASES DISPONIBLES
     </p>
     <div class="profile-actions">
-      <button class="btn btn-outline-primary" routerLink="/misreservas">
+      <div *ngIf="isLoading" class="skeleton-button"></div>
+      <button
+        *ngIf="!isLoading"
+        class="btn btn-outline-primary"
+        routerLink="/misreservas"
+      >
         <i class="fas fa-calendar-check mr-2"></i> Mis Reservas
       </button>
-      <button class="btn btn-dark" routerLink="/reservar">
+      <div *ngIf="isLoading" class="skeleton-button"></div>
+      <button *ngIf="!isLoading" class="btn btn-dark" routerLink="/reservar">
         <i class="fas fa-plus-circle mr-2"></i> Nueva Reserva
       </button>
     </div>
     <div class="profile-footer">
-      <p class="subscription-date">Fecha Última Suscripción</p>
-      <p class="fw-medium">{{ perfil?.fechaActualSus }}</p>
+      <div *ngIf="isLoading" class="skeleton-text skeleton-date-label"></div>
+      <p *ngIf="!isLoading" class="subscription-date">
+        Fecha Última Suscripción
+      </p>
+      <div *ngIf="isLoading" class="skeleton-text skeleton-date"></div>
+      <p *ngIf="!isLoading" class="fw-medium">{{ perfil?.fechaActualSus }}</p>
       <div class="d-flex justify-content-center gap-2 mt-3">
-        <button class="btn btn-outline-secondary" routerLink="/editperfil">
+        <div *ngIf="isLoading" class="skeleton-button"></div>
+        <button
+          *ngIf="!isLoading"
+          class="btn btn-outline-secondary"
+          routerLink="/editperfil"
+        >
           <i class="fas fa-pencil-alt mr-2"></i> Editar Perfil
         </button>
-        <button class="btn btn-secondary" routerLink="">
+        <div *ngIf="isLoading" class="skeleton-button"></div>
+        <button *ngIf="!isLoading" class="btn btn-secondary" routerLink="">
           <i class="fas fa-home mr-2"></i> Volver
         </button>
       </div>

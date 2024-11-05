@@ -7,17 +7,14 @@ const USERNAME_KEY = 'AuthUsername';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaAuthGuard implements CanActivate {
-
   constructor(private tokenService: TokenService, private router: Router) { }
 
   canActivate() {
-    // If the user is not logged in we'll send them back to the home page
     if (!this.tokenService.getToken()) {
       console.log("No estás logueado");
       this.router.navigate(["/"]);
       return false;
     }
-
     return true;
   }
 }
@@ -28,9 +25,9 @@ export class CanActivateViaAuthGuard implements CanActivate {
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-
   usuarioLogeado: string | null = null;
   perfil: any;
+  isLoading = true;
 
   constructor(private auth: AuthService) { }
 
@@ -43,12 +40,15 @@ export class PerfilComponent implements OnInit {
   }
 
   traerUsuario(nombreUsuario: string): void {
+    this.isLoading = true;
     this.auth.detailName(nombreUsuario).subscribe(
       data => {
         this.perfil = data;
+        this.isLoading = false;
       },
       error => {
         console.error('Error al traer los detalles del usuario verifica la conexión a internet:', error);
+        this.isLoading = false;
       }
     );
   }

@@ -14,50 +14,68 @@ const USERNAME_KEY = 'AuthUsername';
 })
 export class MisReservasComponent implements OnInit {
   reservas: Turno[] = [];
-  usuarioLogeado: any;
-  misReservas: any;
-  reservasDeHoy: any;
+  usuarioLogeado: string | null = null;
+  misReservas: Turno[] = [];
+  reservasDeHoy: Turno[] = [];
 
-  constructor(private turnoService: TurnoService, private router: Router, private spinnerService: SpinnerService) { }
+  constructor(
+    private turnoService: TurnoService,
+    private router: Router,
+    private spinnerService: SpinnerService
+  ) { }
 
   ngOnInit(): void {
-    this.TraerReservas();
+    this.cargarUsuario();
+    this.traerReservas();
+  }
+
+  cargarUsuario(): void {
     const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
     this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
   }
 
-  TraerReservas() {
+  traerReservas(): void {
     this.spinnerService.llamarSpinner();
-    this.turnoService.lista().subscribe(data => {
-      this.reservas = data;
-      this.reservasDelUsuario();
-      this.spinnerService.pararSpinner();
-    }, err => {
-      alert("No se pudieron traer las reservas del usuario, intente nuevamente");
-      this.spinnerService.pararSpinner();
-    });
+    this.turnoService.lista().subscribe(
+      data => {
+        this.reservas = data;
+        this.filtrarReservasUsuario();
+        this.spinnerService.pararSpinner();
+      },
+      err => {
+        console.error('Error al cargar las reservas:', err);
+        alert("No se pudieron traer las reservas del usuario, intente nuevamente");
+        this.spinnerService.pararSpinner();
+      }
+    );
   }
 
-  reservasDelUsuario() {
-    this.misReservas = this.reservas.filter(reserva => reserva.nombreUsuario == this.usuarioLogeado);
-    this.reservasDeHoy = this.misReservas.filter((reserva: { dia: string; }) => reserva.dia >= formatDate(Date.now(), 'yyyy-MM-dd', 'es'));
-  }
-
-  volver() {
-    this.router.navigate(['perfil']);
-  }
-
-  eliminar(id?: number) {
-    if (id != undefined) {
-      this.turnoService.delete(id).subscribe(data => {
-        alert("Registro eliminado correctamente");
-        this.reservasDelUsuario();
-      }, err => { alert("No se pudo borrar el registro") },
-      )
-    } else {
-      alert("No se pudo borrar el registro")
+  filtrarReservasUsuario(): void {
+    if (this.usuarioLogeado) {
+      this.misReservas = this.reservas.filter(reserva => reserva.nombreUsuario === this.usuarioLogeado);
+      const hoy = formatDate(new Date(), 'yyyy-MM-dd', 'es');
+      this.reservasDeHoy = this.misReservas.filter(reserva => reserva.dia >= hoy);
     }
   }
 
+  volver(): void {
+    this.router.navigate(['perfil']);
+  }
 
+  eliminar(id?: number): void {
+    if (id !== undefined) {
+      this.spinnerService.llamarSpinner();
+      this.turnoService.delete(id).subscribe(
+        () => {
+          alert("Reserva cancelada correctamente");
+          this.traerReservas();
+        },
+        err => {
+          console.error('Error al cancelar la reserva:', err);
+          alert("No se pudo cancelar la reserva");
+          this.spinnerService.pararSpinner();
+        }
+      );
+    }
+  }
 }

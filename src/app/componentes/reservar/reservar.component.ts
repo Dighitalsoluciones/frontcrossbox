@@ -3,11 +3,9 @@ import { Router } from '@angular/router';
 import { Actividades } from 'src/app/model/actividades';
 import { Disciplinas } from 'src/app/model/disciplinas';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
-import { Turno } from 'src/app/model/turno';
 import { ActividadesService } from 'src/app/service/actividades.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { DisciplinasService } from 'src/app/service/disciplinas.service';
-import { TurnoService } from 'src/app/service/turno.service';
 
 const USERNAME_KEY = 'AuthUsername';
 
@@ -17,82 +15,79 @@ const USERNAME_KEY = 'AuthUsername';
   styleUrls: ['./reservar.component.css']
 })
 export class ReservarComponent implements OnInit {
-  selecActividad: string[] = ["CROSSBOX", "FUNCIONAL", "GAP"];
-  fecha: Date = null!;
+  fecha: Date | null = null;
   actividades: Actividades[] = [];
   today: string = new Date().toISOString().split('T')[0];
   actividadSeleccionada: string = "";
   usuarioLogeado: any;
-  usuario: NuevoUsuario = null!;
-  disciplinas: Disciplinas [] = [];
+  usuario: NuevoUsuario | null = null;
+  disciplinas: Disciplinas[] = [];
 
-  constructor(private router: Router, private actividadesService: ActividadesService, private turnoServ: TurnoService, private auth: AuthService, private disciplinasServ: DisciplinasService) { }
+  constructor(
+    private router: Router,
+    private actividadesService: ActividadesService,
+    private auth: AuthService,
+    private disciplinasServ: DisciplinasService
+  ) { }
 
   ngOnInit(): void {
     this.traerDisciplinas();
-    const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
-    this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
-      this.auth.detailName(this.usuarioLogeado).subscribe(
-      data =>{
-        this.usuario = data;
-      }, err =>{
-        alert("Error al modificar los datos del usuario");
-        this.router.navigate(['perfil']);
-      }
-    )
+    this.cargarUsuario();
   }
 
-  traerActividades(): void{
-    this.actividadesService.getActividades().subscribe(data => {this.actividades = data});
-  }
-
-  traerDisciplinas(): void{
-    this.disciplinasServ.lista().subscribe(data => {this.disciplinas = data});
-  }
-
-  buscarActividades() {
-    this.actividadesService.buscarActividades(this.fecha).subscribe(
-      (actividades: Actividades[]) => {
-        this.actividades = actividades;
-        this.actividades = this.actividades.filter(filtact => filtact.nombre == this.actividadSeleccionada);
+  traerDisciplinas(): void {
+    this.disciplinasServ.lista().subscribe(
+      data => {
+        this.disciplinas = data;
       },
-      (error: any) => {
-        console.error(error);
+      error => {
+        console.error('Error al cargar disciplinas:', error);
       }
     );
   }
 
-  verDetalle(id: number) {
-    this.router.navigate(['/actividades', id]);
+  cargarUsuario(): void {
+    const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
+    this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
+    if (this.usuarioLogeado) {
+      this.auth.detailName(this.usuarioLogeado).subscribe(
+        data => {
+          this.usuario = data;
+        },
+        error => {
+          console.error('Error al cargar datos del usuario:', error);
+          this.router.navigate(['perfil']);
+        }
+      );
+    }
   }
 
-  reservarActividad(actividades: number) {
-    this.actividadesService.reservarActividad(Number(actividades))
-      .subscribe(() => {
-        alert('La actividad se reservó correctamente');
-        this.buscarActividades();
-        
-      });
+  buscarActividades() {
+    if (!this.fecha || !this.actividadSeleccionada) {
+      alert('Por favor, seleccione una fecha y una actividad.');
+      return;
+    }
+
+    this.actividadesService.buscarActividades(this.fecha).subscribe(
+      (actividades: Actividades[]) => {
+        this.actividades = actividades.filter(act => act.nombre === this.actividadSeleccionada);
+      },
+      (error: any) => {
+        console.error('Error al buscar actividades:', error);
+        alert('Hubo un error al buscar las actividades. Por favor, intente de nuevo.');
+      }
+    );
   }
 
-  cancelarReservaActividad(actividad: Actividades) {
-    this.actividadesService.reservarActividad(Number(actividad))
-      .subscribe(() => {
-        alert('La reserva de la actividad fue cancelada');
-        this.buscarActividades();
-      });
-  }
-
- 
-  volver(){
+  volver() {
     this.router.navigate(['perfil']);
   }
 
-  mostrarTurno(){
-    if(this.usuario.suscripcionActual != 0){
-     return true;
-    }
-    return false;
+  mostrarTurno(): boolean {
+    return this.usuario ? this.usuario.suscripcionActual > 0 : false;
   }
 
+  mostrarSinSuscripcion(): boolean {
+    return this.usuario ? this.usuario.suscripcionActual <= 0 : false;
+  }
 }

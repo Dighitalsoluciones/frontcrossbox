@@ -1,57 +1,116 @@
+<div class="reservation-container">
+  <div class="reservation-card">
+    <div class="text-center mb-4">
+      <h1 class="reservation-title">Bienvenido a CROSSBOX FITNESS CLUB</h1>
+      <img
+        src="https://res.cloudinary.com/djtra8arp/image/upload/v1687803096/nuevologocrossbox_fdkpik_jgc3ng.png"
+        alt="Logo"
+        class="logo-img"
+      />
+    </div>
 
-<div class="d-flex col-12 justify-content-center align-items-center text-center">
- <div class="container">
-  <h1>Bienvenido a CROSSBOX FITNESS CLUB <img src="https://res.cloudinary.com/djtra8arp/image/upload/v1687803096/nuevologocrossbox_fdkpik_jgc3ng.png" height="50" width="50"></h1>
-  <form>
-    <p>Seleccionar Actividad</p>
-    <div class="form-group">
-        <select name="actividadSeleccionada" [(ngModel)]="actividadSeleccionada">
-           <option [ngValue]="item.nombre" *ngFor="let item of disciplinas">{{item.nombre}}</option>
+    <form class="reservation-form">
+      <div class="mb-3">
+        <label for="actividadSeleccionada" class="form-label"
+          >Seleccionar Actividad</label
+        >
+        <select
+          id="actividadSeleccionada"
+          name="actividadSeleccionada"
+          [(ngModel)]="actividadSeleccionada"
+          class="form-select"
+        >
+          <option [ngValue]="item.nombre" *ngFor="let item of disciplinas">
+            {{ item.nombre }}
+          </option>
         </select>
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="fecha">Seleccionar Fecha</label>
-      <input type="date" id="fecha" name="fecha" [min]="today" class="form-control" [(ngModel)]="fecha">
-    </div>
-    <button type="button" class="btn btn-primary" style="margin-top: 0px;" (click)="buscarActividades()">Buscar</button>
-    <button type="button" class="btn btn-warning" style="margin: 10px 10px; color: white;" (click)="volver()">Volver</button>
-  </form>
-</div>
-</div>
-<br>
-<br>
-<div class="d-flex col-12 justify-content-center align-items-center text-center">
-  <div class="container">
-    <h1 style="font-family: Impact;">TURNOS DISPONIBLES</h1>
-    <div class="table-responsive-sm" *ngIf="actividades && actividades.length">
-      <table class="table table-bordered table-dark">
-        <thead>
+      </div>
+
+      <div class="mb-3">
+        <label for="fecha" class="form-label">Seleccionar Fecha</label>
+        <input
+          type="date"
+          id="fecha"
+          name="fecha"
+          [min]="today"
+          class="form-control"
+          [(ngModel)]="fecha"
+        />
+      </div>
+
+      <div class="d-grid gap-2">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="buscarActividades()"
+        >
+          <i class="fas fa-search me-2"></i>Buscar
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="volver()">
+          <i class="fas fa-arrow-left me-2"></i>Volver
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="reservation-card mt-4">
+    <h2 class="text-center mb-4">TURNOS DISPONIBLES</h2>
+    <div class="table-responsive" *ngIf="actividades && actividades.length">
+      <table class="table table-hover">
+        <thead class="table-dark">
           <tr>
             <th>Actividad</th>
-            <th>Observacion</th>
+            <th>Observación</th>
             <th>Día</th>
             <th>Horario</th>
             <th>Cupos</th>
-            <th>Reservar</th>
+            <th>Acción</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let actividad of actividades | ordenarporHs:'asc':'horario'">
+          <tr
+            *ngFor="
+              let actividad of actividades | ordenarporHs : 'asc' : 'horario'
+            "
+          >
             <td>{{ actividad.nombre }}</td>
             <td>{{ actividad.descripcion }}</td>
-            <td>{{ actividad.dia | date: 'dd/MM/yyyy'}}</td>
+            <td>{{ actividad.dia | date : "dd/MM/yyyy" }}</td>
             <td>{{ actividad.horario }}</td>
             <td>{{ actividad.cupo }}</td>
-            <td *ngIf="(actividad.cupo != 0 && mostrarTurno())"><button type="button" class="btn btn-primary" routerLink="/reserva/{{actividad.id}}">Reservar</button></td>
-            <td *ngIf="(actividad.cupo == 0 && mostrarTurno())"><button type="button" class="btn btn-danger">SIN CUPOS</button></td>
-            <td *ngIf="(usuario.suscripcionActual <= 0)"><button type="button" class="btn btn-warning" (click)="volver()">SIN SUSCRIPCION</button></td>
+            <td>
+              <button
+                *ngIf="actividad.cupo != 0 && mostrarTurno()"
+                type="button"
+                class="btn btn-primary btn-sm"
+                routerLink="/reserva/{{ actividad.id }}"
+              >
+                <i class="fas fa-calendar-check me-2"></i>Reservar
+              </button>
+              <button
+                *ngIf="actividad.cupo == 0 && mostrarTurno()"
+                type="button"
+                class="btn btn-danger btn-sm"
+                disabled
+              >
+                <i class="fas fa-ban me-2"></i>Sin Cupos
+              </button>
+              <button
+                *ngIf="mostrarSinSuscripcion()"
+                type="button"
+                class="btn btn-warning btn-sm"
+                (click)="volver()"
+              >
+                <i class="fas fa-exclamation-triangle me-2"></i>Sin Suscripción
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div *ngIf="!actividades || !actividades.length">
-      <p>No hay turnos disponibles en esta fecha</p>
+    <div *ngIf="!actividades || !actividades.length" class="alert alert-info">
+      <i class="fas fa-info-circle me-2"></i>No hay turnos disponibles en esta
+      fecha
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ import { TokenService } from 'src/app/service/token.service';
 
 const USERNAME_KEY = 'AuthUsername';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CanActivateViaAuthGuard implements CanActivate {
 
   constructor(private tokenService: TokenService, private router: Router) { }
@@ -28,23 +28,28 @@ export class CanActivateViaAuthGuard implements CanActivate {
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  usuarioLogeado: any;
+
+  usuarioLogeado: string | null = null;
   perfil: any;
-  mostrarfoto: any;
 
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
     const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
     this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
-    this.traerUsuario(this.usuarioLogeado);
-   
+    if (this.usuarioLogeado) {
+      this.traerUsuario(this.usuarioLogeado);
+    }
   }
 
-  traerUsuario(nombreUsuario: string): void{
-  this.auth.detailName(nombreUsuario).subscribe(data => {this.perfil = data})
-    
+  traerUsuario(nombreUsuario: string): void {
+    this.auth.detailName(nombreUsuario).subscribe(
+      data => {
+        this.perfil = data;
+      },
+      error => {
+        console.error('Error al traer los detalles del usuario verifica la conexión a internet:', error);
+      }
+    );
   }
-
-
 }

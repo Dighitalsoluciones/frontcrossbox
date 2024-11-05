@@ -1,67 +1,94 @@
-<div class="container">
-    <div class="row">
-         <div class="col-lg-10 mx-auto mb-4">
-            <div class="section-title text-center ">
-                <h3 class="top-c-sep">Mis Reservas</h3>
-                <p>En esta seccion encontras las reservas pendientes a realizar</p>
-            </div>
+<div class="reservations-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="section-title text-center mb-5">
+          <h1 class="display-4 text-primary">Mis Reservas</h1>
+          <p class="lead">Aquí encontrarás tus próximas reservas pendientes</p>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-10 mx-auto">
-            <div class="career-search mb-60">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <button class="btn btn-outline-primary" (click)="volver()">
+                <i class="fas fa-arrow-left me-2"></i>Volver
+              </button>
+              <p class="mb-0 fs-5">
+                Próximas Reservas:
+                <span class="badge bg-primary">{{
+                  reservasDeHoy.length
+                }}</span>
+              </p>
+            </div>
 
-                <form action="#" class="career-form mb-60">
-                    <div class="row" id="botonesMisReservas">
-                        <div class="col-md-6 col-lg-6 my-3">
-                            <div>
-                                <button class="btn-lg btn btn-warning" (click)="volver()">VOLVER</button>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 my-3">
-                            <!-- Comentado, ahora directamente al iniciar el component muestra la informacion -->
-                            <!-- <button type="button" class="btn btn-lg btn-block btn-light btn-custom" id="contact-submit" (click)="reservasDelUsuario()">
-                                VER MIS RESERVAS
-                            </button> -->
-                        </div>
+            <div class="reservation-list">
+              <div
+                class="reservation-item card mb-3 animate__animated animate__fadeIn"
+                *ngFor="
+                  let reserva of reservasDeHoy
+                    | ordenarporHs : 'asc' : 'horario'
+                    | ordenarporHs : 'asc' : 'actividad'
+                    | ordenarporHs : 'asc' : 'dia'
+                "
+              >
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-md-2 text-center mb-3 mb-md-0">
+                      <div class="activity-icon">
+                        {{ reserva.actividad.slice(0, 3) }}
+                      </div>
                     </div>
-                </form>
-
-                <div class="filter-result">
-                    <p class="mb-30 ff-montserrat">Proximas Reservas : {{reservasDeHoy?.length}}</p>
-
-                    <div class="job-box d-md-flex align-items-center justify-content-between mb-30" *ngFor="let reserva of reservasDeHoy | ordenarporHs:'asc':'horario' | ordenarporHs:'asc':'actividad'| ordenarporHs:'asc':'dia' "> 
-                        <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
-                            <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-                                {{reserva.actividad.slice(0,3)}}
-                            </div>
-                            <div class="job-content" id="turnoReservado">
-                                <h5 class="text-center text-md-left">{{reserva.actividad}}</h5>
-                                <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
-                                    <li class="mr-md-4">
-                                        <i class="zmdi zmdi-pin mr-2"></i> {{reserva.dia | date:'EEEE, dd LLLL yyyy'}}
-                                    </li>
-                                    <li class="mr-md-4" style="margin-left: 10px;" id="liHorario">
-                                        <p class="mr-2  badge bg-success" style="margin-top: 6px;">HORARIO: {{reserva.horario}}</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="job-right my-4 flex-shrink-0">
-                            <a href="https://wa.me/+5491156683207?text=Hola+Soy+{{reserva.nombre}}%0ACon+DNI+*{{reserva.dni}}*+Dar+De+Baja:+%0AActividad:+*{{reserva.actividad}}*%0ADia:+*{{reserva.dia}}*%0AHorario:+*{{reserva.horario}}*%0ALink:+*https://crossboxfitnessclub1.web.app/detailreserva/{{reserva.id}}*" class="btn d-block w-100 d-sm-inline-block btn-danger">Cancelar</a>
-                        </div>
+                    <div class="col-md-7 mb-3 mb-md-0">
+                      <h5 class="card-title">{{ reserva.actividad }}</h5>
+                      <p class="card-text mb-1">
+                        <i class="far fa-calendar-alt me-2"></i>
+                        {{ reserva.dia | date : "EEEE, dd LLLL yyyy" }}
+                      </p>
+                      <p class="card-text">
+                        <i class="far fa-clock me-2"></i>
+                        <span class="badge bg-success">{{
+                          reserva.horario
+                        }}</span>
+                      </p>
                     </div>
+                    <div class="col-md-3 text-md-end">
+                      <a
+                        href="https://wa.me/+5491156683207?text=Hola+Soy+{{
+                          reserva.nombre
+                        }}%0ACon+DNI+*{{
+                          reserva.dni
+                        }}*+Dar+De+Baja:+%0AActividad:+*{{
+                          reserva.actividad
+                        }}*%0ADia:+*{{ reserva.dia }}*%0AHorario:+*{{
+                          reserva.horario
+                        }}*%0ALink:+*https://crossboxfitnessclub1.web.app/detailreserva/{{
+                          reserva.id
+                        }}*"
+                        class="btn btn-outline-danger"
+                      >
+                        <i class="fas fa-times-circle me-2"></i>Cancelar
+                      </a>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" 
-  size = "medium" 
-  color = "#fff" 
-  type = "square-jelly-box" 
-  [fullScreen] = "true">
-  <img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1692470033/loading-gif_fskhni.gif">
-  <p class="d-flex justify-content-center text-center mt-4 pt-1" style="color: white" > Cargando reservas... </p>
+  </div>
+
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="square-jelly-box"
+    [fullScreen]="true"
+  >
+    <img
+      src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1692470033/loading-gif_fskhni.gif"
+    />
+    <p class="text-center mt-4 pt-1 text-white">Cargando reservas...</p>
   </ngx-spinner>
 </div>

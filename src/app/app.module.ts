@@ -40,6 +40,7 @@ import { RecoveryComponent } from './componentes/login/recovery.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorService } from './service/interceptor.service';
+import { ToastrModule } from 'ngx-toastr';
 registerLocaleData(localeEs, 'es');
 
 
@@ -76,8 +77,8 @@ registerLocaleData(localeEs, 'es');
     SubirImagenComponent,
     EditarimagenComponent,
     RecoveryComponent,
-  
-  
+
+
   ],
   imports: [
     BrowserModule,
@@ -87,10 +88,12 @@ registerLocaleData(localeEs, 'es');
     NgxPaginationModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot()
+
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'es'},
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    { provide: LOCALE_ID, useValue: 'es' },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
   ],
   bootstrap: [AppComponent]
 })

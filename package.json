@@ -23,6 +23,7 @@
     "date-fns": "^2.29.3",
     "ngx-pagination": "^6.0.3",
     "ngx-spinner": "^13.1.1",
+    "ngx-toastr": "^14.3.0",
     "react-native-calendario-selected-date": "^1.0.6",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

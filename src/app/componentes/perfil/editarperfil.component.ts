@@ -3,6 +3,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
+import { SpinnerService } from 'src/app/service/spinner.service';
 
 const USERNAME_KEY = 'AuthUsername';
 
@@ -12,59 +13,63 @@ const USERNAME_KEY = 'AuthUsername';
   styleUrls: ['./editarperfil.component.css']
 })
 export class EditarperfilComponent implements OnInit {
-  
+
   usuario: NuevoUsuario = null!;
   usuarioLogeado: any;
   perfil: any;
   public imagenOk: any = [];
   public previsualizacion: string = "";
-  
+
   files: any = []
   selectedFile: File = null!;
   url: SafeUrl = "";
-  
 
-  constructor(private auth: AuthService, private router: Router, private sanitizer: DomSanitizer) { }
 
-  
+  constructor(private auth: AuthService, private router: Router, private sanitizer: DomSanitizer, private spinnerService: SpinnerService) { }
+
+
 
   ngOnInit(): void {
     const usuarioCodificado = sessionStorage.getItem(USERNAME_KEY);
     this.usuarioLogeado = usuarioCodificado ? JSON.parse(atob(usuarioCodificado)) : null;
-      this.auth.detailName(this.usuarioLogeado).subscribe(
-      data =>{
+    this.auth.detailName(this.usuarioLogeado).subscribe(
+      data => {
         this.usuario = data;
-      }, err =>{
+      }, err => {
         alert("Error al modificar los datos del usuario");
         this.router.navigate(['perfil']);
       }
     )
-   
+
   }
 
-  obtenerUsuarioLogeado(){
+  obtenerUsuarioLogeado() {
+    this.spinnerService.llamarSpinner();
     this.usuarioLogeado = sessionStorage.getItem(USERNAME_KEY);
-      this.auth.detailName(this.usuarioLogeado).subscribe(
-      data =>{
+    this.auth.detailName(this.usuarioLogeado).subscribe(
+      data => {
         this.usuario = data;
-      }, err =>{
+        this.spinnerService.pararSpinner();
+      }, err => {
         alert("Error al modificar los datos del usuario");
         this.router.navigate(['perfil']);
+        this.spinnerService.pararSpinner();
       }
     )
   }
 
-  onUpdate(): void{
+  onUpdate(): void {
     const id = Number(this.usuario.id);
     this.auth.update(id, this.usuario).subscribe(
-      data => {alert("✅ Perfil actualizado");
+      data => {
+        alert("✅ Perfil actualizado");
         this.router.navigate(['perfil']);
-      }, err =>{
+      }, err => {
         alert("⛔ Error al modificar el articulo ⛔");
         this.router.navigate(['perfil']);
       }
     )
-    
+
   }
 
   cancelar(): void {
@@ -75,7 +80,7 @@ export class EditarperfilComponent implements OnInit {
   capturarImagen(event: any) {
     this.selectedFile = event.target.files[0];
     this.convertToBase64();
-    
+
   }
 
   convertToBase64() {
@@ -84,16 +89,16 @@ export class EditarperfilComponent implements OnInit {
     reader.onload = () => {
       const base64 = reader.result as string;
       // Aquí puedes enviar la imagen en formato base64 a la base de datos o hacer cualquier otra cosa con ella
-      
+
       this.usuario.fotoPerfil = base64.toString();
-      
+
     };
   }
 
-  devolverImagen(){
-this.url = this.sanitizer.bypassSecurityTrustUrl(JSON.parse(this.usuario.fotoPerfil));
-return this.url;
-}
+  devolverImagen() {
+    this.url = this.sanitizer.bypassSecurityTrustUrl(JSON.parse(this.usuario.fotoPerfil));
+    return this.url;
+  }
 
 
 }

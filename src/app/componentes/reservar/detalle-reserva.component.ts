@@ -4,6 +4,7 @@ import { Actividades } from 'src/app/model/actividades';
 import { Turno } from 'src/app/model/turno';
 import { ActividadesService } from 'src/app/service/actividades.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { SpinnerService } from 'src/app/service/spinner.service';
 import { TurnoService } from 'src/app/service/turno.service';
 
 const USERNAME_KEY = 'AuthUsername';
@@ -20,12 +21,15 @@ export class DetalleReservaComponent implements OnInit {
   perfil: any;
   rol: any;
 
+  isLoading: boolean = false;
+
   constructor(
     private actiServ: ActividadesService,
     private activatedRouter: ActivatedRoute,
     private router: Router,
     private turnoServ: TurnoService,
-    private auth: AuthService
+    private auth: AuthService,
+    private spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -76,8 +80,10 @@ export class DetalleReservaComponent implements OnInit {
   }
 
   crearReserva(): void {
+    this.isLoading = true;
     if (!this.actividades || !this.perfil) {
       console.error('Datos de actividad o perfil no disponibles');
+      this.isLoading = false;
       return;
     }
 
@@ -101,11 +107,16 @@ export class DetalleReservaComponent implements OnInit {
         console.error('Error al intentar reservar:', err);
         alert("Error al intentar reservar. Por favor, verifique el cupo.");
         this.router.navigate(['perfil']);
+        this.spinnerService.pararSpinner();
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 5000);
       }
     );
   }
 
   modificacionesUsuario(): void {
+    this.spinnerService.llamarSpinner();
     if (!this.perfil || !this.actividades) return;
 
     this.perfil.suscripcionActual--;
@@ -115,10 +126,12 @@ export class DetalleReservaComponent implements OnInit {
       () => {
         this.reservarActividad(this.actividades!.id!);
         this.router.navigate(['misreservas']);
+        this.spinnerService.pararSpinner();
       },
       err => {
         console.error('Error al modificar el perfil:', err);
         alert("Error al actualizar el perfil. Por favor, inténtalo de nuevo.");
+        this.spinnerService.pararSpinner();
       }
     );
   }

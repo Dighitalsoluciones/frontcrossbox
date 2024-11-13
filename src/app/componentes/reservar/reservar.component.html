@@ -59,12 +59,11 @@
       <table class="table table-hover">
         <thead class="table-dark">
           <tr>
-            <th>Actividad</th>
-            <th>Observación</th>
-            <th>Día</th>
-            <th>Horario</th>
-            <th>Cupos</th>
-            <th>Acción</th>
+            <th class="text-center">Actividad</th>
+            <th class="text-center">Día</th>
+            <th class="text-center">Horario</th>
+            <th class="text-center">Cupos</th>
+            <th class="text-center">Acción</th>
           </tr>
         </thead>
         <tbody>
@@ -73,12 +72,16 @@
               let actividad of actividades | ordenarporHs : 'asc' : 'horario'
             "
           >
-            <td>{{ actividad.nombre }}</td>
-            <td>{{ actividad.descripcion }}</td>
-            <td>{{ actividad.dia | date : "dd/MM/yyyy" }}</td>
-            <td>{{ actividad.horario }}</td>
-            <td>{{ actividad.cupo }}</td>
-            <td>
+            <td class="text-center" [title]="actividad.descripcion">
+              {{ actividad.nombre }}
+              <p *ngIf="actividad.descripcion.length != 0">❓</p>
+            </td>
+            <td class="text-center">
+              {{ actividad.dia | date : "dd/MM/yyyy" }}
+            </td>
+            <td class="text-center">{{ actividad.horario }}</td>
+            <td class="text-center">{{ actividad.cupo }}</td>
+            <td class="text-center">
               <button
                 *ngIf="actividad.cupo != 0 && mostrarTurno()"
                 type="button"

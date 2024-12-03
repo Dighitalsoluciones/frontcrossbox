@@ -47,7 +47,7 @@ export class NuevoLoginComponent implements OnInit {
 
   onCreate(): void {
     const nuevousuario = new NuevoUsuario(this.nombre, this.apellido, this.dni, this.direccion, this.localidad, this.telefono,
-      this.fotoPerfil, this.nombreUsuario, this.email, this.password, this.suscripcionActual,
+      this.fotoPerfil, this.nombreUsuario.trim(), this.email, this.password.trim(), this.suscripcionActual,
       this.fechaActualSus, this.clasesTomadas, this.clasesRestantes, this.idImagenCloudinary);
     if (this.nombre && this.apellido && this.dni && this.direccion && this.localidad && this.telefono &&
       this.fotoPerfil && this.nombreUsuario && this.email && this.password) {

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
-    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
+    this.loginUsuario = new LoginUsuario(this.nombreUsuario.trim(), this.password.trim());
     this.authService.login(this.loginUsuario).subscribe(data => {
       this.toastrService.info('🏆 Bienvenido Usuario 🏆', 'Info', {
         positionClass: 'toast-top-center',

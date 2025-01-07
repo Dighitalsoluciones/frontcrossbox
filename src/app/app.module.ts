@@ -41,6 +41,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorService } from './service/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
+import { NotificationBannerComponent } from './componentes/notification-banner/notification-banner.component';
 registerLocaleData(localeEs, 'es');
 
 
@@ -77,6 +78,7 @@ registerLocaleData(localeEs, 'es');
     SubirImagenComponent,
     EditarimagenComponent,
     RecoveryComponent,
+    NotificationBannerComponent,
 
 
   ],

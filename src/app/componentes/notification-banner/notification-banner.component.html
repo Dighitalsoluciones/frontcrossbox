@@ -1,0 +1,9 @@
+<div *ngIf="isVisible" class="banner-container" (click)="handleClick()">
+  <div class="banner-content">
+    <div class="banner-image">
+      <img [src]="imageUrl" alt="Banner promotion" />
+    </div>
+    <span class="banner-message">{{ message }}</span>
+    <button class="close-button" (click)="close($event)">×</button>
+  </div>
+</div>

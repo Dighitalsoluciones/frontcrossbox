@@ -10,6 +10,12 @@
           class="profile-avatar"
         />
       </div>
+      <app-notification-banner
+        message="¡Descubre nuestra nueva Tienda Online!"
+        targetUrl="https://tiendacrossbox.web.app/"
+        imageUrl="assets\running.webp"
+      >
+      </app-notification-banner>
       <div *ngIf="isLoading" class="skeleton-text skeleton-name"></div>
       <h2 *ngIf="!isLoading" class="profile-name">{{ perfil?.nombre }}</h2>
       <div *ngIf="isLoading" class="skeleton-text skeleton-email"></div>

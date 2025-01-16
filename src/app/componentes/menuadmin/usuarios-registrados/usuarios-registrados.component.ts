@@ -13,7 +13,9 @@ export class UsuariosRegistradosComponent implements OnInit {
   res: any[] = [];
   usuariosRegistrados: any;
   usuariosFiltrados: NuevoUsuario[] = [];
+  usuariosFiltradosPorEmail: NuevoUsuario[] = [];
   filtrarUsuariosReg: string = "";
+  filtrarUsuariosEmail: string = '';
   filtro: string = "";
   modalEliminarUsuario = "none";
   fechas: Fecha[] = [];
@@ -25,6 +27,9 @@ export class UsuariosRegistradosComponent implements OnInit {
   backendPage = 0;
   mostrarSoloFiltrados: boolean = false;
   botonBuscar: boolean = true;
+
+  buscarPorEmail: boolean = false;
+  buscarPorApellido: boolean = false;
 
   constructor(private authService: AuthService,) { }
 
@@ -46,9 +51,11 @@ export class UsuariosRegistradosComponent implements OnInit {
     });
   }
 
-  filtrarUsuarios() {
+  filtrarPorUsuarios() {
     this.mostrarSoloFiltrados = true;
     this.botonBuscar = false;
+    this.buscarPorApellido = false;
+    this.buscarPorEmail = false;
     this.p = 0;
     // Valor del input en minúsculas
     this.filtro = this.filtrarUsuariosReg.toLowerCase();
@@ -59,6 +66,34 @@ export class UsuariosRegistradosComponent implements OnInit {
     } else {
       this.listaUsuarios();
     }
+  }
+
+  filtrarPorEmail() {
+    this.mostrarSoloFiltrados = true;
+    this.botonBuscar = false;
+    this.buscarPorApellido = false;
+    this.buscarPorEmail = false;
+    this.p = 0;
+    // Valor del input en minúsculas
+    this.filtro = this.filtrarUsuariosEmail.toLowerCase();
+    if (this.filtro.length !== 0) {
+      this.authService.buscarPorEmail(this.filtro).subscribe(data => {
+        this.usuariosFiltrados = data;
+        this.filtrarUsuariosEmail = '';
+      });
+    } else {
+      this.listaUsuarios();
+    }
+  }
+
+  activarBusquedaPorApellido() {
+    this.buscarPorApellido = true;
+    this.buscarPorEmail = false;
+  }
+
+  activarBusquedaPorEmail() {
+    this.buscarPorApellido = false;
+    this.buscarPorEmail = true;
   }
 
   listaUsuariosPaginados(p: number): void {

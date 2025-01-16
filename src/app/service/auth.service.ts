@@ -76,5 +76,9 @@ export class AuthService {
 
   public listaFiltro(filtro: string): Observable<NuevoUsuario[]> {
     return this.httpClient.get<NuevoUsuario[]>(`${this.authURL}listaFiltro?filtro=${filtro}`);
-}
+  }
+
+  public buscarPorEmail(filtro: string): Observable<NuevoUsuario[]> {
+    return this.httpClient.get<NuevoUsuario[]>(`${this.authURL}buscarPorEmail?filtro=${filtro}`);
+  }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/service/auth.service';
+import { SpinnerService } from 'src/app/service/spinner.service';
 
 const AUTHORITIES_KEY = 'AuthAuthorities';
 
@@ -18,75 +19,93 @@ export class CargaSuscripcionComponent implements OnInit {
   usuarioLog: any;
   usuarioLogeado: any;
 
-  constructor(private authServ: AuthService, private activatedRouter: ActivatedRoute, private router: Router) { }
+  constructor(private authServ: AuthService, private activatedRouter: ActivatedRoute,
+    private router: Router, private spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['id'];
     this.authServ.details(id).subscribe(
-      data =>{
+      data => {
         this.usuario = data;
-      }, err =>{
+      }, err => {
         alert("Error al cargar la suscripcion");
         this.router.navigate(['']);
       }
     )
     const authCodificado = sessionStorage.getItem(AUTHORITIES_KEY);
-    this.rol = authCodificado ? JSON.stringify(atob(authCodificado)) : []; 
-    this.traerUsuario(this.usuarioLogeado);  
+    this.rol = authCodificado ? JSON.stringify(atob(authCodificado)) : [];
+    this.traerUsuario(this.usuarioLogeado);
   }
 
-  traerUsuario(nombreUsuario: string): void{
-    if(nombreUsuario != null){
-    this.authServ.detailName(nombreUsuario).subscribe(data => {this.usuarioLog = data})
+  traerUsuario(nombreUsuario: string): void {
+    if (nombreUsuario != null) {
+      this.authServ.detailName(nombreUsuario).subscribe(data => { this.usuarioLog = data })
     }
   }
 
   isAdmin() {
-    if(this.rol.includes("ROLE_ADMIN"))
+    if (this.rol.includes("ROLE_ADMIN"))
       return true;
     else
       return false;
-    }
+  }
 
-  onUpdate(): void{
+  onUpdate(): void {
     const id = this.activatedRouter.snapshot.params['id'];
     this.authServ.update(id, this.usuario).subscribe(
-      data => {alert("✅ Articulo modificado correctamente");
+      data => {
+        alert("✅ Articulo modificado correctamente");
         this.router.navigate(['']);
-      }, err =>{
+      }, err => {
         alert("⛔ Error al modificar el usuario ⛔");
         this.router.navigate(['']);
       }
     )
-    
+
   }
 
-  guardar(): void{
+  guardar(): void {
+    this.spinnerService.llamarSpinner();
     const id = this.activatedRouter.snapshot.params['id'];
     this.authServ.update(id, this.usuario).subscribe(
-      data => {alert("✅ Clases cargadas correctamente");
-        }, err =>{
+      data => {
+        alert("✅ Clases cargadas correctamente");
+        this.spinnerService.pararSpinner();
+      }, err => {
         alert("⛔ Error al cargar las clases ⛔");
+        this.spinnerService.pararSpinner();
       }
     )
-    
+
   }
 
   cancelar(): void {
     this.router.navigate(['']);
   }
 
-  enviarWhatsapp(){
-    document.location.href ='https://wa.me/549'+ this.usuario.telefono;
+  enviarWhatsapp() {
+    document.location.href = 'https://wa.me/549' + this.usuario.telefono;
   }
 
-  cargarSuscripcion(){
+  cargarSuscripcion() {
     var cargar = (<HTMLInputElement>document.getElementById('inputclases')).value;
     var clasesActivas = Number(this.usuario.suscripcionActual) + Number(cargar);
     console.log(cargar);
     this.usuario.suscripcionActual = Number(clasesActivas);
     this.usuario.fechaActualSus = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
-    
+
+  }
+
+  incrementarClases() {
+    const inputElement = <HTMLInputElement>document.getElementById('inputclases');
+    const valorActual = Number(inputElement.value) || 0;
+    inputElement.value = (valorActual + 1).toString();
+  }
+
+  decrementarClases() {
+    const inputElement = <HTMLInputElement>document.getElementById('inputclases');
+    const valorActual = Number(inputElement.value) || 0;
+    inputElement.value = (valorActual - 1).toString();
   }
 
 }
